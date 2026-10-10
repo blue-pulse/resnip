@@ -1,9 +1,10 @@
 # Resnip
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
-[![GameMaker LTS 2026](https://img.shields.io/badge/GameMaker-LTS%202026-black?style=flat-square)](https://gamemaker.io)
-[![Language: GML](https://img.shields.io/badge/language-GML-green?style=flat-square)](https://manual.gamemaker.io/lts/en/GameMaker_Language/GML_Overview/GML_Overview.htm)
-[![Based on AESnips](https://img.shields.io/badge/based%20on-AESnips-orange?style=flat-square)](https://github.com/angelwire/AESnips)
+![Status: WIP](https://img.shields.io/badge/status-WIP-yellow)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
+[![GameMaker LTS 2026](https://img.shields.io/badge/GameMaker-LTS%202026-black)](https://gamemaker.io)
+[![Language: GML](https://img.shields.io/badge/language-GML-green)](https://manual.gamemaker.io/lts/en/GameMaker_Language/GML_Overview/GML_Overview.htm)
+[![Based on AESnips](https://img.shields.io/badge/based%20on-AESnips-orange)](https://github.com/angelwire/AESnips)
 
 Sprite animation for GameMaker. A full rewrite of [AESnips](https://github.com/angelwire/AESnips), built for the techniques and standards of GameMaker LTS 2026.
 
