@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"cowboy_fire_bullet",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"cowboy_fire_bullet",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,11 @@
+-Thanks to:
+
+FaultyFunctions via Github for mentioning the need to allow methods
+to be executed by Snips and individual frames
+
+last_life_left via Twitter for requesting the following features:
+-ping pong animation playback
+-play snips backwards
+
+Chourando via Github for requesting objects to be able to play multiple Snips at the same time
+which led to the SnipPlayer() struct

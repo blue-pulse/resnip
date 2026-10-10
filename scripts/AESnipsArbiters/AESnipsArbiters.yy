@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"AESnipsArbiters",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"AESnipsArbiters",
+  "parent":{
+    "name":"AESnips",
+    "path":"folders/Scripts/AESnips.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
