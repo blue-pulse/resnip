@@ -5,8 +5,7 @@
 /// @param {Real} y The y position
 function resnip_player_draw(_player, _x, _y) {
 	var _snip = _player.snip;
-	if (_snip != undefined)
-	{
+	if (_snip != undefined) {
 		draw_sprite(_snip.sprite, resnip_frame_to_image(_snip, _player.frame), _x, _y);
 	}
 }

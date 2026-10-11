@@ -1,7 +1,6 @@
 function __resnip_sprite_scale(_snip) {
 	gml_pragma("forceinline");
-	if (_snip.sprite_speed_type == spritespeed_framespergameframe)
-	{
+	if (_snip.sprite_speed_type == spritespeed_framespergameframe) {
 		return _snip.sprite_speed;
 	}
 

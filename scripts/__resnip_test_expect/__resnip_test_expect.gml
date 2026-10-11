@@ -1,6 +1,5 @@
 function __resnip_test_expect(_context, _name, _actual, _expected) {
-	if (json_stringify(_actual) == json_stringify(_expected))
-	{
+	if (json_stringify(_actual) == json_stringify(_expected)) {
 		_context.passed += 1;
 		return;
 	}

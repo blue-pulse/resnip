@@ -4,27 +4,23 @@
 /// @param {Real} [steps] How many steps to advance, a fraction for delta time (default 1)
 function resnip_player_step(_player, _steps = 1) {
 	// Prevent a player that cannot move from advancing
-	if (_player.snip == undefined || _player.stopped || _player.paused || _player.clock.paused)
-	{
+	if (_player.snip == undefined || _player.stopped || _player.paused || _player.clock.paused) {
 		return;
 	}
 
 	// Variables
 	var _remaining = _steps;
-	while (_remaining > __RESNIP_EPSILON && !_player.stopped)
-	{
+	while (_remaining > __RESNIP_EPSILON && !_player.stopped) {
 		// Speed of the current frame
 		var _snip = _player.snip;
 		var _rate = _snip.frame_speeds[_player.frame] * _snip.speed * _player.speed * _player.clock.scale * __resnip_sprite_scale(_snip);
-		if (_rate <= 0)
-		{
+		if (_rate <= 0) {
 			return;
 		}
 
 		// Stay in the frame when the steps do not finish it
 		var _room = 1 - _player.__progress;
-		if (_remaining * _rate < _room - __RESNIP_EPSILON)
-		{
+		if (_remaining * _rate < _room - __RESNIP_EPSILON) {
 			_player.__progress += _remaining * _rate;
 			return;
 		}

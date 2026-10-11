@@ -9,8 +9,7 @@ my_snip = resnip_snip_create(sprite_index, {
 	end_mode: RESNIP_END.PINGPONG,
 	complete_on: RESNIP_COMPLETE.EDGE,
 	on_complete: method(self, function(_argument, _player) {
-		if (_player == main_player)
-		{
+		if (_player == main_player) {
 			image_angle += 5;
 		}
 	}),

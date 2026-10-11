@@ -2,8 +2,7 @@
 ///@desc Fires a bullet from the instance when its own player reaches the shooting frame, and ignores the extra players that draw the same snip
 function cowboy_fire_bullet(_bullet_speed, _player) {
 	// Prevent extra players from firing
-	if (_player != main_player)
-	{
+	if (_player != main_player) {
 		return;
 	}
 

@@ -4,19 +4,15 @@
 /// @param {Constant.RESNIP_STOP} [where] Where to leave it (default RESNIP_STOP.HERE)
 function resnip_player_stop(_player, _where = RESNIP_STOP.HERE) {
 	// Prevent stopping a player with no snip
-	if (_player.snip == undefined)
-	{
+	if (_player.snip == undefined) {
 		return;
 	}
 
 	// Move to the chosen frame
-	if (_where == RESNIP_STOP.HEAD)
-	{
+	if (_where == RESNIP_STOP.HEAD) {
 		_player.frame = 0;
 		_player.__progress = 0;
-	}
-	else if (_where == RESNIP_STOP.TAIL)
-	{
+	} else if (_where == RESNIP_STOP.TAIL) {
 		_player.frame = _player.snip.count - 1;
 		_player.__progress = 0;
 	}

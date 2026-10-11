@@ -28,8 +28,7 @@ fire_count = 1;
 // Loops start with 0 repeats, so each key press sets how many shots the loops play
 set_fire_count = function(_count) {
 	var _players = [main_player, copy_player];
-	for (var _i = 0; _i < array_length(_players); _i++)
-	{
+	for (var _i = 0; _i < array_length(_players); _i++) {
 		resnip_player_set_loop_repeats(_players[_i], my_snip.loops[1], _count - 1);
 		resnip_player_set_loop_repeats(_players[_i], my_snip.loops[0], (_count == 0) ? -1 : 0);
 	}

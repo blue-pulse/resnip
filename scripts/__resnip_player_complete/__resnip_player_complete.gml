@@ -3,15 +3,13 @@ function __resnip_player_complete(_player) {
 	var _snip = _player.snip;
 
 	// Completion script
-	if (_snip.on_complete != undefined)
-	{
+	if (_snip.on_complete != undefined) {
 		var _serial = _player.__serial;
 		var _callback = _snip.on_complete;
 		_callback(_snip.on_complete_argument, _player);
 
 		// Prevent a second snip when the script started one
-		if (_player.__serial != _serial)
-		{
+		if (_player.__serial != _serial) {
 			return true;
 		}
 	}

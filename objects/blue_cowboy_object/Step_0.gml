@@ -5,8 +5,7 @@ resnip_player_step(copy_player);
 resnip_instance_sync(main_player);
 
 // Shot count
-if (keyboard_lastkey >= ord("0") && keyboard_lastkey <= ord("9"))
-{
+if (keyboard_lastkey >= ord("0") && keyboard_lastkey <= ord("9")) {
 	fire_count = keyboard_lastkey - ord("0");
 	set_fire_count(fire_count);
 }

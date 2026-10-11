@@ -10,8 +10,7 @@
 /// @param {Real} alpha The alpha from 0 to 1
 function resnip_player_draw_ext(_player, _x, _y, _xscale, _yscale, _rot, _col, _alpha) {
 	var _snip = _player.snip;
-	if (_snip != undefined)
-	{
+	if (_snip != undefined) {
 		draw_sprite_ext(_snip.sprite, resnip_frame_to_image(_snip, _player.frame), _x, _y, _xscale, _yscale, _rot, _col, _alpha);
 	}
 }

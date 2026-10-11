@@ -5,18 +5,15 @@ function __resnip_player_finish(_player) {
 
 	// Completion
 	var _completes = true;
-	if (_snip.end_mode == RESNIP_END.PINGPONG && _snip.complete_on == RESNIP_COMPLETE.CYCLE)
-	{
+	if (_snip.end_mode == RESNIP_END.PINGPONG && _snip.complete_on == RESNIP_COMPLETE.CYCLE) {
 		_completes = (_player.direction != _player.__start_direction);
 	}
-	if (_completes && __resnip_player_complete(_player))
-	{
+	if (_completes && __resnip_player_complete(_player)) {
 		return;
 	}
 
 	// End mode
-	switch (_snip.end_mode)
-	{
+	switch (_snip.end_mode) {
 		case RESNIP_END.HOLD:
 			_player.frame = _forward ? _snip.count - 1 : 0;
 			_player.stopped = true;

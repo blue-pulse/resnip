@@ -11,8 +11,7 @@
 #macro __RESNIP_EPSILON 0.000001
 
 // What a snip does when it passes its last frame
-enum RESNIP_END
-{
+enum RESNIP_END {
 	HOLD,
 	REWIND,
 	REPEAT,
@@ -20,15 +19,13 @@ enum RESNIP_END
 }
 
 // When a pingpong snip counts as complete
-enum RESNIP_COMPLETE
-{
+enum RESNIP_COMPLETE {
 	EDGE,
 	CYCLE,
 }
 
 // Where resnip_player_stop leaves the player
-enum RESNIP_STOP
-{
+enum RESNIP_STOP {
 	HERE,
 	HEAD,
 	TAIL,

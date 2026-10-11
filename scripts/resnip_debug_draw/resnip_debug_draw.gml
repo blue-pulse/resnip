@@ -10,8 +10,7 @@ function resnip_debug_draw(_player, _x, _y) {
 	var _snip = _player.snip;
 
 	// Player with no snip
-	if (_snip == undefined)
-	{
+	if (_snip == undefined) {
 		draw_set_color(__RESNIP_DEBUG_EMPTY_COLOR);
 		draw_rectangle(_x, _y, _x + 16, _y + 16, false);
 		draw_set_color(_old_color);
@@ -28,8 +27,7 @@ function resnip_debug_draw(_player, _x, _y) {
 	var _current = resnip_frame_to_image(_snip, _player.frame);
 
 	// Sub-images
-	for (var _i = 0; _i < sprite_get_number(_sprite); _i++)
-	{
+	for (var _i = 0; _i < sprite_get_number(_sprite); _i++) {
 		var _x1 = _x + _i * _step;
 		var _y2 = _y + _height + ((_i == _current) ? _lift : 0);
 		var _in_snip = (_i >= _snip.first_image && _i <= _snip.last_image);
@@ -39,8 +37,7 @@ function resnip_debug_draw(_player, _x, _y) {
 		draw_rectangle(_x1, _y, _x1 + _width, _y2, false);
 		draw_sprite(_sprite, _i, _x1 + sprite_get_xoffset(_sprite), _y + sprite_get_yoffset(_sprite));
 
-		if (_in_snip && _snip.frame_scripts[resnip_image_to_frame(_snip, _i)] != undefined)
-		{
+		if (_in_snip && _snip.frame_scripts[resnip_image_to_frame(_snip, _i)] != undefined) {
 			draw_set_color(__RESNIP_DEBUG_SCRIPT_COLOR);
 			draw_ellipse(_x1 + _width / 2, _y + _height, _x1 + _width / 2 + __RESNIP_DEBUG_DOT_SIZE, _y + _height + __RESNIP_DEBUG_DOT_SIZE, false);
 		}
@@ -53,17 +50,13 @@ function resnip_debug_draw(_player, _x, _y) {
 	draw_rectangle(_bar_x, _y + _height + 1, _bar_x + _width * _player.__progress, _y + _height + _lift - 1, false);
 
 	// Loops
-	for (var _i = 0; _i < array_length(_snip.loops); _i++)
-	{
+	for (var _i = 0; _i < array_length(_snip.loops); _i++) {
 		var _loop = _snip.loops[_i];
 		var _repeats = __resnip_loop_repeat(_player, _loop);
-		if (_repeats > 0)
-		{
+		if (_repeats > 0) {
 			draw_set_color((_player.__loop == _i) ? __RESNIP_DEBUG_LOOP_ACTIVE_COLOR : __RESNIP_DEBUG_LOOP_COLOR);
 			draw_set_alpha(__RESNIP_DEBUG_LOOP_ALPHA);
-		}
-		else
-		{
+		} else {
 			draw_set_color((_repeats < 0) ? __RESNIP_DEBUG_LOOP_SKIP_COLOR : __RESNIP_DEBUG_LOOP_ONCE_COLOR);
 			draw_set_alpha(__RESNIP_DEBUG_SKIPPED_ALPHA);
 		}

@@ -3,8 +3,7 @@
 /// @param {Struct} snip The snip to change
 /// @param {Struct} next The snip to play after it, or undefined for none
 function resnip_snip_set_next(_snip, _next) {
-	if (_next != undefined && !is_struct(_next))
-	{
+	if (_next != undefined && !is_struct(_next)) {
 		__resnip_error("resnip_snip_set_next received a next that is not a snip. Pass the result of resnip_snip_create, or undefined for none.");
 	}
 	_snip.next = _next;

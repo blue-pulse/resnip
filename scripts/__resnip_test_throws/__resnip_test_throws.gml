@@ -1,10 +1,7 @@
 function __resnip_test_throws(_action) {
-	try
-	{
+	try {
 		_action();
-	}
-	catch (_error)
-	{
+	} catch (_error) {
 		return true;
 	}
 	return false;

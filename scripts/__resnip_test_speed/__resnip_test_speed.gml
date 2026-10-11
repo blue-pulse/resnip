@@ -18,8 +18,7 @@ function __resnip_test_speed(_context) {
 	// Scripts at high speed
 	var _log = [];
 	var _scripts = [];
-	for (var _i = 0; _i < 5; _i++)
-	{
+	for (var _i = 0; _i < 5; _i++) {
 		array_push(_scripts, { frame: _i, callback: _log_frame, argument: _log });
 	}
 	_player = __resnip_test_player(__resnip_test_snip({ speed: 2, frame_scripts: _scripts }));

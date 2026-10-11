@@ -13,14 +13,12 @@ function resnip_player_play(_player, _snip, _options = {}) {
 
 	// Prevent a restart when asked not to
 	var _playing = (_player.snip == _snip && !_player.stopped) || _player.__target == _snip;
-	if (!_restart && _playing)
-	{
+	if (!_restart && _playing) {
 		return false;
 	}
 
 	// Queue for later
-	if (_queue && _player.snip != undefined && !_player.stopped)
-	{
+	if (_queue && _player.snip != undefined && !_player.stopped) {
 		_player.__queue = _snip;
 		_player.__queue_transition = _transition;
 		return true;
@@ -30,11 +28,9 @@ function resnip_player_play(_player, _snip, _options = {}) {
 	var _use = _snip;
 	var _target = undefined;
 	var _from = _player.__target ?? _player.snip;
-	if (_transition && _from != undefined)
-	{
+	if (_transition && _from != undefined) {
 		var _found = resnip_transition_find(_from, _snip);
-		if (_found != undefined)
-		{
+		if (_found != undefined) {
 			_use = _found.use;
 			_target = _snip;
 			_backward = _found.backward;

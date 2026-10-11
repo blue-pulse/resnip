@@ -23,8 +23,7 @@ function __resnip_test_state(_context, _owner) {
 	// Instance sync
 	_player = __resnip_test_player(__resnip_test_snip());
 	__resnip_test_trace(_player, 3);
-	with (_owner)
-	{
+	with (_owner) {
 		resnip_instance_sync(_player);
 	}
 	__resnip_test_expect(_context, "instance sync copies the sprite", _owner.sprite_index, red_cowboy_full);

@@ -6,8 +6,7 @@ bench = undefined;
 debug_player = undefined;
 
 // Choose what to run
-if (mode == "test")
-{
+if (mode == "test") {
 	failures = __resnip_test_run(id);
 
 	// A player for the debug panel, which runs here so a drawing error shows up
@@ -18,12 +17,8 @@ if (mode == "test")
 	debug_player = resnip_player_create();
 	resnip_player_play(debug_player, _snip);
 	alarm[0] = 5;
-}
-else if (mode == "bench")
-{
+} else if (mode == "bench") {
 	bench = __resnip_bench_create();
-}
-else
-{
+} else {
 	instance_destroy();
 }

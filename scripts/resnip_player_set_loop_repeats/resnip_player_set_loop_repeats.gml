@@ -5,15 +5,13 @@
 /// @param {Real} repeats The number of repeats after the first play, or undefined to use the loop value again
 function resnip_player_set_loop_repeats(_player, _loop, _repeats) {
 	// Clear the override
-	if (_repeats == undefined)
-	{
+	if (_repeats == undefined) {
 		variable_struct_remove(_player.__repeats, _loop.__key);
 		return;
 	}
 
 	// Prevent a count that is not whole
-	if (_repeats != floor(_repeats))
-	{
+	if (_repeats != floor(_repeats)) {
 		__resnip_error("resnip_player_set_loop_repeats received " + string(_repeats) + ". Use a whole number, where 0 plays once and below 0 skips the loop.");
 	}
 
