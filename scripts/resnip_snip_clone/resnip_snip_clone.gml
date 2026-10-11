@@ -3,8 +3,7 @@
 /// @param {Struct} snip The snip to copy
 /// @param {Struct} [overrides] Options to replace, with the same fields as resnip_snip_create plus sprite
 /// @returns {Struct} The new snip
-function resnip_snip_clone(_snip, _overrides = {})
-{
+function resnip_snip_clone(_snip, _overrides = {}) {
 	var _sprite = _overrides[$ "sprite"] ?? _snip.sprite;
 	return resnip_snip_create(_sprite, __resnip_options_merge(_snip.__options, _overrides));
 }

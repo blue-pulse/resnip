@@ -1,8 +1,9 @@
-function __resnip_player_finish(_player)
-{
+function __resnip_player_finish(_player) {
+	// Variables
 	var _snip = _player.snip;
 	var _forward = _player.direction > 0;
 
+	// Completion
 	var _completes = true;
 	if (_snip.end_mode == RESNIP_END.PINGPONG && _snip.complete_on == RESNIP_COMPLETE.CYCLE)
 	{
@@ -13,6 +14,7 @@ function __resnip_player_finish(_player)
 		return;
 	}
 
+	// End mode
 	switch (_snip.end_mode)
 	{
 		case RESNIP_END.HOLD:

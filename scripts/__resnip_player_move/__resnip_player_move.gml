@@ -1,9 +1,10 @@
-function __resnip_player_move(_player)
-{
+function __resnip_player_move(_player) {
+	// Variables
 	var _snip = _player.snip;
 	var _forward = _player.direction > 0;
 	var _next = _player.frame + _player.direction;
 
+	// Loop edge
 	if (_player.__loop != __RESNIP_NO_LOOP)
 	{
 		var _loop = _snip.loops[_player.__loop];
@@ -18,12 +19,14 @@ function __resnip_player_move(_player)
 		}
 	}
 
+	// Snip edge
 	if (_next < 0 || _next >= _snip.count)
 	{
 		__resnip_player_finish(_player);
 		return;
 	}
 
+	// Enter the next frame
 	_player.frame = _next;
 	__resnip_player_enter(_player);
 }

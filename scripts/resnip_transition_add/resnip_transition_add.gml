@@ -5,8 +5,7 @@
 /// @param {Struct} use The snip that plays in between
 /// @param {Bool} [backward] Whether the use snip plays backward, which lets one authored snip serve both ways (default false)
 /// @returns {Struct} The registered transition
-function resnip_transition_add(_from, _to, _use, _backward = false)
-{
+function resnip_transition_add(_from, _to, _use, _backward = false) {
 	var _transition = { from: _from, to: _to, use: _use, backward: _backward };
 	__resnip_system().transitions[$ __resnip_transition_key(_from, _to)] = _transition;
 	return _transition;

@@ -8,8 +8,7 @@
 /// @param {Real} rot The angle in degrees
 /// @param {Constant.Color} col The blend color
 /// @param {Real} alpha The alpha from 0 to 1
-function resnip_player_draw_ext(_player, _x, _y, _xscale, _yscale, _rot, _col, _alpha)
-{
+function resnip_player_draw_ext(_player, _x, _y, _xscale, _yscale, _rot, _col, _alpha) {
 	var _snip = _player.snip;
 	if (_snip != undefined)
 	{

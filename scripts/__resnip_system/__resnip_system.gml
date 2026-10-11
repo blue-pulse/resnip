@@ -1,5 +1,4 @@
-function __resnip_system()
-{
+function __resnip_system() {
 	static _state = {
 		game_speed: RESNIP_DEFAULT_GAME_SPEED,
 		clock: { paused: false, scale: 1 },

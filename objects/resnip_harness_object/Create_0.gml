@@ -1,9 +1,11 @@
 /// @description Run the tests or the benchmark when tools/gm.py asks
+// Variables
 mode = environment_get_variable("RESNIP_MODE");
 failures = 0;
 bench = undefined;
 debug_player = undefined;
 
+// Choose what to run
 if (mode == "test")
 {
 	failures = __resnip_test_run(id);

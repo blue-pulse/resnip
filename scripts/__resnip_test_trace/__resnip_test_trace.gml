@@ -1,5 +1,4 @@
-function __resnip_test_trace(_player, _steps, _full = false)
-{
+function __resnip_test_trace(_player, _steps, _full = false) {
 	var _trace = [];
 	for (var _i = 0; _i < _steps; _i++)
 	{

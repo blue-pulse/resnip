@@ -1,7 +1,10 @@
-function __resnip_test_end(_context)
-{
-	var _count = function(_counter, _player) { _counter.hits += 1; };
+function __resnip_test_end(_context) {
+	// Variables
+	var _count = function(_counter, _player) {
+		_counter.hits += 1;
+	};
 
+	// Forward
 	var _player = __resnip_test_player(__resnip_test_snip());
 	__resnip_test_expect(_context, "repeat forward", __resnip_test_trace(_player, 12), [1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2]);
 
@@ -15,12 +18,14 @@ function __resnip_test_end(_context)
 	_player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG }));
 	__resnip_test_expect(_context, "pingpong forward", __resnip_test_trace(_player, 12), [1, 2, 3, 4, 3, 2, 1, 0, 1, 2, 3, 4]);
 
+	// Backward
 	_player = __resnip_test_player(__resnip_test_snip(), { backward: true });
 	__resnip_test_expect(_context, "repeat backward", __resnip_test_trace(_player, 6), [3, 2, 1, 0, 4, 3]);
 
 	_player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD }), { backward: true });
 	__resnip_test_expect(_context, "hold backward", __resnip_test_trace(_player, 5), [3, 2, 1, 0, 0]);
 
+	// Completion counts
 	var _counter = { hits: 0 };
 	_player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG, complete_on: RESNIP_COMPLETE.EDGE, on_complete: _count, on_complete_argument: _counter }));
 	__resnip_test_trace(_player, 12);

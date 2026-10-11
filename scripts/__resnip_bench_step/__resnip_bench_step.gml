@@ -1,11 +1,14 @@
-function __resnip_bench_step(_bench)
-{
+function __resnip_bench_step(_bench) {
+	// Finish after the last configuration
 	if (_bench.index >= array_length(_bench.configs))
 	{
 		return true;
 	}
 
+	// Variables
 	var _config = _bench.configs[_bench.index];
+
+	// Create the players
 	if (array_length(_bench.players) == 0)
 	{
 		for (var _i = 0; _i < _config.count; _i++)
@@ -18,6 +21,7 @@ function __resnip_bench_step(_bench)
 		_bench.micros = 0;
 	}
 
+	// Time the step
 	var _start = get_timer();
 	for (var _i = 0; _i < _config.count; _i++)
 	{
@@ -25,12 +29,14 @@ function __resnip_bench_step(_bench)
 	}
 	var _elapsed = get_timer() - _start;
 
+	// Count the step
 	_bench.steps += 1;
 	if (_bench.steps > __RESNIP_BENCH_WARMUP)
 	{
 		_bench.micros += _elapsed;
 	}
 
+	// Report the result
 	if (_bench.steps >= __RESNIP_BENCH_STEPS)
 	{
 		var _measured = __RESNIP_BENCH_STEPS - __RESNIP_BENCH_WARMUP;

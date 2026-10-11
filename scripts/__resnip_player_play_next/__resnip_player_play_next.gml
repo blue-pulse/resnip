@@ -1,5 +1,5 @@
-function __resnip_player_play_next(_player)
-{
+function __resnip_player_play_next(_player) {
+	// Pick what plays next
 	var _next = _player.__queue;
 	var _transition = _player.__queue_transition;
 	if (_next == undefined)
@@ -17,6 +17,7 @@ function __resnip_player_play_next(_player)
 		return false;
 	}
 
+	// Start it
 	if (_next == _player.snip)
 	{
 		_transition = false;

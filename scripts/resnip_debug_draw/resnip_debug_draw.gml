@@ -3,12 +3,13 @@
 /// @param {Struct} player The player to inspect
 /// @param {Real} x The x position of the panel
 /// @param {Real} y The y position of the panel
-function resnip_debug_draw(_player, _x, _y)
-{
+function resnip_debug_draw(_player, _x, _y) {
+	// Variables
 	var _old_color = draw_get_color();
 	var _old_alpha = draw_get_alpha();
 	var _snip = _player.snip;
 
+	// Player with no snip
 	if (_snip == undefined)
 	{
 		draw_set_color(__RESNIP_DEBUG_EMPTY_COLOR);
@@ -17,6 +18,7 @@ function resnip_debug_draw(_player, _x, _y)
 		return;
 	}
 
+	// Panel size
 	var _sprite = _snip.sprite;
 	var _width = sprite_get_width(_sprite);
 	var _height = sprite_get_height(_sprite);
@@ -74,6 +76,7 @@ function resnip_debug_draw(_player, _x, _y)
 		draw_rectangle(_start_x, _bar_y, _end_x, _bar_y + _line, false);
 	}
 
+	// Restore the draw state
 	draw_set_color(_old_color);
 	draw_set_alpha(_old_alpha);
 }

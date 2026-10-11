@@ -3,8 +3,7 @@
 /// @param {Struct} player The player to draw
 /// @param {Real} x The x position
 /// @param {Real} y The y position
-function resnip_player_draw(_player, _x, _y)
-{
+function resnip_player_draw(_player, _x, _y) {
 	var _snip = _player.snip;
 	if (_snip != undefined)
 	{

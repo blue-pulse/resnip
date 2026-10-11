@@ -4,19 +4,21 @@
 /// @param {Struct} snip The snip to play
 /// @param {Struct} [options] Optional fields: transition (look for a transition from the current snip, default false), queue (wait for the current snip to complete, default false), restart (play even if it already plays, default true), backward (play from its last frame down, default false)
 /// @returns {Bool} Whether the player started it or queued it
-function resnip_player_play(_player, _snip, _options = {})
-{
+function resnip_player_play(_player, _snip, _options = {}) {
+	// Options
 	var _transition = _options[$ "transition"] ?? false;
 	var _queue = _options[$ "queue"] ?? false;
 	var _restart = _options[$ "restart"] ?? true;
 	var _backward = _options[$ "backward"] ?? false;
 
+	// Prevent a restart when asked not to
 	var _playing = (_player.snip == _snip && !_player.stopped) || _player.__target == _snip;
 	if (!_restart && _playing)
 	{
 		return false;
 	}
 
+	// Queue for later
 	if (_queue && _player.snip != undefined && !_player.stopped)
 	{
 		_player.__queue = _snip;
@@ -24,6 +26,7 @@ function resnip_player_play(_player, _snip, _options = {})
 		return true;
 	}
 
+	// Transition
 	var _use = _snip;
 	var _target = undefined;
 	var _from = _player.__target ?? _player.snip;
@@ -38,6 +41,7 @@ function resnip_player_play(_player, _snip, _options = {})
 		}
 	}
 
+	// Reset the state
 	_player.snip = _use;
 	_player.direction = _backward ? RESNIP_BACKWARD : RESNIP_FORWARD;
 	_player.frame = _backward ? _use.count - 1 : 0;

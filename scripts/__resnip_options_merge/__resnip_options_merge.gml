@@ -1,5 +1,5 @@
-function __resnip_options_merge(_base, _overrides)
-{
+function __resnip_options_merge(_base, _overrides) {
+	// Variables
 	var _result = {};
 	var _sources = [_base, _overrides];
 	for (var _i = 0; _i < array_length(_sources); _i++)

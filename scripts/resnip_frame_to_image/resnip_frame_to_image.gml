@@ -3,8 +3,7 @@
 /// @param {Struct} snip The snip that holds the frame
 /// @param {Real} frame The frame of the snip
 /// @returns {Real} The sub-image of the sprite
-function resnip_frame_to_image(_snip, _frame)
-{
+function resnip_frame_to_image(_snip, _frame) {
 	gml_pragma("forceinline");
 	return _snip.first_image + _frame;
 }

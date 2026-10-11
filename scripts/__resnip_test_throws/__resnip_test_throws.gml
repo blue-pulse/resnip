@@ -1,5 +1,4 @@
-function __resnip_test_throws(_action)
-{
+function __resnip_test_throws(_action) {
 	try
 	{
 		_action();
