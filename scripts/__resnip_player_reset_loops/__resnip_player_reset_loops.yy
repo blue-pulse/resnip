@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__resnip_player_reset_loops",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__resnip_player_reset_loops",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Scripts/Resnip/(System).yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"resnip_clock_default",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"resnip_clock_default",
+  "parent":{
+    "name":"Resnip",
+    "path":"folders/Scripts/Resnip.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

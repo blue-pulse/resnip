@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"resnip_set_game_speed",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"resnip_set_game_speed",
+  "parent":{
+    "name":"Resnip",
+    "path":"folders/Scripts/Resnip.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

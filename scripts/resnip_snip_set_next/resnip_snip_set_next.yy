@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"resnip_snip_set_next",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"resnip_snip_set_next",
+  "parent":{
+    "name":"Resnip",
+    "path":"folders/Scripts/Resnip.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

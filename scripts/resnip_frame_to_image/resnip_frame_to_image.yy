@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"resnip_frame_to_image",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"resnip_frame_to_image",
+  "parent":{
+    "name":"Resnip",
+    "path":"folders/Scripts/Resnip.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__resnip_transition_key",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__resnip_transition_key",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Scripts/Resnip/(System).yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

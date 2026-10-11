@@ -1,18 +1,16 @@
-/// @description Create the snips and transitions that the runners will use
-left_snip = new Snip(run_left_sprite, .5);
-right_snip = new Snip(run_right_sprite, .5);
-left_right_snip = new Snip(run_left_to_right, .5);
-right_left_snip = new Snip(run_right_to_left, .5);
+/// @description Create the snips and the transitions that the runners share
+resnip_set_game_speed(game_get_speed(gamespeed_fps));
 
-//Create transitions with the snips
-r_l_transition = new Transition(right_snip, left_snip, right_left_snip);
-l_r_transition = new Transition(left_snip, right_snip, left_right_snip);
+var _turn_speeds = [
+	{ frame: 2, speed: 0.9 },
+	{ frame: 3, speed: 0.7 },
+	{ frame: 4, speed: 0.9 },
+];
 
-//Set the frame speed for certain frames
-snip_set_frame_speed(right_left_snip, 2, .9);
-snip_set_frame_speed(right_left_snip, 3, .7);
-snip_set_frame_speed(right_left_snip, 4, .9);
+left_snip = resnip_snip_create(run_left_sprite, { speed: 0.5 });
+right_snip = resnip_snip_create(run_right_sprite, { speed: 0.5 });
+left_right_snip = resnip_snip_create(run_left_to_right, { speed: 0.5, frame_speeds: _turn_speeds });
+right_left_snip = resnip_snip_create(run_right_to_left, { speed: 0.5, frame_speeds: _turn_speeds });
 
-snip_set_frame_speed(left_right_snip, 2, .9);
-snip_set_frame_speed(left_right_snip, 3, .7);
-snip_set_frame_speed(left_right_snip, 4, .9);
+resnip_transition_add(right_snip, left_snip, right_left_snip);
+resnip_transition_add(left_snip, right_snip, left_right_snip);

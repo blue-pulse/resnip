@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__resnip_constants",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__resnip_constants",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Scripts/Resnip/(System).yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -8,8 +8,6 @@
     {"name":"ping_pong_object","order":7,"path":"objects/ping_pong_object/ping_pong_object.yy",},
     {"name":"red_cowboy_object","order":2,"path":"objects/red_cowboy_object/red_cowboy_object.yy",},
     {"name":"runner_snip_holder","order":5,"path":"objects/runner_snip_holder/runner_snip_holder.yy",},
-    {"name":"AESnipsBase","order":1,"path":"scripts/AESnipsBase/AESnipsBase.yy",},
-    {"name":"AESnipsPlayer","order":5,"path":"scripts/AESnipsPlayer/AESnipsPlayer.yy",},
     {"name":"bullet_sprite","order":6,"path":"sprites/bullet_sprite/bullet_sprite.yy",},
     {"name":"ping_pong_sprite","order":5,"path":"sprites/ping_pong_sprite/ping_pong_sprite.yy",},
     {"name":"red_cowboy_draw","order":2,"path":"sprites/red_cowboy_draw/red_cowboy_draw.yy",},

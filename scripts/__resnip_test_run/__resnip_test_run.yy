@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__resnip_test_run",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__resnip_test_run",
+  "parent":{
+    "name":"Dev",
+    "path":"folders/Scripts/Dev.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

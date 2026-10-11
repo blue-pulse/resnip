@@ -1,12 +1,14 @@
-///@func cowboy_fire_bullet
-///@desc Fires a bullet and resizes it to the firing object's scale and gives it speed
-function cowboy_fire_bullet(_bullet_speed)
+///@func cowboy_fire_bullet(bullet_speed, player)
+///@desc Fires a bullet from the instance when its own player reaches the shooting frame, and ignores the extra players that draw the same snip
+function cowboy_fire_bullet(_bullet_speed, _player)
 {
-	if (!is_struct(self))
+	if (_player != main_player)
 	{
-		var _bullet = instance_create_depth(x + (10*image_xscale), y + (12*image_xscale), 1, bullet_object);
-		_bullet.image_xscale = self.image_xscale;
-		_bullet.image_yscale = self.image_yscale;
-		_bullet.hspeed = _bullet_speed;
+		return;
 	}
+
+	var _bullet = instance_create_depth(x + (10 * image_xscale), y + (12 * image_xscale), 1, bullet_object);
+	_bullet.image_xscale = image_xscale;
+	_bullet.image_yscale = image_yscale;
+	_bullet.hspeed = _bullet_speed;
 }

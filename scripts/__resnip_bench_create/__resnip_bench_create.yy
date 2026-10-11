@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__resnip_bench_create",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__resnip_bench_create",
+  "parent":{
+    "name":"Dev",
+    "path":"folders/Scripts/Dev.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
