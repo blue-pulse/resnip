@@ -32,7 +32,50 @@ Resnip keeps the concepts of AESnips.
 
 ## Requirements
 
-- GameMaker LTS 2026
+- GameMaker LTS 2026. The project file records IDE version 2026.0.0.16, and the tests ran with runtime 2026.0.0.23.
+- Python 3.11 or later, for the command line tools in `tools/`.
+
+## Run it
+
+1. Open `resnip.yyp` in GameMaker and press run for the demo, or from the repository root run:
+
+   ```sh
+   python tools/gm.py doctor
+   python tools/gm.py run
+   ```
+
+   `doctor` shows what the tools found and what is missing. `run` builds the project with Igor on the VM and starts the demo.
+
+Other commands:
+
+| Command | What it does |
+| --- | --- |
+| `python tools/gm.py test` | Runs the test room on the VM and reports the result |
+| `python tools/gm.py test --yyc` | The same, built with YYC |
+| `python tools/gm.py bench` | Runs the benchmark room |
+
+## Project organisation
+
+| Path | What it holds |
+| --- | --- |
+| `scripts/` | The library (`resnip_*`, `__resnip_*`), the tests (`__resnip_test_*`) and the benchmark (`__resnip_bench_*`) |
+| `objects/`, `rooms/` | The demo, the test room and the benchmark room |
+| `sprites/` | Art for the demo and the tests |
+| `tools/` | The Python command line that runs the project with Igor |
+| `docs/` | The documentation |
+
+The IDE shows the scripts in virtual folders, and on disk each resource has its own folder.
+
+## Where to go next
+
+We recommend reading the following documents in the order listed.
+
+- [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md): the map of the library, its invariants and its boundaries.
+- [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md): the commands and the rules that bind everyone who works on it.
+- [docs/decisions/](./docs/decisions/): why each larger choice was made, what was refused, and what differs from AESnips.
+- [docs/reference/](./docs/reference/): how AESnips, Igor, GMS MCP and the GameMaker manual behave.
+- [docs/PENDING.md](./docs/PENDING.md): the known work that is unfinished.
+- [AGENTS.md](./AGENTS.md): where an AI coding agent starts.
 
 ## Credits and licence
 
