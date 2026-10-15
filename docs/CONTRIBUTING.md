@@ -131,7 +131,7 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 
 ### Agents
 
-- `A009` Never edit `docs/reference/` or the art under `sprites/` unless the user asks, because the first holds checked facts and the second is not ours.
+- `A009` Never edit `docs/reference/` or the art under `sprites/` unless the user asks, because the first holds checked facts and the second is the art of the demo.
 - `A010` Never make a commit or a push unless the user asks for it in that request, because the user alone answers for each commit.
 - `A011` Never mention the agent, its model or the company behind it in a commit or in any file, because the user alone answers for the work. This is a choice of the maintainer, and git history and tooling can still add a trailer on their own, so check each message.
 - `A012` Never leave the project directory, not to look for a file you did not find and not to read the user's system, because the project is your whole sandbox. The only exception is a path the user gives you for one specific task.

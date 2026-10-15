@@ -121,6 +121,5 @@ A frame script and a completion script are called as `callback(argument, player)
 | Component | Version | Responsibility | Licence | Copyright holder |
 | --- | --- | --- | --- | --- |
 | AESnips | 0.1.4 | The concepts Resnip carries over, written again as new code | MIT, see `LICENSE` | William Jones |
-| Sprites in `sprites/` | Not recorded | Art of the demo and the tests | Not established | Not established |
 
-The licence of the sprites is item 4 of [PENDING.md](./PENDING.md). GameMaker itself and its runtime are not part of the repository.
+GameMaker itself and its runtime are not part of the repository.

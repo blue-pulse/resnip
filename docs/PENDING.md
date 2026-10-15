@@ -36,14 +36,6 @@ Shape. Write the test that builds two such snips. If it hangs, make the skip ite
 
 Done when that test passes and `__resnip_player_enter` has no recursive call.
 
-## 4. The sprites have no established licence
-
-Problem. Twelve sprites under `sprites/` have the same names as those of the AESnips demo project, which ships no licence file (see [reference/aesnips.md](./reference/aesnips.md)). One more, `s_gmtl_demo_clickable`, has an origin that nobody recorded. The repository is MIT licensed, and art is not covered by that without its holder saying so.
-
-Shape. Read the licence on the AESnips project page and ask its author if it says nothing. Record the answer per sprite in the third-party table of [ARCHITECTURE.md](./ARCHITECTURE.md). If a sprite cannot be shipped, replace it with art that can and keep its resource name.
-
-Done when every sprite has a licence line or is replaced.
-
 ## 5. The YYC build keeps stale code after scripts change
 
 Problem. After scripts are added or edited, `python tools/gm.py test --yyc` can fail at the link step with unresolved externals for anonymous functions, until `.sandbox/igor/cache` is deleted. Seen twice on 2026-10-15 with runtime 2026.0.0.23, and not seen on a fresh checkout.
