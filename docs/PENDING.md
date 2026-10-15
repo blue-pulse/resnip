@@ -66,7 +66,7 @@ Low priority.
 
 ## 8. The test suite was not audited against the test rules
 
-Problem. Record [0015](./decisions/0015-write-a-test-only-if-it-protects-a-named-behaviour.md) was written after the 171 tests. Some may be a second example of a class that another test covers, two check a private field (the clone tests compare `__key` of a loop), and some may be too close to the implementation. Nobody counted them. Re-count before acting.
+Problem. Record [0015](./decisions/0015-write-a-test-only-if-it-protects-a-named-behaviour.md) was written after the 171 tests. Some may be a second example of a class that another test covers, one checks a private field (the clone test compares `__key` of two loops), and some may be too close to the implementation. A first reading on 2026-10-15 found these candidates, and it is not the audit: the eight tests of the suite `properties` and one test of `speed` use a loop and a branch, which breaks `T011` as written; the test `callbacks receive the argument and the player` of `flow` repeats two tests of `callbacks`; and `the snip counts its frames` of `input` checks a field value. Re-count before acting.
 
 Shape. List each suite's tests against the gate of 0015, mark the ones that fail its first four questions, and delete or rewrite them. Run the mutation checks of `T004` before and after, so that deleting a test does not hide a fault that only it caught. Do not add tests while doing this.
 
