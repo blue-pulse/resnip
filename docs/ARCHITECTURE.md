@@ -78,7 +78,7 @@ The game hands values in through functions, and the library never reaches into t
 
 ### Library and tests
 
-Tests may read internal fields of a player, such as `__progress`, and may call `__resnip_system`. The library never calls a test. A test names the behaviour of Resnip in its own terms (`T007`).
+Tests may call `__resnip_system`, and two of them read the internal `__key` of a loop. `T010` asks for public results otherwise. The library never calls a test. A test names the behaviour of Resnip in its own terms (`T007`).
 
 ### Project and tools
 

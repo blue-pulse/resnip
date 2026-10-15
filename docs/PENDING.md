@@ -64,6 +64,16 @@ Done when each has a test or a line in a record that says it is accepted.
 
 Low priority.
 
+## 8. The test suite was not audited against the test rules
+
+Problem. Record [0015](./decisions/0015-write-a-test-only-if-it-protects-a-named-behaviour.md) was written after the 171 tests. Some may be a second example of a class that another test covers, two check a private field (the clone tests compare `__key` of a loop), and some may be too close to the implementation. Nobody counted them. Re-count before acting.
+
+Shape. List each suite's tests against the gate of 0015, mark the ones that fail its first four questions, and delete or rewrite them. Run the mutation checks of `T004` before and after, so that deleting a test does not hide a fault that only it caught. Do not add tests while doing this.
+
+Done when every test in the suite has a behaviour that can be named in one sentence, and the mutation checks catch what they caught before.
+
+Low priority.
+
 ## Waiting on the user, not on us
 
 These shape code but are product calls. Do not decide them.

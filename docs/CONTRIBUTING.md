@@ -66,6 +66,10 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 - `T004` Break the code once for every test or fix you add and watch the test fail, because a test that cannot fail proves nothing. No test holds this rule, so it holds by attention alone.
 - `T005` Register a fault you found and did not fix with `__resnip_test_known_failure`, because the run then stays green and the fault stays visible. The run reports a known failure that passes as an error, so remove the mark.
 - `T006` Delete `.sandbox/igor/cache` before a YYC run after you add, rename or edit scripts that hold anonymous functions, because the incremental cache keeps stale generated code and the link fails with unresolved externals. Observed on 2026-10-15 with runtime 2026.0.0.23.
+- `T008` Write a test only if you can name the behaviour it protects, because a test with no named behaviour protects nothing and still has to be maintained. See [0015](./decisions/0015-write-a-test-only-if-it-protects-a-named-behaviour.md).
+- `T009` Write one test per equivalence class and per boundary of an input, because a second example of a class adds no information. Authority: the ISTQB definitions of equivalence partitioning and boundary value analysis, and ISO/IEC/IEEE 29119-4 (only its list of techniques was read).
+- `T010` Assert on results and public state, never on private fields or the order of internal calls, because such a test breaks on a refactor that changes nothing visible. Authority: *Software Engineering at Google*, chapter 12, and Beck's Test Desiderata (structure-insensitive).
+- `T011` Keep a test straight-line, with no loop, branch or computed expected value, because a test with logic needs its own test. Authority: *Software Engineering at Google*, chapter 12. A table of cases registered as one test per case is straight-line.
 
 ### Documents and scratch work
 
@@ -116,6 +120,8 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 ### Testing
 
 - `T007` Never let a test name or compare with another library, because a test states the behaviour of Resnip in its own terms.
+- `T012` Never write a test to raise a coverage number, because a target makes people run code without checking it. Authority: Fowler, "TestCoverage", who quotes Marick.
+- `T013` Never test a function of the engine, because such a test can only fail because of the engine and never because of your change. This is a local judgment, and no source states it.
 
 ### Documents and scratch work
 
@@ -154,4 +160,5 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 | A callback, frame script or completion script | [0011](./decisions/0011-run-a-callback-for-every-frame-entered.md) |
 | Behaviour that differs from AESnips | [0001](./decisions/0001-rewrite-aesnips-with-structs-and-one-playback-core.md), [AESnips](./reference/aesnips.md) |
 | `options/main/options_main.yy` or a platform option | [0012](./decisions/0012-keep-every-legacy-option-of-the-project-off.md), `P001`, `P002` |
+| A test, or the rules for tests | [0015](./decisions/0015-write-a-test-only-if-it-protects-a-named-behaviour.md), `T001` to `T013` |
 | The test harness, `tools/` or the benchmark | [Architecture: tests](./ARCHITECTURE.md#tests), `T001` to `T007` |
