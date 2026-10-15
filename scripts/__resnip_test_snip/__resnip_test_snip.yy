@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__resnip_test_snip",
   "parent":{
-    "name":"Dev",
-    "path":"folders/Scripts/Dev.yy",
+    "name":"Harness",
+    "path":"folders/Tests/Harness.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

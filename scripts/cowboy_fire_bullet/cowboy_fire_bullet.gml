@@ -7,7 +7,7 @@ function cowboy_fire_bullet(_bullet_speed, _player) {
 	}
 
 	// Create the bullet
-	var _bullet = instance_create_depth(x + (10 * image_xscale), y + (12 * image_xscale), 1, bullet_object);
+	var _bullet = instance_create_depth(x + (10 * image_xscale), y + (12 * image_xscale), 1, obj_bullet);
 	_bullet.image_xscale = image_xscale;
 	_bullet.image_yscale = image_yscale;
 	_bullet.hspeed = _bullet_speed;

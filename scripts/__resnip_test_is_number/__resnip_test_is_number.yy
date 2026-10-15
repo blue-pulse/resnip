@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__resnip_test_is_number",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__resnip_test_is_number",
+  "parent":{
+    "name":"Harness",
+    "path":"folders/Tests/Harness.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

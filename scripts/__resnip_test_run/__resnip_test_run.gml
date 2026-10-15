@@ -1,21 +1,22 @@
-function __resnip_test_run(_owner) {
-	// Variables
-	var _context = { passed: 0, failed: 0 };
-	var _game_speed = __resnip_system().game_speed;
+function __resnip_test_run() {
+	// Register the suites
+	__resnip_test_suite_end();
+	__resnip_test_suite_speed();
+	__resnip_test_suite_loops();
+	__resnip_test_suite_flow();
+	__resnip_test_suite_input();
+	__resnip_test_suite_state();
+	__resnip_test_suite_debug();
 
-	// Sprite red_cowboy_full runs at 15 frames per second, so this gives one frame per step
-	resnip_set_game_speed(15);
-
-	// Test groups
-	__resnip_test_end(_context);
-	__resnip_test_speed(_context);
-	__resnip_test_loops(_context);
-	__resnip_test_flow(_context);
-	__resnip_test_input(_context);
-	__resnip_test_state(_context, _owner);
-
-	// Restore and report
-	resnip_set_game_speed(_game_speed);
-	show_debug_message("[RESULT] " + string(_context.passed) + " passed, " + string(_context.failed) + " failed");
-	return _context.failed;
+	// Plain tests run at once, one after the other
+	var _suites = __resnip_test_state().suites;
+	for (var _s = 0; _s < array_length(_suites); _s++) {
+		var _suite = _suites[_s];
+		for (var _i = 0; _i < array_length(_suite.tests); _i++) {
+			var _test = _suite.tests[_i];
+			var _t = __resnip_test_context(_suite.name, _test.name);
+			__resnip_test_execute(_t, _suite, _test.fn);
+			__resnip_test_close(_t);
+		}
+	}
 }

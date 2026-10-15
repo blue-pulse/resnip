@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__resnip_bench_step",
   "parent":{
-    "name":"Dev",
-    "path":"folders/Scripts/Dev.yy",
+    "name":"Bench",
+    "path":"folders/Tests/Bench.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

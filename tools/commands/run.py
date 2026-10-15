@@ -28,7 +28,7 @@ from runtime import (
 RUN_WORK_DIR_NAME = "igor"
 RUN_ENV_TEST = {"RESNIP_MODE": "test"}
 RUN_ENV_BENCH = {"RESNIP_MODE": "bench"}
-RUN_RESULT_PATTERN = re.compile(r"\[RESULT\] (\d+) passed, (\d+) failed")
+RUN_RESULT_PATTERN = re.compile(r"\[RESULT\] (\d+) tests, (\d+) passed, (\d+) failed")
 
 
 # Functions
@@ -75,12 +75,12 @@ def run_test(args):
 	results = [match for match in results if match]
 	if not results:
 		print(
-			"[ERROR] The game printed no result line. Check that the test object ran and that Igor shows the game output."
+			"[ERROR] The game printed no result line. Check that the test room ran and that Igor shows the game output."
 		)
 		return 1
-	failed = int(results[-1].group(2))
+	failed = int(results[-1].group(3))
 	if failed or code:
 		print(f"[ERROR] {failed} tests failed, game exit code {code}")
 		return 1
-	print(f"[INFO] {results[-1].group(1)} tests passed")
+	print(f"[INFO] {results[-1].group(2)} of {results[-1].group(1)} tests passed")
 	return 0

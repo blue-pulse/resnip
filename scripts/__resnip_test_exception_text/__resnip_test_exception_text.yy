@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__resnip_test_exception_text",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__resnip_test_exception_text",
+  "parent":{
+    "name":"Harness",
+    "path":"folders/Tests/Harness.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

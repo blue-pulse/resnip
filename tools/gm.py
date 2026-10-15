@@ -12,8 +12,8 @@ from runtime import runtime_add_arguments
 COMMANDS = {
 	"doctor": (doctor_check, "Show what was found and what is missing", False),
 	"run": (run_game, "Run the game with Igor", True),
-	"test": (run_test, "Run the test object and report the result", True),
-	"bench": (run_bench, "Run the benchmark object", True),
+	"test": (run_test, "Run the test room and report the result", True),
+	"bench": (run_bench, "Run the benchmark room", True),
 }
 
 
