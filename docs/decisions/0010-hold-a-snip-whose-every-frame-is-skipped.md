@@ -19,7 +19,7 @@ A loop with a count below 0 is skipped: the player jumps past it. When the loops
 
 ## Decision outcome
 
-`__resnip_player_enter` keeps `__skips` on the player. It adds one before it follows a skip and subtracts one after. If `__skips` already equals the number of loops of the snip, it calls `__resnip_player_give_up`, which prints the warning and stops the player. `resnip_player_play` resets the counter. A chain of skips that lands on a real frame never reaches the limit, because each loop skips once per pass.
+`__resnip_player_enter` keeps `__skips` on the player. It adds one before it follows a skip and subtracts one after. If `__skips` already equals the number of loops of the snip, it calls `__resnip_player_give_up`, which prints the warning and stops the player. `resnip_play` resets the counter. A chain of skips that lands on a real frame never reaches the limit, because each loop skips once per pass.
 
 ## Considered options
 
@@ -31,4 +31,4 @@ A loop with a count below 0 is skipped: the player jumps past it. When the loops
 
 - Pinned by three tests in the suite `loops`: `a repeating snip whose every frame is skipped holds on its last frame`, `a pingpong snip whose frames are skipped by two loops holds` and `a snip whose frames are skipped still completes once`, and by `a completion script can play a snip that starts inside a skipped loop`, which would fail if a stale count tripped the limit.
 - Without the limit the game hangs. With the limit removed, the test run produced no result after 300 seconds and was killed (checked on 2026-10-15). The cause is the unbounded recursion, which is read from the code and was not observed as a stack overflow.
-- Two snips that are both fully skipped and name each other as `next` are not covered, because `resnip_player_play` resets the counter. That is a hypothesis and not a finding, and it was not reproduced (item 3 of [PENDING.md](../PENDING.md)).
+- Two snips that are both fully skipped and name each other as `next` are not covered, because `resnip_play` resets the counter. That is a hypothesis and not a finding, and it was not reproduced (item 3 of [PENDING.md](../PENDING.md)).

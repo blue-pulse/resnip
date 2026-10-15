@@ -4,7 +4,7 @@
 /// @param {Real} scale The multiplier, 0 or above
 function resnip_clock_set_scale(_clock, _scale) {
 	if (_scale < 0) {
-		__resnip_error("resnip_clock_set_scale received " + string(_scale) + ". Use 0 or above, and play backward with the backward option of resnip_player_play.");
+		__resnip_error("resnip_clock_set_scale received " + string(_scale) + ". Use 0 or above, and play backward with the backward option of resnip_play.");
 	}
 	_clock.scale = _scale;
 }

@@ -1,7 +1,4 @@
 /// @description Create the snips and the transitions that the runners share
-// Game speed
-resnip_set_game_speed(game_get_speed(gamespeed_fps));
-
 // Frame speeds
 var _turn_speeds = [
 	{ frame: 2, speed: 0.9 },

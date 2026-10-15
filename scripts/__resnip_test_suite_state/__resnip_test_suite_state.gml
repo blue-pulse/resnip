@@ -14,44 +14,44 @@ function __resnip_test_suite_state() {
 	__resnip_test_case(_suite, "stop here keeps the frame and stops the player", function(_t) {
 		var _player = __resnip_test_player(__resnip_test_snip());
 		__resnip_test_trace(_player, 2);
-		resnip_player_stop(_player);
+		resnip_stop(_player);
 		__resnip_test_equal(_t, [_player.frame, _player.stopped], [2, true]);
 	});
 
 	__resnip_test_case(_suite, "a stopped player does not move", function(_t) {
 		var _player = __resnip_test_player(__resnip_test_snip());
 		__resnip_test_trace(_player, 2);
-		resnip_player_stop(_player);
+		resnip_stop(_player);
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 2), [2, 2]);
 	});
 
 	__resnip_test_case(_suite, "play restarts a stopped player", function(_t) {
 		var _player = __resnip_test_player(__resnip_test_snip());
 		__resnip_test_trace(_player, 2);
-		resnip_player_stop(_player);
-		resnip_player_play(_player, _player.snip);
+		resnip_stop(_player);
+		resnip_play(_player, _player.snip);
 		__resnip_test_equal(_t, [_player.frame, _player.stopped], [0, false]);
 	});
 
 	// Stop positions
 	__resnip_test_case(_suite, "stop at the tail moves to the last frame", function(_t) {
 		var _player = __resnip_test_player(__resnip_test_snip());
-		resnip_player_stop(_player, RESNIP_STOP.TAIL);
+		resnip_stop(_player, RESNIP_STOP.TAIL);
 		__resnip_test_equal(_t, _player.frame, 4);
 	});
 
 	__resnip_test_case(_suite, "stop at the head moves to the first frame", function(_t) {
 		var _player = __resnip_test_player(__resnip_test_snip());
 		__resnip_test_trace(_player, 2);
-		resnip_player_stop(_player, RESNIP_STOP.HEAD);
+		resnip_stop(_player, RESNIP_STOP.HEAD);
 		__resnip_test_equal(_t, _player.frame, 0);
 	});
 
 	// Player with no snip
 	__resnip_test_case(_suite, "a player with no snip ignores step and stop", function(_t) {
 		var _empty = resnip_player_create();
-		resnip_player_step(_empty);
-		resnip_player_stop(_empty);
+		resnip_step(_empty);
+		resnip_stop(_empty);
 		__resnip_test_equal(_t, [_empty.snip, _empty.frame], [undefined, 0]);
 	});
 

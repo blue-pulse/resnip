@@ -19,7 +19,7 @@ AESnips keeps one direction on the snip and another on the instance, and combine
 
 ## Decision outcome
 
-`resnip_player_play` takes `backward: true` to start on the last frame and play down. A pingpong flips `direction` at each turn. A transition plays in the direction of its registry entry ([0005](./0005-decide-what-plays-next-with-one-rule.md)). The `direction` field may be set to 1 or -1 by the game, and the next frame move follows it.
+`resnip_play` takes `backward: true` to start on the last frame and play down. A pingpong flips `direction` at each turn. A transition plays in the direction of its registry entry ([0005](./0005-decide-what-plays-next-with-one-rule.md)). The `direction` field may be set to 1 or -1 by the game, and the next frame move follows it.
 
 ## Considered options
 

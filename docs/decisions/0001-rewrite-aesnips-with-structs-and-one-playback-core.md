@@ -30,7 +30,7 @@ Resnip changes how they are built:
 - Direction lives in the player ([0006](./0006-keep-direction-in-the-player.md)) and pause in a clock ([0007](./0007-share-pause-and-scale-through-a-clock.md)).
 - Instance mode becomes one sync function ([0008](./0008-sync-an-instance-from-a-player.md)).
 
-Resnip drops the accessors (read the struct field), the clones of loops and transitions (one `resnip_snip_clone`), `ds_list` and manual destruction, `snip_play_request` (the `restart` option of `resnip_player_play`), and the playback logic written twice.
+Resnip drops the accessors (read the struct field), the clones of loops and transitions (one `resnip_snip_clone`), `ds_list` and manual destruction, `snip_play_request` (the `restart` option of `resnip_play`), and the playback logic written twice.
 
 ### End types
 
@@ -52,7 +52,7 @@ Resnip drops the accessors (read the struct field), the clones of loops and tran
 - A step that crosses frames uses the speed of each frame, and the rest of a step passes on.
 - A direction belongs to the player. A snip that plays backward after another one carries the option in its `next`.
 - Pausing, loop counts and frame speeds are set for one player or one clock, and never change a snip that others share.
-- A speed of 0 holds a frame, as in AESnips, but a snip cannot be changed to release it. Use `resnip_player_set_frame_speed` ([0009](./0009-let-a-speed-of-zero-hold-a-frame.md)).
+- A speed of 0 holds a frame, as in AESnips, but a snip cannot be changed to release it. Use `resnip_set_frame_speed` ([0009](./0009-let-a-speed-of-zero-hold-a-frame.md)).
 
 ## Considered options
 
@@ -62,6 +62,6 @@ Resnip drops the accessors (read the struct field), the clones of loops and tran
 
 ## Consequences
 
-- A person who migrates from AESnips changes their calls. The function map is in the JSDoc of `resnip_player_play`, `resnip_snip_clone`, `resnip_snip_set_next`, `resnip_player_set_loop_repeats`, `resnip_player_set_frame_speed` and `resnip_transition_add`.
+- A person who migrates from AESnips changes their calls. The function map is in the JSDoc of `resnip_play`, `resnip_snip_clone`, `resnip_snip_set_next`, `resnip_set_loop_repeats`, `resnip_set_frame_speed` and `resnip_transition_add`.
 - The differences above are observed, not assumed. Both libraries ran 106 scenarios on 2026-10-14: AESnips 0.1.4 through its `SnipPlayer` on a 2024.14 runtime, and Resnip through a copy of the project. Thirty scenarios gave the same frames and events, 14 gave the same frames with scripts one step earlier in Resnip, and 62 differed. The scenarios and the catalogue that classifies each difference are kept outside the repository, in `.sandbox/`, so nobody else can repeat this measurement.
 - Instance mode of AESnips was not run. Its behaviour depends on the order in which the runner advances `image_index` between the Step and Draw events, which is an unverified assumption.

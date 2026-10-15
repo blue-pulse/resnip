@@ -4,5 +4,5 @@ resnip_debug_draw(main_player, 0, y + 64);
 draw_self();
 
 // Copies
-resnip_player_draw(copy_player, x + 64, y);
-resnip_player_draw(copy_player, x - 64, y);
+resnip_draw(copy_player, x + 64, y);
+resnip_draw(copy_player, x - 64, y);

@@ -22,7 +22,7 @@ Done when two runs of unchanged code agree within 5 percent on the minimum for e
 
 Problem. Every figure in [0003](./decisions/0003-advance-time-with-an-integer-frame-and-an-accumulator.md) compares Resnip with an earlier Resnip. No run puts the two libraries side by side, so "as fast as AESnips" is a hypothesis. The reason to expect it is that Resnip uses structs and arrays and AESnips uses variables on the instance and lists, which was not checked.
 
-Shape. Run the same cases (1 000, 5 000 and 10 000 players, one sprite, game speed 15) through the `SnipPlayer` of AESnips in the private project under `.sandbox/` and record the method and the numbers in record 0003. The AESnips code stays out of the repository, so the result cannot be repeated by others, and the record must say so.
+Shape. Run the same cases (1 000, 5 000 and 10 000 players, one sprite at one frame per step) through the `SnipPlayer` of AESnips in the private project under `.sandbox/` and record the method and the numbers in record 0003. The AESnips code stays out of the repository, so the result cannot be repeated by others, and the record must say so.
 
 Done when record 0003 holds both columns with their method.
 
@@ -30,7 +30,7 @@ Low priority.
 
 ## 3. The skip and the end of a snip call each other
 
-Problem. `__resnip_player_enter` follows a loop skip and `__resnip_player_finish` follows the end of a snip, and each can call the other. [0010](./decisions/0010-hold-a-snip-whose-every-frame-is-skipped.md) bounds this with a counter per player. The counter is reset by `resnip_player_play`, so two snips that are both fully skipped and name each other as `next` may still recurse without end. That is a hypothesis and not a finding, because it was not reproduced.
+Problem. `__resnip_player_enter` follows a loop skip and `__resnip_player_finish` follows the end of a snip, and each can call the other. [0010](./decisions/0010-hold-a-snip-whose-every-frame-is-skipped.md) bounds this with a counter per player. The counter is reset by `resnip_play`, so two snips that are both fully skipped and name each other as `next` may still recurse without end. That is a hypothesis and not a finding, because it was not reproduced.
 
 Shape. Write the test that builds two such snips. If it hangs, make the skip iterative: find the next frame to play in a loop inside `__resnip_player_enter`, and finish the snip once when none is left, so no recursion remains and the counter goes away.
 
@@ -56,7 +56,7 @@ Low priority.
 
 ## 7. Behaviour that no test covers
 
-Problem. These were found by reading and have no test: a callback that throws; `resnip_instance_sync` with a stopped or backward player; a `direction` other than 1 or -1; a sprite in frames per game frame together with a game speed change; the parts of the debug panel other than that it draws.
+Problem. These were found by reading and have no test: a callback that throws; `resnip_instance_sync` with a stopped or backward player; a `direction` other than 1 or -1; a sprite in frames per game frame together with a gamespeed change; the parts of the debug panel other than that it draws.
 
 Shape. One test per item in the suite that owns the area. Do not build features for them.
 

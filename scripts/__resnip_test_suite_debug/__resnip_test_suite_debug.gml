@@ -8,7 +8,7 @@ function __resnip_test_suite_debug() {
 			frame_scripts: [{ frame: 6, callback: function() {} }],
 		});
 		var _player = resnip_player_create();
-		resnip_player_play(_player, _snip);
+		resnip_play(_player, _snip);
 		__resnip_test_state().owner.debug_player = _player;
 	}, function(_t) {
 		var _player = __resnip_test_state().owner.debug_player;

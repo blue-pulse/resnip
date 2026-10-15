@@ -20,7 +20,7 @@ function resnip_snip_create(_sprite, _options = {}) {
 	// Speed
 	var _speed = _options[$ "speed"] ?? RESNIP_DEFAULT_SNIP_SPEED;
 	if (_speed < 0) {
-		__resnip_error("resnip_snip_create received speed " + string(_speed) + ". Use a speed of 0 or above, and play backward with the backward option of resnip_player_play.");
+		__resnip_error("resnip_snip_create received speed " + string(_speed) + ". Use a speed of 0 or above, and play backward with the backward option of resnip_play.");
 	}
 
 	// End mode

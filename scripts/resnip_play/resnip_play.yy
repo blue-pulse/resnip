@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"resnip_set_game_speed",
+  "%Name":"resnip_play",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"resnip_set_game_speed",
+  "name":"resnip_play",
   "parent":{
     "name":"Resnip",
     "path":"folders/Scripts/Resnip.yy",

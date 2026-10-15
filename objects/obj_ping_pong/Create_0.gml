@@ -18,5 +18,5 @@ my_snip = resnip_snip_create(sprite_index, {
 // Players
 main_player = resnip_player_create();
 copy_player = resnip_player_create();
-resnip_player_play(main_player, my_snip);
-resnip_player_play(copy_player, my_snip);
+resnip_play(main_player, my_snip);
+resnip_play(copy_player, my_snip);

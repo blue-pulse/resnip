@@ -1,8 +1,8 @@
-/// @func resnip_player_stop(player, [where])
+/// @func resnip_stop(player, [where])
 /// @desc Stops a player where it is, on the first frame or on the last frame, until it is told to play again. Pause is different, since it keeps the state and resumes. It does nothing if the player plays no snip.
 /// @param {Struct} player The player to stop
 /// @param {Constant.RESNIP_STOP} [where] Where to leave it (default RESNIP_STOP.HERE)
-function resnip_player_stop(_player, _where = RESNIP_STOP.HERE) {
+function resnip_stop(_player, _where = RESNIP_STOP.HERE) {
 	// Prevent stopping a player with no snip
 	if (_player.snip == undefined) {
 		return;

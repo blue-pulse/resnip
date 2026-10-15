@@ -23,8 +23,8 @@ A snip holds sprite, frame range, speeds, loops, scripts and end behaviour. A pl
 
 Run-time changes are overrides of one player:
 
-- `resnip_player_set_loop_repeats` stores a count keyed by the loop struct, because a name would collide between snips. It applies at the next entry to the loop or the next loop edge, and it survives `resnip_player_play`.
-- `resnip_player_set_frame_speed` copies the speeds of the snip into the player on the first change and writes the copy. It lasts while the player plays the same snip, and playing another snip drops it, because a frame index means nothing in another snip.
+- `resnip_set_loop_repeats` stores a count keyed by the loop struct, because a name would collide between snips. It applies at the next entry to the loop or the next loop edge, and it survives `resnip_play`.
+- `resnip_set_frame_speed` copies the speeds of the snip into the player on the first change and writes the copy. It lasts while the player plays the same snip, and playing another snip drops it, because a frame index means nothing in another snip.
 
 `resnip_snip_clone` builds a new snip from the options of another with some replaced. Loops of the clone get new identities, so overrides set for the source do not apply to it.
 

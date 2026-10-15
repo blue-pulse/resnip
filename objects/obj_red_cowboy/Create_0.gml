@@ -23,5 +23,5 @@ resnip_transition_add(fire_snip, idle_snip, holster_snip);
 // Players
 main_player = resnip_player_create();
 copy_player = resnip_player_create();
-resnip_player_play(main_player, idle_snip);
-resnip_player_play(copy_player, idle_snip);
+resnip_play(main_player, idle_snip);
+resnip_play(copy_player, idle_snip);

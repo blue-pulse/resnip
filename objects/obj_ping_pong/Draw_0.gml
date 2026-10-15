@@ -3,4 +3,4 @@
 draw_self();
 
 // Copy
-resnip_player_draw_ext(copy_player, x, y + 64, image_xscale, image_yscale, image_angle, c_white, 1);
+resnip_draw_ext(copy_player, x, y + 64, image_xscale, image_yscale, image_angle, c_white, 1);

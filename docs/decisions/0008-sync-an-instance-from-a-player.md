@@ -2,7 +2,7 @@
 
 ## About this document
 
-This record decides how an instance shows a player. Read it before you add instance state or a second playback path for instances. It covers `resnip_instance_sync` and why no state lives on the instance. It does not cover drawing without an instance, which `resnip_player_draw` and `resnip_player_draw_ext` do, or the debug panel, which is `resnip_debug_draw`. Update it when the sync copies another variable.
+This record decides how an instance shows a player. Read it before you add instance state or a second playback path for instances. It covers `resnip_instance_sync` and why no state lives on the instance. It does not cover drawing without an instance, which `resnip_draw` and `resnip_draw_ext` do, or the debug panel, which is `resnip_debug_draw`. Update it when the sync copies another variable.
 
 - Status: accepted
 - Date: 2026-10-15

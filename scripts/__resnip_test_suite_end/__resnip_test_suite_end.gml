@@ -152,7 +152,7 @@ function __resnip_test_suite_end() {
 
 	__resnip_test_case(_suite, "a step larger than the snip holds on the last frame", function(_t) {
 		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD }));
-		resnip_player_step(_player, 20);
+		resnip_step(_player, 20);
 		__resnip_test_equal(_t, _player.frame, 4);
 		__resnip_test_true(_t, _player.stopped);
 	});

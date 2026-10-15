@@ -2,7 +2,7 @@
 
 ## About this document
 
-This record decides what a speed of 0 means. Read it before you validate a speed or change what `resnip_player_step` does with a rate of 0. It covers the speed of a snip, the speed of a frame, and the per-player frame speed. It does not cover the speed formula, which is [0003](./0003-advance-time-with-an-integer-frame-and-an-accumulator.md), or the player speed, which is a validated setter. Update it when a speed gets a new limit.
+This record decides what a speed of 0 means. Read it before you validate a speed or change what `resnip_step` does with a rate of 0. It covers the speed of a snip, the speed of a frame, and the per-player frame speed. It does not cover the speed formula, which is [0003](./0003-advance-time-with-an-integer-frame-and-an-accumulator.md), or the player speed, which is a validated setter. Update it when a speed gets a new limit.
 
 - Status: accepted
 - Date: 2026-10-15
@@ -19,7 +19,7 @@ AESnips allows a speed of 0 for a frame and for a snip, and a script can release
 
 ## Decision outcome
 
-`resnip_snip_create` accepts a `speed` and a frame speed of 0 or above and rejects a negative one with a message that points at the `backward` option. `resnip_player_step` ends the step when a rate is 0 or below. `resnip_player_set_frame_speed(player, frame, speed)` changes a frame for one player, accepts 0 and `undefined`, and rejects a negative speed, a frame outside the snip and a player with no snip.
+`resnip_snip_create` accepts a `speed` and a frame speed of 0 or above and rejects a negative one with a message that points at the `backward` option. `resnip_step` ends the step when a rate is 0 or below. `resnip_set_frame_speed(player, frame, speed)` changes a frame for one player, accepts 0 and `undefined`, and rejects a negative speed, a frame outside the snip and a player with no snip.
 
 ## Considered options
 

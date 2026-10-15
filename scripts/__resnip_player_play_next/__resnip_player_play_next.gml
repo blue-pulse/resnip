@@ -24,6 +24,6 @@ function __resnip_player_play_next(_player) {
 	if (_next == _player.snip) {
 		_transition = false;
 	}
-	resnip_player_play(_player, _next, { transition: _transition, backward: _backward });
+	resnip_play(_player, _next, { transition: _transition, backward: _backward });
 	return true;
 }

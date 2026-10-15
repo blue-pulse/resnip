@@ -9,7 +9,7 @@ function __resnip_test_suite_properties() {
 			var _player = __resnip_test_player(_snip, { backward: __resnip_test_random_next(_random, 2) == 1 });
 			var _bad = -1;
 			for (var _step = 0; _step < __RESNIP_TEST_STEPS && _bad < 0; _step++) {
-				resnip_player_step(_player, __resnip_test_random_step(_random));
+				resnip_step(_player, __resnip_test_random_step(_random));
 				if (_player.frame < 0 || _player.frame >= _snip.count) {
 					_bad = _step;
 				}
@@ -28,9 +28,9 @@ function __resnip_test_suite_properties() {
 			for (var _step = 0; _step < __RESNIP_TEST_STEPS && _bad < 0; _step++) {
 				var _first = __resnip_test_random_step(_random);
 				var _second = __resnip_test_random_step(_random);
-				resnip_player_step(_split, _first);
-				resnip_player_step(_split, _second);
-				resnip_player_step(_whole, _first + _second);
+				resnip_step(_split, _first);
+				resnip_step(_split, _second);
+				resnip_step(_whole, _first + _second);
 				if (_split.frame != _whole.frame || _split.direction != _whole.direction || _split.stopped != _whole.stopped) {
 					_bad = _step;
 				}
@@ -56,7 +56,7 @@ function __resnip_test_suite_properties() {
 		for (var _seed = 1; _seed <= __RESNIP_TEST_CASES; _seed++) {
 			var _snip = __resnip_test_random_plain(__resnip_test_random(_seed));
 			var _fast = __resnip_test_player(_snip);
-			resnip_player_set_speed(_fast, 2);
+			resnip_set_speed(_fast, 2);
 			var _slow = __resnip_test_player(_snip);
 			__resnip_test_trace(_fast, 10);
 			__resnip_test_trace(_slow, 20);
@@ -92,7 +92,7 @@ function __resnip_test_suite_properties() {
 			var _before = variable_clone(_snip);
 			var _player = __resnip_test_player(_snip);
 			if (array_length(_snip.loops) > 0) {
-				resnip_player_set_loop_repeats(_player, _snip.loops[0], 1);
+				resnip_set_loop_repeats(_player, _snip.loops[0], 1);
 			}
 			__resnip_test_trace(_player, __RESNIP_TEST_STEPS);
 			__resnip_test_equal(_t, _snip, _before, "seed " + string(_seed));
@@ -111,7 +111,7 @@ function __resnip_test_suite_properties() {
 			var _expected = _count + (_last - _first + 1) * _repeats;
 			var _steps = 0;
 			while (!_player.stopped && _steps < 100) {
-				resnip_player_step(_player);
+				resnip_step(_player);
 				_steps++;
 			}
 			__resnip_test_equal(_t, _steps, _expected, "seed " + string(_seed) + " frames " + string(_first) + " to " + string(_last) + " repeats " + string(_repeats) + " of " + string(_count));

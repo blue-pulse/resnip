@@ -26,7 +26,7 @@ enum RESNIP_COMPLETE {
 	TAIL,
 }
 
-// Where resnip_player_stop leaves the player
+// Where resnip_stop leaves the player
 enum RESNIP_STOP {
 	HERE,
 	HEAD,

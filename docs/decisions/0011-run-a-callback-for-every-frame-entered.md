@@ -19,7 +19,7 @@ AESnips runs a frame script one step after the frame appears, only for the frame
 
 ## Decision outcome
 
-`callback(argument, player)` is the only calling form, for a frame script and for the completion script. A frame script runs when the frame is entered, including the first frame of a snip, which runs inside `resnip_player_play`. One script is allowed per frame, and a second one is an error. A callback may stop the player, change its speed, pause it or play another snip. A callback that plays another snip replaces the current one, and the completion that started it does not start a second one.
+`callback(argument, player)` is the only calling form, for a frame script and for the completion script. A frame script runs when the frame is entered, including the first frame of a snip, which runs inside `resnip_play`. One script is allowed per frame, and a second one is an error. A callback may stop the player, change its speed, pause it or play another snip. A callback that plays another snip replaces the current one, and the completion that started it does not start a second one.
 
 ## Considered options
 
@@ -30,5 +30,5 @@ AESnips runs a frame script one step after the frame appears, only for the frame
 ## Consequences
 
 - Pinned by tests in the suite `callbacks`, among them `a frame script receives its argument`, `a frame script receives the player that entered the frame`, `completion runs before the script of the frame it wraps to`, `the script of the last frame runs when it is entered`, `the frames a large step crosses run their scripts in order`, `scripts run in reverse order while playing backward`, `a callback that stops the player holds it on that frame` and `a callback that plays another snip replaces the current one`.
-- User code runs inside `resnip_player_play` and `resnip_player_step`, so it can re-enter them. The tests above cover play, stop, speed and pause, and a callback that throws is not covered, which is a gap.
+- User code runs inside `resnip_play` and `resnip_step`, so it can re-enter them. The tests above cover play, stop, speed and pause, and a callback that throws is not covered, which is a gap.
 - A person who knows AESnips sees scripts one step earlier, as [0001](./0001-rewrite-aesnips-with-structs-and-one-playback-core.md) says.

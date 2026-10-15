@@ -57,7 +57,7 @@ function __resnip_test_suite_callbacks() {
 	__resnip_test_case(_suite, "the frames a large step crosses run their scripts in order", function(_t) {
 		var _log = [];
 		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, frame_scripts: __resnip_test_tag_scripts(_log, [1, 2, 3]) }));
-		resnip_player_step(_player, 3.5);
+		resnip_step(_player, 3.5);
 		__resnip_test_equal(_t, _log, ["f1", "f2", "f3"]);
 		__resnip_test_equal(_t, _player.frame, 3);
 	});
@@ -72,7 +72,7 @@ function __resnip_test_suite_callbacks() {
 	// Callbacks that change the player
 	__resnip_test_case(_suite, "a callback that stops the player holds it on that frame", function(_t) {
 		var _stop = function(_argument, _player) {
-			resnip_player_stop(_player);
+			resnip_stop(_player);
 		};
 		var _player = __resnip_test_player(__resnip_test_snip({ frame_scripts: [{ frame: 2, callback: _stop }] }));
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 6), [1, 2, 2, 2, 2, 2]);
@@ -81,7 +81,7 @@ function __resnip_test_suite_callbacks() {
 
 	__resnip_test_case(_suite, "a callback that changes the speed applies from the next step", function(_t) {
 		var _faster = function(_argument, _player) {
-			resnip_player_set_speed(_player, 2);
+			resnip_set_speed(_player, 2);
 		};
 		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, frame_scripts: [{ frame: 1, callback: _faster }] }));
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 4), [1, 3, 4, 4]);
@@ -90,7 +90,7 @@ function __resnip_test_suite_callbacks() {
 	__resnip_test_case(_suite, "a callback that plays another snip replaces the current one", function(_t) {
 		var _other = __resnip_test_make(10, 11, { end_mode: RESNIP_END.HOLD });
 		var _switch = function(_target, _player) {
-			resnip_player_play(_player, _target);
+			resnip_play(_player, _target);
 		};
 		var _player = __resnip_test_player(__resnip_test_snip({ frame_scripts: [{ frame: 1, callback: _switch, argument: _other }] }));
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 3, true), ["10.0", "10.1", "10.1"]);
@@ -101,7 +101,7 @@ function __resnip_test_suite_callbacks() {
 			_player.paused = true;
 		};
 		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, frame_scripts: [{ frame: 1, callback: _pause }] }));
-		resnip_player_step(_player, 3);
+		resnip_step(_player, 3);
 		__resnip_test_equal(_t, _player.frame, 1);
 	});
 
@@ -110,7 +110,7 @@ function __resnip_test_suite_callbacks() {
 			_player.clock.paused = true;
 		};
 		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, frame_scripts: [{ frame: 1, callback: _pause }] }));
-		resnip_player_step(_player, 3);
+		resnip_step(_player, 3);
 		__resnip_test_equal(_t, _player.frame, 1);
 	});
 }

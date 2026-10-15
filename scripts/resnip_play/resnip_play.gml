@@ -1,10 +1,10 @@
-/// @func resnip_player_play(player, snip, [options])
+/// @func resnip_play(player, snip, [options])
 /// @desc Plays a snip on a player now, or queues it for when the current one completes. The queue, the target of a transition and the next of a snip all answer what plays next, in that order. It replaces setting sprite_index and image_index by hand, and it covers snip_play, snip_play_next and snip_play_request of AESnips. A transition plays in its own direction, and the snip it leads to plays in the direction asked.
 /// @param {Struct} player The player that plays it
 /// @param {Struct} snip The snip to play
 /// @param {Struct} [options] Optional fields: transition (look for a transition from the current snip, default false), queue (wait for the current snip to complete, default false), restart (play even if it already plays, default true), backward (play from its last frame down, default false)
 /// @returns {Bool} Whether the player started it or queued it
-function resnip_player_play(_player, _snip, _options = {}) {
+function resnip_play(_player, _snip, _options = {}) {
 	// Options
 	var _transition = _options[$ "transition"] ?? false;
 	var _queue = _options[$ "queue"] ?? false;

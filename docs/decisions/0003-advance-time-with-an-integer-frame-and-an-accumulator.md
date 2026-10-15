@@ -2,7 +2,7 @@
 
 ## About this document
 
-This record decides how a player measures time. Read it before you change `resnip_player_step`, the way a frame is entered, or the speed formula. It covers the integer frame, the accumulator, the speed formula, the sprite speed type, and what the benchmark shows today. It does not cover loops or ends, which are [0004](./0004-describe-the-end-of-a-snip-with-a-mode-and-a-completion-rule.md) and [0002](./0002-keep-playback-state-in-the-player-and-fix-the-snip.md). Update it when the step algorithm or a measurement changes.
+This record decides how a player measures time. Read it before you change `resnip_step`, the way a frame is entered, or the speed formula. It covers the integer frame, the accumulator, the speed formula, the sprite speed type, and what the benchmark shows today. It does not cover loops or ends, which are [0004](./0004-describe-the-end-of-a-snip-with-a-mode-and-a-completion-rule.md) and [0002](./0002-keep-playback-state-in-the-player-and-fix-the-snip.md). Update it when the step algorithm or a measurement changes.
 
 - Status: accepted
 - Date: 2026-10-15
@@ -19,7 +19,7 @@ AESnips advances a float `image_index` with `math_get_epsilon()` at the edges. A
 
 ## Decision outcome
 
-The rate of a frame is `frame_speed * snip speed * player speed * clock scale * sprite scale`, in frames per step. The sprite scale is the sprite speed when the sprite runs in frames per game frame, and the sprite speed divided by the game speed when it runs in frames per second. The game speed comes in through `resnip_set_game_speed` and is read at every step, so a change applies at once.
+The rate of a frame is `frame_speed * snip speed * player speed * clock scale * sprite scale`, in frames per step. The sprite scale is the sprite speed when the sprite runs in frames per game frame, and the sprite speed divided by the gamespeed when it runs in frames per second. The gamespeed is read from the engine at every step, so a change applies at once, and [0013](./0013-read-the-gamespeed-from-the-engine.md) decides that input.
 
 A step takes the time to finish the current frame, `(1 - progress) / rate`, subtracts it from what remains, moves, and repeats with the speed of the new frame. The remainder passes to the next frame and to the next snip. A script runs for every frame entered, even at a high speed. A rate of 0 or below ends the step without spending time. Equality at the edge of a frame is tolerated by `1e-6`, as `__RESNIP_EPSILON`.
 
@@ -30,8 +30,8 @@ A step takes the time to finish the current frame, `(1 - progress) / rate`, subt
 
 ## Consequences
 
-- Pinned by tests in the suite `speed`: `no drift before the tenth step of a frame`, `no drift on the tenth step of a frame`, `a frame speed above one shortens only its own frame`, `several steps at once move several frames` and `a game speed set during play changes the pace of a sprite in frames per second`. Breaking `_remaining -= max(_room, 0) / _rate` fails seven tests.
-- Cost today. Method: `python tools/gm.py bench` on 2026-10-15, runtime 2026.0.0.23, Windows 11, mean of steps 11 to 130 in the room `rm_bench` at game speed 15, so every step crosses a frame, which is the worst case. Microseconds per step for all the players. Two runs of the same code differed by up to 30 percent in single cases, so read these as an order of magnitude and re-run before citing.
+- Pinned by tests in the suite `speed`: `no drift before the tenth step of a frame`, `no drift on the tenth step of a frame`, `a frame speed above one shortens only its own frame`, `several steps at once move several frames` and `a gamespeed set during play changes the pace of a sprite in frames per second`. Breaking `_remaining -= max(_room, 0) / _rate` fails seven tests.
+- Cost today. Method: `python tools/gm.py bench` on 2026-10-15, runtime 2026.0.0.23, Windows 11, mean of steps 11 to 130 in the room `rm_bench` with the library set to a gamespeed of 15 and a sprite of 15 frames per second, so every step crosses a frame, which is the worst case. The benchmark now gets the same one frame per step from a copy of the sprite at the engine gamespeed, and these figures were not taken again. Microseconds per step for all the players. Two runs of the same code differed by up to 30 percent in single cases, so read these as an order of magnitude and re-run before citing.
 
 | Players | Loops | YYC | VM |
 | --- | --- | --- | --- |

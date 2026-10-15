@@ -25,7 +25,7 @@ function __resnip_test_suite_flow() {
 		var _a = __resnip_test_make(0, 2);
 		var _b = __resnip_test_make(3, 5);
 		var _player = __resnip_test_player(_a);
-		resnip_player_play(_player, _b, { queue: true });
+		resnip_play(_player, _b, { queue: true });
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 3, true), ["0.1", "0.2", "3.0"]);
 	});
 
@@ -33,8 +33,8 @@ function __resnip_test_suite_flow() {
 		var _a = __resnip_test_make(0, 2);
 		var _b = __resnip_test_make(3, 5);
 		var _player = __resnip_test_player(_a);
-		resnip_player_play(_player, _b, { queue: true });
-		resnip_player_cancel_next(_player);
+		resnip_play(_player, _b, { queue: true });
+		resnip_cancel_next(_player);
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 3, true), ["0.1", "0.2", "0.0"]);
 	});
 
@@ -43,8 +43,8 @@ function __resnip_test_suite_flow() {
 		var _b = __resnip_test_make(3, 5);
 		var _c = __resnip_test_make(9, 11);
 		var _player = __resnip_test_player(_a);
-		resnip_player_play(_player, _b, { queue: true });
-		resnip_player_play(_player, _c, { queue: true });
+		resnip_play(_player, _b, { queue: true });
+		resnip_play(_player, _c, { queue: true });
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 3, true), ["0.1", "0.2", "9.0"]);
 	});
 
@@ -52,8 +52,8 @@ function __resnip_test_suite_flow() {
 		var _a = __resnip_test_make(0, 2);
 		var _b = __resnip_test_make(3, 5);
 		var _player = __resnip_test_player(_a);
-		resnip_player_stop(_player);
-		resnip_player_play(_player, _b, { queue: true });
+		resnip_stop(_player);
+		resnip_play(_player, _b, { queue: true });
 		__resnip_test_true(_t, _player.snip == _b, "plays the queued snip");
 		__resnip_test_false(_t, _player.stopped, "is no longer stopped");
 	});
@@ -63,7 +63,7 @@ function __resnip_test_suite_flow() {
 		var _a = __resnip_test_make(0, 2);
 		var _player = __resnip_test_player(_a);
 		__resnip_test_trace(_player, 1);
-		__resnip_test_false(_t, resnip_player_play(_player, _a, { restart: false }), "result");
+		__resnip_test_false(_t, resnip_play(_player, _a, { restart: false }), "result");
 		__resnip_test_equal(_t, _player.frame, 1, "frame");
 	});
 
@@ -71,7 +71,7 @@ function __resnip_test_suite_flow() {
 		var _a = __resnip_test_make(0, 2);
 		var _player = __resnip_test_player(_a);
 		__resnip_test_trace(_player, 1);
-		var _started = resnip_player_play(_player, _a);
+		var _started = resnip_play(_player, _a);
 		__resnip_test_equal(_t, [_started, _player.frame], [true, 0]);
 	});
 
@@ -79,7 +79,7 @@ function __resnip_test_suite_flow() {
 		var _log = [];
 		var _a = __resnip_test_make(0, 2, { frame_scripts: [{ frame: 0, callback: __resnip_test_log_first_image, argument: _log }] });
 		var _player = __resnip_test_player(_a);
-		resnip_player_play(_player, _a);
+		resnip_play(_player, _a);
 		__resnip_test_equal(_t, array_length(_log), 2);
 	});
 
@@ -89,7 +89,7 @@ function __resnip_test_suite_flow() {
 		var _b = __resnip_test_make(3, 5);
 		resnip_transition_add(_a, _b, __resnip_test_make(6, 7));
 		var _player = __resnip_test_player(_a);
-		resnip_player_play(_player, _b, { transition: true });
+		resnip_play(_player, _b, { transition: true });
 		__resnip_test_equal(_t, [_player.snip.first_image, _player.frame], [6, 0]);
 	});
 
@@ -98,7 +98,7 @@ function __resnip_test_suite_flow() {
 		var _b = __resnip_test_make(3, 5);
 		resnip_transition_add(_a, _b, __resnip_test_make(6, 7));
 		var _player = __resnip_test_player(_a);
-		resnip_player_play(_player, _b, { transition: true });
+		resnip_play(_player, _b, { transition: true });
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 3, true), ["6.1", "3.0", "3.1"]);
 	});
 
@@ -107,7 +107,7 @@ function __resnip_test_suite_flow() {
 		var _b = __resnip_test_make(3, 5);
 		resnip_transition_add(_a, _b, __resnip_test_make(6, 7));
 		var _player = __resnip_test_player(_a);
-		resnip_player_play(_player, _b);
+		resnip_play(_player, _b);
 		__resnip_test_true(_t, _player.snip == _b);
 	});
 
@@ -116,7 +116,7 @@ function __resnip_test_suite_flow() {
 		var _b = __resnip_test_make(3, 5);
 		resnip_transition_add(_a, _b, __resnip_test_make(6, 7));
 		var _player = __resnip_test_player(_b);
-		resnip_player_play(_player, _a, { transition: true });
+		resnip_play(_player, _a, { transition: true });
 		__resnip_test_true(_t, _player.snip == _a);
 	});
 
@@ -126,7 +126,7 @@ function __resnip_test_suite_flow() {
 		var _b = __resnip_test_make(3, 5);
 		resnip_transition_add(_a, _b, __resnip_test_make(6, 8), true);
 		var _player = __resnip_test_player(_a);
-		resnip_player_play(_player, _b, { transition: true });
+		resnip_play(_player, _b, { transition: true });
 		__resnip_test_equal(_t, [_player.snip.first_image, _player.frame], [6, 2]);
 	});
 
@@ -135,7 +135,7 @@ function __resnip_test_suite_flow() {
 		var _b = __resnip_test_make(3, 5);
 		resnip_transition_add(_a, _b, __resnip_test_make(6, 8), true);
 		var _player = __resnip_test_player(_a);
-		resnip_player_play(_player, _b, { transition: true });
+		resnip_play(_player, _b, { transition: true });
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 3, true), ["6.1", "6.0", "3.0"]);
 	});
 
@@ -145,7 +145,7 @@ function __resnip_test_suite_flow() {
 		var _b = __resnip_test_make(3, 5);
 		resnip_transition_add(_a, _b, __resnip_test_make(6, 7));
 		var _player = __resnip_test_player(_a);
-		resnip_player_play(_player, _b, { queue: true, transition: true });
+		resnip_play(_player, _b, { queue: true, transition: true });
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 5, true), ["0.1", "0.2", "6.0", "6.1", "3.0"]);
 	});
 
@@ -173,7 +173,7 @@ function __resnip_test_suite_flow() {
 		resnip_transition_add(_a, _b, __resnip_test_make(6, 7));
 		resnip_transition_remove(_a, _b);
 		var _player = __resnip_test_player(_a);
-		resnip_player_play(_player, _b, { transition: true });
+		resnip_play(_player, _b, { transition: true });
 		__resnip_test_true(_t, _player.snip == _b);
 	});
 
@@ -212,7 +212,7 @@ function __resnip_test_suite_flow() {
 		var _use = __resnip_test_make(14, 15, { end_mode: RESNIP_END.HOLD, next: _other });
 		resnip_transition_add(_from, _to, _use);
 		var _player = __resnip_test_player(_from);
-		resnip_player_play(_player, _to, { transition: true });
+		resnip_play(_player, _to, { transition: true });
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 5, true), ["14.1", "10.0", "10.1", "10.1", "10.1"]);
 	});
 
@@ -222,7 +222,7 @@ function __resnip_test_suite_flow() {
 		var _use = __resnip_test_make(14, 16, { end_mode: RESNIP_END.HOLD, loops: [{ first: 1, last: 1, repeats: 1 }] });
 		resnip_transition_add(_from, _to, _use);
 		var _player = __resnip_test_player(_from);
-		resnip_player_play(_player, _to, { transition: true });
+		resnip_play(_player, _to, { transition: true });
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 5, true), ["14.1", "14.1", "14.2", "10.0", "10.1"]);
 	});
 
@@ -233,8 +233,8 @@ function __resnip_test_suite_flow() {
 		resnip_transition_add(_a, _b, __resnip_test_make(14, 15, { end_mode: RESNIP_END.HOLD }));
 		resnip_transition_add(_b, _c, __resnip_test_make(17, 18, { end_mode: RESNIP_END.HOLD }));
 		var _player = __resnip_test_player(_a);
-		resnip_player_play(_player, _b, { transition: true });
-		resnip_player_play(_player, _c, { transition: true, queue: true });
+		resnip_play(_player, _b, { transition: true });
+		resnip_play(_player, _c, { transition: true, queue: true });
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 6, true), ["14.1", "17.0", "17.1", "0.0", "0.1", "0.1"]);
 	});
 
@@ -251,16 +251,16 @@ function __resnip_test_suite_flow() {
 		var _to = __resnip_test_make(10, 11, { end_mode: RESNIP_END.HOLD });
 		resnip_transition_add(_from, _to, __resnip_test_make(14, 15, { end_mode: RESNIP_END.HOLD }));
 		var _player = __resnip_test_player(_from);
-		resnip_player_play(_player, _to, { transition: true });
-		resnip_player_stop(_player);
-		__resnip_test_true(_t, resnip_player_play(_player, _to, { restart: false }));
+		resnip_play(_player, _to, { transition: true });
+		resnip_stop(_player);
+		__resnip_test_true(_t, resnip_play(_player, _to, { restart: false }));
 	});
 
 	// Direction of what plays next
 	__resnip_test_case(_suite, "a queued snip can play backward", function(_t) {
 		var _other = __resnip_test_make(10, 12, { end_mode: RESNIP_END.HOLD });
 		var _player = __resnip_test_player(__resnip_test_snip());
-		resnip_player_play(_player, _other, { queue: true, backward: true });
+		resnip_play(_player, _other, { queue: true, backward: true });
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 6, true), ["2.1", "2.2", "2.3", "2.4", "10.2", "10.1"]);
 	});
 
@@ -269,7 +269,7 @@ function __resnip_test_suite_flow() {
 		var _to = __resnip_test_make(10, 12, { end_mode: RESNIP_END.HOLD });
 		resnip_transition_add(_from, _to, __resnip_test_make(14, 15, { end_mode: RESNIP_END.HOLD }));
 		var _player = __resnip_test_player(_from);
-		resnip_player_play(_player, _to, { queue: true, transition: true, backward: true });
+		resnip_play(_player, _to, { queue: true, transition: true, backward: true });
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 8, true), ["2.1", "2.2", "2.3", "2.4", "14.0", "14.1", "10.2", "10.1"]);
 	});
 
@@ -278,7 +278,7 @@ function __resnip_test_suite_flow() {
 		var _to = __resnip_test_make(10, 12, { end_mode: RESNIP_END.HOLD });
 		resnip_transition_add(_from, _to, __resnip_test_make(14, 15, { end_mode: RESNIP_END.HOLD }));
 		var _player = __resnip_test_player(_from);
-		resnip_player_play(_player, _to, { transition: true, backward: true });
+		resnip_play(_player, _to, { transition: true, backward: true });
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 4, true), ["14.1", "10.2", "10.1", "10.0"]);
 	});
 

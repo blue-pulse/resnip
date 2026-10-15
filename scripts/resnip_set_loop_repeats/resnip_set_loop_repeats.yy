@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"resnip_player_cancel_next",
+  "%Name":"resnip_set_loop_repeats",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"resnip_player_cancel_next",
+  "name":"resnip_set_loop_repeats",
   "parent":{
     "name":"Resnip",
     "path":"folders/Scripts/Resnip.yy",

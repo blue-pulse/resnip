@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"resnip_player_play",
+  "%Name":"resnip_draw",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"resnip_player_play",
+  "name":"resnip_draw",
   "parent":{
     "name":"Resnip",
     "path":"folders/Scripts/Resnip.yy",

@@ -1,8 +1,8 @@
-/// @func resnip_player_step(player, [steps])
-/// @desc Advances a player by some game steps. Call it once per step. It moves frame by frame, so a script runs for every frame the player enters even at a high speed. It replaces the automatic advance of image_speed, which the library does not use.
+/// @func resnip_step(player, [steps])
+/// @desc Advances a player by some game steps. Call it once per step. It moves frame by frame, so a script runs for every frame the player enters even at a high speed. It replaces the automatic advance of image_speed, which the library does not use. For delta time pass delta_time / 1000000 * game_get_speed(gamespeed_fps) as the steps.
 /// @param {Struct} player The player to advance
 /// @param {Real} [steps] How many steps to advance, a fraction for delta time (default 1)
-function resnip_player_step(_player, _steps = 1) {
+function resnip_step(_player, _steps = 1) {
 	// Prevent a player that cannot move from advancing
 	if (_player.snip == undefined || _player.stopped || _player.paused || _player.clock.paused) {
 		return;

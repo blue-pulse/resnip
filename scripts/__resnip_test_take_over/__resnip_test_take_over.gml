@@ -1,3 +1,3 @@
 function __resnip_test_take_over(_target, _player) {
-	resnip_player_play(_player, _target);
+	resnip_play(_player, _target);
 }

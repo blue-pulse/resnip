@@ -4,8 +4,9 @@
 #macro __RESNIP_BENCH_LOOP_COUNT 4
 
 function __resnip_bench_create() {
-	// Sprite red_cowboy_full runs at 15 frames per second, so this gives one frame per step
-	resnip_set_game_speed(15);
+	// A copy of the sprite that runs at the gamespeed, so every step moves one frame
+	var _sprite = sprite_duplicate(red_cowboy_full);
+	sprite_set_speed(_sprite, game_get_speed(gamespeed_fps), spritespeed_framespersecond);
 
 	// Loops
 	var _loops = [];
@@ -14,8 +15,8 @@ function __resnip_bench_create() {
 	}
 
 	// Snips
-	var _plain = resnip_snip_create(red_cowboy_full);
-	var _looped = resnip_snip_create(red_cowboy_full, { loops: _loops });
+	var _plain = resnip_snip_create(_sprite);
+	var _looped = resnip_snip_create(_sprite, { loops: _loops });
 
 	// Configurations
 	var _configs = [];

@@ -22,27 +22,27 @@ function __resnip_test_suite_loops() {
 	__resnip_test_case(_suite, "the repeats of a player override the loop", function(_t) {
 		var _snip = __resnip_test_snip({ end_mode: RESNIP_END.HOLD, loops: [{ first: 1, last: 2, repeats: 0 }] });
 		var _player = resnip_player_create();
-		resnip_player_set_loop_repeats(_player, _snip.loops[0], 1);
-		resnip_player_play(_player, _snip);
+		resnip_set_loop_repeats(_player, _snip.loops[0], 1);
+		resnip_play(_player, _snip);
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 7), [1, 2, 1, 2, 3, 4, 4]);
 	});
 
 	__resnip_test_case(_suite, "an override below zero skips the loop", function(_t) {
 		var _snip = __resnip_test_snip({ end_mode: RESNIP_END.HOLD, loops: [{ first: 1, last: 2, repeats: 5 }] });
 		var _player = resnip_player_create();
-		resnip_player_set_loop_repeats(_player, _snip.loops[0], -1);
-		resnip_player_play(_player, _snip);
+		resnip_set_loop_repeats(_player, _snip.loops[0], -1);
+		resnip_play(_player, _snip);
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 3), [3, 4, 4]);
 	});
 
 	__resnip_test_case(_suite, "clearing the override restores the loop", function(_t) {
 		var _snip = __resnip_test_snip({ end_mode: RESNIP_END.HOLD, loops: [{ first: 1, last: 2, repeats: 5 }] });
 		var _player = resnip_player_create();
-		resnip_player_set_loop_repeats(_player, _snip.loops[0], -1);
-		resnip_player_play(_player, _snip);
+		resnip_set_loop_repeats(_player, _snip.loops[0], -1);
+		resnip_play(_player, _snip);
 		__resnip_test_trace(_player, 3);
-		resnip_player_set_loop_repeats(_player, _snip.loops[0], undefined);
-		resnip_player_play(_player, _snip);
+		resnip_set_loop_repeats(_player, _snip.loops[0], undefined);
+		resnip_play(_player, _snip);
 		var _trace = __resnip_test_trace(_player, 14);
 		__resnip_test_equal(_t, [_trace[12], _trace[13]], [3, 4]);
 	});
@@ -52,7 +52,7 @@ function __resnip_test_suite_loops() {
 		var _snip = __resnip_test_snip({ end_mode: RESNIP_END.HOLD, loops: [{ first: 1, last: 2, repeats: 5 }] });
 		var _player = __resnip_test_player(_snip);
 		__resnip_test_trace(_player, 1);
-		resnip_player_set_loop_repeats(_player, _snip.loops[0], 0);
+		resnip_set_loop_repeats(_player, _snip.loops[0], 0);
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 4), [2, 1, 2, 3]);
 	});
 
@@ -135,7 +135,7 @@ function __resnip_test_suite_loops() {
 		var _snip = __resnip_test_snip({ end_mode: RESNIP_END.HOLD, loops: [{ first: 1, last: 2, repeats: 0 }] });
 		var _player = __resnip_test_player(_snip);
 		__resnip_test_trace(_player, 1);
-		resnip_player_set_loop_repeats(_player, _snip.loops[0], 2);
+		resnip_set_loop_repeats(_player, _snip.loops[0], 2);
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 7), [2, 1, 2, 1, 2, 3, 4]);
 	});
 
@@ -160,7 +160,7 @@ function __resnip_test_suite_loops() {
 	__resnip_test_case(_suite, "a completion script can play a snip that starts inside a skipped loop", function(_t) {
 		var _other = __resnip_test_make(10, 14, { end_mode: RESNIP_END.HOLD, loops: [{ first: 0, last: 1, repeats: -1 }] });
 		var _switch = function(_target, _player) {
-			resnip_player_play(_player, _target);
+			resnip_play(_player, _target);
 		};
 		var _player = __resnip_test_player(__resnip_test_snip({ loops: [{ first: 0, last: 4, repeats: -1 }], on_complete: _switch, on_complete_argument: _other }));
 		__resnip_test_equal(_t, [_player.snip == _other, _player.frame, _player.stopped], [true, 2, false]);

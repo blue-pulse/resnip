@@ -24,7 +24,7 @@ These keys of `options_main.yy` are `false`: `option_collision_compatibility` (c
 ## Considered options
 
 - Keep the options on, as the demo had them, was refused, because they keep deprecated paths alive in a library meant for current GameMaker.
-- Keep `option_copy_on_write_enabled` on, because the library copies arrays on purpose, was refused. The library copies explicitly where it needs a copy (`resnip_player_set_frame_speed`) and never relies on the implicit one.
+- Keep `option_copy_on_write_enabled` on, because the library copies arrays on purpose, was refused. The library copies explicitly where it needs a copy (`resnip_set_frame_speed`) and never relies on the implicit one.
 
 ## Consequences
 

@@ -45,13 +45,14 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 - `C003` Name public functions `resnip_action` in snake_case and public constants and enums with the `RESNIP_` prefix, because GameMaker has one global namespace for scripts and the prefix keeps the library out of the game's names.
 - `C004` Name arguments and locals `_snake`, everything internal `__resnip_snake`, and private members of a struct `__snake`, because the marks say who may call or read a name.
 - `C005` Keep one function per script, named like the function, with internal scripts in the `(System)` folder, because the editor finds a script by its name.
-- `C006` Hand the library every value of the game through a function such as `resnip_set_game_speed`, because the library must run in any game without reading it.
+- `C006` Hand the library every value of the game through a function, except the gamespeed, which the library reads with `game_get_speed(gamespeed_fps)`, because the gamespeed is a setting of the engine and a setter is one more call to forget. See [0013](./decisions/0013-read-the-gamespeed-from-the-engine.md).
 - `C007` Document every public function with JSDoc: what it does, what it returns, how it differs from the native function or from AESnips when one resembles it, and one `@param {Type} name Description` line per argument, because the editor shows it as help.
 - `C008` Put constants in enums and macros, and keep configuration in setup functions apart from behaviour, because a repeated literal drifts.
 - `C009` Prefer code that works, then code a newcomer understands on first read, then small replaceable units, and weigh speed only after those.
 - `C010` Mark a short function that runs often with `gml_pragma("forceinline")`, and only a short one, because inlining a long function grows every caller.
 - `C011` Print messages with the level in brackets, `[INFO]`, `[WARNING]`, `[ERROR]` or `[DEBUG]`, and make a message about a failure say why it failed and what would change it.
 - `C012` Comment in one line: a label for a block, or the reason where the code is hard to follow.
+- `C020` Write gamespeed as one word in names, text and comments, because GameMaker does (`gamespeed_fps`).
 
 ### Project files
 
@@ -100,7 +101,7 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 
 ### Code
 
-- `C013` Never read a global, an asset or a setting of the game from the library, because `C006` hands such values in.
+- `C013` Never read a global, an asset or a setting of the game from the library, apart from the gamespeed, because `C006` hands such values in.
 - `C014` Never use a leading underscore to mark a type, because the underscore already marks scope under `C004`.
 - `C015` Never repeat a literal that an enum or a macro could name.
 - `C016` Never write a decorative comment, a comment over more than one line, two comments stacked, or a semicolon in comment text.
@@ -141,7 +142,9 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 
 | Before you touch | Read |
 | --- | --- |
-| `resnip_player_step` or any `__resnip_player_*` script | [Architecture: time and speed](./ARCHITECTURE.md#time-and-speed), [0003](./decisions/0003-advance-time-with-an-integer-frame-and-an-accumulator.md) |
+| `resnip_step` or any `__resnip_player_*` script | [Architecture: time and speed](./ARCHITECTURE.md#time-and-speed), [0003](./decisions/0003-advance-time-with-an-integer-frame-and-an-accumulator.md) |
+| `__resnip_sprite_scale`, or anything that reads the gamespeed | [0013](./decisions/0013-read-the-gamespeed-from-the-engine.md) |
+| The name of a public function | [0014](./decisions/0014-name-the-functions-that-act-on-a-player-by-their-verb.md), `C003` |
 | The end of a snip, `end_mode` or `complete_on` | [0004](./decisions/0004-describe-the-end-of-a-snip-with-a-mode-and-a-completion-rule.md) |
 | `next`, the queue or transitions | [0005](./decisions/0005-decide-what-plays-next-with-one-rule.md) |
 | A loop count or a frame speed set at run time | [0002](./decisions/0002-keep-playback-state-in-the-player-and-fix-the-snip.md) |

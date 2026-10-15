@@ -5,5 +5,5 @@ function __resnip_sprite_scale(_snip) {
 	}
 
 	// Convert frames per second to frames per step
-	return _snip.sprite_speed / __resnip_system().game_speed;
+	return _snip.sprite_speed / game_get_speed(gamespeed_fps);
 }
