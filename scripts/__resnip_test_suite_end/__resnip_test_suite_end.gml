@@ -81,4 +81,57 @@ function __resnip_test_suite_end() {
 		__resnip_test_trace(_player, 8);
 		__resnip_test_equal(_t, _counter.hits, 1);
 	});
+
+	// More directions and sizes
+	__resnip_test_case(_suite, "rewind backward goes back to the first frame and stays", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.REWIND }), { backward: true });
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 7), [3, 2, 1, 0, 0, 0, 0]);
+	});
+
+	__resnip_test_case(_suite, "pingpong backward turns at both ends", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG }), { backward: true });
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 16), [3, 2, 1, 0, 1, 2, 3, 4, 3, 2, 1, 0, 1, 2, 3, 4]);
+	});
+
+	__resnip_test_case(_suite, "repeat backward completes at each wrap", function(_t) {
+		var _counter = { hits: 0 };
+		var _player = __resnip_test_player(__resnip_test_snip({ on_complete: __resnip_test_count, on_complete_argument: _counter }), { backward: true });
+		__resnip_test_trace(_player, 12);
+		__resnip_test_equal(_t, _counter.hits, 2);
+	});
+
+	__resnip_test_case(_suite, "hold backward completes once", function(_t) {
+		var _counter = { hits: 0 };
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, on_complete: __resnip_test_count, on_complete_argument: _counter }), { backward: true });
+		__resnip_test_trace(_player, 8);
+		__resnip_test_equal(_t, _counter.hits, 1);
+	});
+
+	__resnip_test_case(_suite, "pingpong with edge backward completes at each edge", function(_t) {
+		var _counter = { hits: 0 };
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG, on_complete: __resnip_test_count, on_complete_argument: _counter }), { backward: true });
+		__resnip_test_trace(_player, 12);
+		__resnip_test_equal(_t, _counter.hits, 2);
+	});
+
+	__resnip_test_case(_suite, "a snip of one frame repeats in place and completes every step", function(_t) {
+		var _counter = { hits: 0 };
+		var _player = __resnip_test_player(__resnip_test_make(2, 2, { on_complete: __resnip_test_count, on_complete_argument: _counter }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 4), [0, 0, 0, 0]);
+		__resnip_test_equal(_t, _counter.hits, 4);
+	});
+
+	__resnip_test_case(_suite, "a snip of one frame holds in place and completes once", function(_t) {
+		var _counter = { hits: 0 };
+		var _player = __resnip_test_player(__resnip_test_make(2, 2, { end_mode: RESNIP_END.HOLD, on_complete: __resnip_test_count, on_complete_argument: _counter }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 4), [0, 0, 0, 0]);
+		__resnip_test_equal(_t, _counter.hits, 1);
+	});
+
+	__resnip_test_case(_suite, "a step larger than the snip holds on the last frame", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD }));
+		resnip_player_step(_player, 20);
+		__resnip_test_equal(_t, _player.frame, 4);
+		__resnip_test_true(_t, _player.stopped);
+	});
 }

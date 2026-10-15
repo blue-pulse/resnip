@@ -88,4 +88,54 @@ function __resnip_test_suite_loops() {
 		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, loops: [{ first: 0, last: 4, repeats: 1 }, { first: 1, last: 2, repeats: 1 }] }));
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 12), [1, 2, 3, 4, 0, 1, 2, 1, 2, 3, 4, 4]);
 	});
+
+	// Where the snip starts
+	__resnip_test_case(_suite, "a skipped loop lands after its last frame on a snip that starts at image 0", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_make(0, 4, { end_mode: RESNIP_END.HOLD, loops: [{ first: 1, last: 2, repeats: -1 }] }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 3), [3, 4, 4]);
+	});
+
+	__resnip_test_case(_suite, "a skipped loop lands before its first frame when playing backward from any image", function(_t) {
+		var _loops = [{ first: 2, last: 3, repeats: -1 }];
+		var _from_zero = __resnip_test_player(__resnip_test_make(0, 4, { end_mode: RESNIP_END.HOLD, loops: _loops }), { backward: true });
+		__resnip_test_equal(_t, __resnip_test_trace(_from_zero, 4), [1, 0, 0, 0], "from image 0");
+		var _from_two = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, loops: _loops }), { backward: true });
+		__resnip_test_equal(_t, __resnip_test_trace(_from_two, 4), [1, 0, 0, 0], "from image 2");
+	});
+
+	// Position of the loop
+	__resnip_test_case(_suite, "loops in sequence each play in turn", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, loops: [{ first: 0, last: 1, repeats: 1 }, { first: 3, last: 4, repeats: 1 }] }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 12), [1, 0, 1, 2, 3, 4, 3, 4, 4, 4, 4, 4]);
+	});
+
+	__resnip_test_case(_suite, "a loop over the whole snip plays the snip again", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, loops: [{ first: 0, last: 4, repeats: 1 }] }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 10), [1, 2, 3, 4, 0, 1, 2, 3, 4, 4]);
+	});
+
+	__resnip_test_case(_suite, "a loop on the last frames plays before the snip ends", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, loops: [{ first: 3, last: 4, repeats: 1 }] }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 8), [1, 2, 3, 4, 3, 4, 4, 4]);
+	});
+
+	__resnip_test_case(_suite, "a loop on the last frames plays before the snip repeats", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ loops: [{ first: 3, last: 4, repeats: 1 }] }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 9), [1, 2, 3, 4, 3, 4, 0, 1, 2]);
+	});
+
+	// Speed inside a loop
+	__resnip_test_case(_suite, "a frame speed inside a loop applies on every pass", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, frame_speeds: [{ frame: 1, speed: 0.5 }], loops: [{ first: 1, last: 2, repeats: 1 }] }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 10), [1, 1, 2, 1, 1, 2, 3, 4, 4, 4]);
+	});
+
+	// Change while playing
+	__resnip_test_case(_suite, "repeats raised inside the loop add passes", function(_t) {
+		var _snip = __resnip_test_snip({ end_mode: RESNIP_END.HOLD, loops: [{ first: 1, last: 2, repeats: 0 }] });
+		var _player = __resnip_test_player(_snip);
+		__resnip_test_trace(_player, 1);
+		resnip_player_set_loop_repeats(_player, _snip.loops[0], 2);
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 7), [2, 1, 2, 1, 2, 3, 4]);
+	});
 }

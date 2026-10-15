@@ -28,7 +28,9 @@ from runtime import (
 RUN_WORK_DIR_NAME = "igor"
 RUN_ENV_TEST = {"RESNIP_MODE": "test"}
 RUN_ENV_BENCH = {"RESNIP_MODE": "bench"}
-RUN_RESULT_PATTERN = re.compile(r"\[RESULT\] (\d+) tests, (\d+) passed, (\d+) failed")
+RUN_RESULT_PATTERN = re.compile(
+	r"\[RESULT\] (\d+) tests, (\d+) passed, (\d+) failed(?:, (\d+) known)?"
+)
 
 
 # Functions
@@ -82,5 +84,8 @@ def run_test(args):
 	if failed or code:
 		print(f"[ERROR] {failed} tests failed, game exit code {code}")
 		return 1
-	print(f"[INFO] {results[-1].group(2)} of {results[-1].group(1)} tests passed")
+	known = int(results[-1].group(4) or 0)
+	print(
+		f"[INFO] {results[-1].group(2)} of {results[-1].group(1)} tests passed, {known} known failures"
+	)
 	return 0

@@ -203,4 +203,45 @@ function __resnip_test_suite_flow() {
 		__resnip_test_trace(_player, 1);
 		__resnip_test_true(_t, _args[0] == _player);
 	});
+
+	// Transitions
+	__resnip_test_case(_suite, "the target of a transition wins over the next of the transition snip", function(_t) {
+		var _from = __resnip_test_snip();
+		var _to = __resnip_test_make(10, 11, { end_mode: RESNIP_END.HOLD });
+		var _other = __resnip_test_make(17, 18, { end_mode: RESNIP_END.HOLD });
+		var _use = __resnip_test_make(14, 15, { end_mode: RESNIP_END.HOLD, next: _other });
+		resnip_transition_add(_from, _to, _use);
+		var _player = __resnip_test_player(_from);
+		resnip_player_play(_player, _to, { transition: true });
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 5, true), ["14.1", "10.0", "10.1", "10.1", "10.1"]);
+	});
+
+	__resnip_test_case(_suite, "a transition plays its loops", function(_t) {
+		var _from = __resnip_test_snip();
+		var _to = __resnip_test_make(10, 11, { end_mode: RESNIP_END.HOLD });
+		var _use = __resnip_test_make(14, 16, { end_mode: RESNIP_END.HOLD, loops: [{ first: 1, last: 1, repeats: 1 }] });
+		resnip_transition_add(_from, _to, _use);
+		var _player = __resnip_test_player(_from);
+		resnip_player_play(_player, _to, { transition: true });
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 5, true), ["14.1", "14.1", "14.2", "10.0", "10.1"]);
+	});
+
+	__resnip_test_case(_suite, "a queued snip asked with a transition continues from the target of the running transition", function(_t) {
+		var _a = __resnip_test_snip();
+		var _b = __resnip_test_make(10, 11, { end_mode: RESNIP_END.HOLD });
+		var _c = __resnip_test_make(0, 1, { end_mode: RESNIP_END.HOLD });
+		resnip_transition_add(_a, _b, __resnip_test_make(14, 15, { end_mode: RESNIP_END.HOLD }));
+		resnip_transition_add(_b, _c, __resnip_test_make(17, 18, { end_mode: RESNIP_END.HOLD }));
+		var _player = __resnip_test_player(_a);
+		resnip_player_play(_player, _b, { transition: true });
+		resnip_player_play(_player, _c, { transition: true, queue: true });
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 6, true), ["14.1", "17.0", "17.1", "0.0", "0.1", "0.1"]);
+	});
+
+	__resnip_test_case(_suite, "find returns the registered transition", function(_t) {
+		var _from = __resnip_test_snip();
+		var _to = __resnip_test_make(10, 11);
+		var _added = resnip_transition_add(_from, _to, __resnip_test_make(14, 15));
+		__resnip_test_true(_t, resnip_transition_find(_from, _to) == _added);
+	});
 }

@@ -1,7 +1,6 @@
 {
   "FolderOrderSettings":[],
   "ResourceOrderSettings":[
-    {"name":"AESnipsThanks","order":1,"path":"notes/AESnipsThanks/AESnipsThanks.yy",},
     {"name":"obj_blue_cowboy","order":1,"path":"objects/obj_blue_cowboy/obj_blue_cowboy.yy",},
     {"name":"obj_bullet","order":3,"path":"objects/obj_bullet/obj_bullet.yy",},
     {"name":"obj_explain","order":4,"path":"objects/obj_explain/obj_explain.yy",},

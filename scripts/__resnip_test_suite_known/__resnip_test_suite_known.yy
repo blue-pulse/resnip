@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__resnip_test_suite_known",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__resnip_test_suite_known",
+  "parent":{
+    "name":"Suites",
+    "path":"folders/Tests/Suites.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

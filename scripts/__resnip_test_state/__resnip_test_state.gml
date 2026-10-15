@@ -4,7 +4,7 @@ function __resnip_test_state() {
 		scenarios: [],
 		next_scenario: 0,
 		active_scenario: undefined,
-		totals: { tests: 0, passed: 0, failed: 0 },
+		totals: { tests: 0, passed: 0, failed: 0, known: 0 },
 		owner: noone,
 	};
 	return _state;

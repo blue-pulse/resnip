@@ -112,4 +112,45 @@ function __resnip_test_suite_speed() {
 		resnip_clock_default().paused = false;
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 2), [1, 2]);
 	});
+
+	// Time inside a step
+	__resnip_test_case(_suite, "a frame speed above one shortens only its own frame", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, frame_speeds: [{ frame: 1, speed: 4 }] }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 6), [1, 2, 3, 4, 4, 4]);
+	});
+
+	__resnip_test_case(_suite, "a zero step changes nothing", function(_t) {
+		var _log = [];
+		var _player = __resnip_test_player(__resnip_test_snip({ frame_scripts: __resnip_test_tag_scripts(_log, [0, 1]) }));
+		resnip_player_step(_player, 0);
+		__resnip_test_equal(_t, _player.frame, 0);
+		__resnip_test_equal(_t, _log, ["f0"]);
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 1), [1]);
+	});
+
+	__resnip_test_case(_suite, "the rest of a step passes to the next snip", function(_t) {
+		var _next = __resnip_test_make(10, 12, { end_mode: RESNIP_END.HOLD });
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, next: _next }));
+		resnip_player_step(_player, 6);
+		__resnip_test_equal(_t, string(_player.snip.first_image) + "." + string(_player.frame), "10.1");
+	});
+
+	// Sprite speed type
+	__resnip_test_case(_suite, "a sprite in frames per game frame ignores the game speed", function(_t) {
+		var _whole = __resnip_test_sprite_per_frame(1);
+		var _half = __resnip_test_sprite_per_frame(0.5);
+		resnip_set_game_speed(60);
+		var _options = { first_image: 2, last_image: 6, end_mode: RESNIP_END.HOLD };
+		__resnip_test_equal(_t, __resnip_test_trace(__resnip_test_player(resnip_snip_create(_whole, _options)), 4), [1, 2, 3, 4], "one per game frame");
+		__resnip_test_equal(_t, __resnip_test_trace(__resnip_test_player(resnip_snip_create(_half, _options)), 6), [0, 1, 1, 2, 2, 3], "half per game frame");
+		sprite_delete(_whole);
+		sprite_delete(_half);
+	});
+
+	__resnip_test_case(_suite, "a game speed set during play changes the pace of a sprite in frames per second", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 2), [1, 2], "at 15");
+		resnip_set_game_speed(30);
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 4), [2, 3, 3, 4], "at 30");
+	});
 }
