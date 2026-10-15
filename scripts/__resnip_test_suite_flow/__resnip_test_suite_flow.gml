@@ -244,4 +244,68 @@ function __resnip_test_suite_flow() {
 		var _added = resnip_transition_add(_from, _to, __resnip_test_make(14, 15));
 		__resnip_test_true(_t, resnip_transition_find(_from, _to) == _added);
 	});
+
+	// Stop
+	__resnip_test_case(_suite, "a stopped player can play the target of a transition it left", function(_t) {
+		var _from = __resnip_test_snip();
+		var _to = __resnip_test_make(10, 11, { end_mode: RESNIP_END.HOLD });
+		resnip_transition_add(_from, _to, __resnip_test_make(14, 15, { end_mode: RESNIP_END.HOLD }));
+		var _player = __resnip_test_player(_from);
+		resnip_player_play(_player, _to, { transition: true });
+		resnip_player_stop(_player);
+		__resnip_test_true(_t, resnip_player_play(_player, _to, { restart: false }));
+	});
+
+	// Direction of what plays next
+	__resnip_test_case(_suite, "a queued snip can play backward", function(_t) {
+		var _other = __resnip_test_make(10, 12, { end_mode: RESNIP_END.HOLD });
+		var _player = __resnip_test_player(__resnip_test_snip());
+		resnip_player_play(_player, _other, { queue: true, backward: true });
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 6, true), ["2.1", "2.2", "2.3", "2.4", "10.2", "10.1"]);
+	});
+
+	__resnip_test_case(_suite, "a queued snip keeps the transition flag and the direction apart", function(_t) {
+		var _from = __resnip_test_snip();
+		var _to = __resnip_test_make(10, 12, { end_mode: RESNIP_END.HOLD });
+		resnip_transition_add(_from, _to, __resnip_test_make(14, 15, { end_mode: RESNIP_END.HOLD }));
+		var _player = __resnip_test_player(_from);
+		resnip_player_play(_player, _to, { queue: true, transition: true, backward: true });
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 8, true), ["2.1", "2.2", "2.3", "2.4", "14.0", "14.1", "10.2", "10.1"]);
+	});
+
+	__resnip_test_case(_suite, "the target of a transition plays backward when asked", function(_t) {
+		var _from = __resnip_test_snip();
+		var _to = __resnip_test_make(10, 12, { end_mode: RESNIP_END.HOLD });
+		resnip_transition_add(_from, _to, __resnip_test_make(14, 15, { end_mode: RESNIP_END.HOLD }));
+		var _player = __resnip_test_player(_from);
+		resnip_player_play(_player, _to, { transition: true, backward: true });
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 4, true), ["14.1", "10.2", "10.1", "10.0"]);
+	});
+
+	__resnip_test_case(_suite, "the next of a snip can play backward", function(_t) {
+		var _snip = __resnip_test_snip({ end_mode: RESNIP_END.HOLD });
+		resnip_snip_set_next(_snip, __resnip_test_make(10, 12, { end_mode: RESNIP_END.HOLD }), { backward: true });
+		var _player = __resnip_test_player(_snip);
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 6, true), ["2.1", "2.2", "2.3", "2.4", "10.2", "10.1"]);
+	});
+
+	__resnip_test_case(_suite, "the next of a snip uses a transition unless told not to", function(_t) {
+		var _target = __resnip_test_make(10, 12, { end_mode: RESNIP_END.HOLD });
+		var _with = __resnip_test_snip({ end_mode: RESNIP_END.HOLD });
+		var _without = __resnip_test_snip({ end_mode: RESNIP_END.HOLD });
+		resnip_snip_set_next(_with, _target);
+		resnip_snip_set_next(_without, _target, { transition: false });
+		var _use = __resnip_test_make(14, 15, { end_mode: RESNIP_END.HOLD });
+		resnip_transition_add(_with, _target, _use);
+		resnip_transition_add(_without, _target, _use);
+		__resnip_test_equal(_t, __resnip_test_trace(__resnip_test_player(_with), 5, true), ["2.1", "2.2", "2.3", "2.4", "14.0"], "default");
+		__resnip_test_equal(_t, __resnip_test_trace(__resnip_test_player(_without), 5, true), ["2.1", "2.2", "2.3", "2.4", "10.0"], "transition false");
+	});
+
+	__resnip_test_case(_suite, "a clone keeps how its next plays", function(_t) {
+		var _snip = __resnip_test_snip();
+		resnip_snip_set_next(_snip, __resnip_test_make(10, 12), { transition: false, backward: true });
+		var _clone = resnip_snip_clone(_snip, { speed: 2 });
+		__resnip_test_equal(_t, [_clone.next_transition, _clone.next_backward], [false, true]);
+	});
 }

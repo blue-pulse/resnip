@@ -47,25 +47,47 @@ function __resnip_test_suite_end() {
 		__resnip_test_equal(_t, _counter.hits, 2);
 	});
 
-	__resnip_test_case(_suite, "pingpong with cycle completes on the return", function(_t) {
+	__resnip_test_case(_suite, "pingpong with head completes when it returns to the first frame", function(_t) {
 		var _counter = { hits: 0 };
-		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG, complete_on: RESNIP_COMPLETE.CYCLE, on_complete: __resnip_test_count, on_complete_argument: _counter }));
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG, complete_on: RESNIP_COMPLETE.HEAD, on_complete: __resnip_test_count, on_complete_argument: _counter }));
 		__resnip_test_trace(_player, 12);
 		__resnip_test_equal(_t, _counter.hits, 1);
 	});
 
-	__resnip_test_case(_suite, "pingpong with cycle backward turns the same way", function(_t) {
-		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG, complete_on: RESNIP_COMPLETE.CYCLE }), { backward: true });
+	__resnip_test_case(_suite, "pingpong with tail completes each time it reaches the last frame", function(_t) {
+		var _counter = { hits: 0 };
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG, complete_on: RESNIP_COMPLETE.TAIL, on_complete: __resnip_test_count, on_complete_argument: _counter }));
+		__resnip_test_trace(_player, 5);
+		__resnip_test_equal(_t, _counter.hits, 1, "at the first tail");
+		__resnip_test_trace(_player, 7);
+		__resnip_test_equal(_t, _counter.hits, 1, "before the second tail");
+		__resnip_test_trace(_player, 1);
+		__resnip_test_equal(_t, _counter.hits, 2, "at the second tail");
+	});
+
+	__resnip_test_case(_suite, "pingpong with head backward turns the same way", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG, complete_on: RESNIP_COMPLETE.HEAD }), { backward: true });
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 8), [3, 2, 1, 0, 1, 2, 3, 4]);
 	});
 
-	__resnip_test_case(_suite, "pingpong with cycle backward completes only on the return", function(_t) {
+	__resnip_test_case(_suite, "pingpong with tail backward completes only on the return", function(_t) {
 		var _counter = { hits: 0 };
-		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG, complete_on: RESNIP_COMPLETE.CYCLE, on_complete: __resnip_test_count, on_complete_argument: _counter }), { backward: true });
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG, complete_on: RESNIP_COMPLETE.TAIL, on_complete: __resnip_test_count, on_complete_argument: _counter }), { backward: true });
 		__resnip_test_trace(_player, 8);
 		__resnip_test_equal(_t, _counter.hits, 0, "before the return");
 		__resnip_test_trace(_player, 1);
 		__resnip_test_equal(_t, _counter.hits, 1, "on the return");
+	});
+
+	__resnip_test_case(_suite, "pingpong with head backward completes when it first reaches the first frame", function(_t) {
+		var _counter = { hits: 0 };
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG, complete_on: RESNIP_COMPLETE.HEAD, on_complete: __resnip_test_count, on_complete_argument: _counter }), { backward: true });
+		__resnip_test_trace(_player, 4);
+		__resnip_test_equal(_t, _counter.hits, 0, "before the first frame");
+		__resnip_test_trace(_player, 1);
+		__resnip_test_equal(_t, _counter.hits, 1, "at the first frame");
+		__resnip_test_trace(_player, 7);
+		__resnip_test_equal(_t, _counter.hits, 1, "on the way back");
 	});
 
 	__resnip_test_case(_suite, "repeat completes at each wrap", function(_t) {
@@ -133,5 +155,31 @@ function __resnip_test_suite_end() {
 		resnip_player_step(_player, 20);
 		__resnip_test_equal(_t, _player.frame, 4);
 		__resnip_test_true(_t, _player.stopped);
+	});
+
+	// Fast forward
+	__resnip_test_case(_suite, "fastforward jumps to the last frame and stays", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.FASTFORWARD }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 6), [1, 2, 3, 4, 4, 4]);
+		__resnip_test_true(_t, _player.stopped);
+	});
+
+	__resnip_test_case(_suite, "fastforward backward jumps to the last frame and stays", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.FASTFORWARD }), { backward: true });
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 7), [3, 2, 1, 0, 4, 4, 4]);
+		__resnip_test_true(_t, _player.stopped);
+	});
+
+	__resnip_test_case(_suite, "fastforward completes once", function(_t) {
+		var _counter = { hits: 0 };
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.FASTFORWARD, on_complete: __resnip_test_count, on_complete_argument: _counter }), { backward: true });
+		__resnip_test_trace(_player, 10);
+		__resnip_test_equal(_t, _counter.hits, 1);
+	});
+
+	__resnip_test_case(_suite, "an unknown completion mode throws", function(_t) {
+		__resnip_test_raises(_t, function() {
+			__resnip_test_snip({ complete_on: 9 });
+		}, "received complete_on 9");
 	});
 }

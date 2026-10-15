@@ -5,8 +5,12 @@ function __resnip_player_finish(_player) {
 
 	// Completion
 	var _completes = true;
-	if (_snip.end_mode == RESNIP_END.PINGPONG && _snip.complete_on == RESNIP_COMPLETE.CYCLE) {
-		_completes = (_player.direction != _player.__start_direction);
+	if (_snip.end_mode == RESNIP_END.PINGPONG) {
+		if (_snip.complete_on == RESNIP_COMPLETE.HEAD) {
+			_completes = !_forward;
+		} else if (_snip.complete_on == RESNIP_COMPLETE.TAIL) {
+			_completes = _forward;
+		}
 	}
 	if (_completes && __resnip_player_complete(_player)) {
 		return;
@@ -21,6 +25,11 @@ function __resnip_player_finish(_player) {
 
 		case RESNIP_END.REWIND:
 			_player.frame = 0;
+			_player.stopped = true;
+		break;
+
+		case RESNIP_END.FASTFORWARD:
+			_player.frame = _snip.count - 1;
 			_player.stopped = true;
 		break;
 

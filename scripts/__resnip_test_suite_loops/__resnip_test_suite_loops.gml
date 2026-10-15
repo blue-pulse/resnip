@@ -138,4 +138,31 @@ function __resnip_test_suite_loops() {
 		resnip_player_set_loop_repeats(_player, _snip.loops[0], 2);
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 7), [2, 1, 2, 1, 2, 3, 4]);
 	});
+
+	// Every frame skipped
+	__resnip_test_case(_suite, "a repeating snip whose every frame is skipped holds on its last frame", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ loops: [{ first: 0, last: 4, repeats: -1 }] }));
+		__resnip_test_true(_t, _player.stopped);
+		__resnip_test_equal(_t, _player.frame, 4);
+	});
+
+	__resnip_test_case(_suite, "a pingpong snip whose frames are skipped by two loops holds", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.PINGPONG, loops: [{ first: 0, last: 2, repeats: -1 }, { first: 3, last: 4, repeats: -1 }] }));
+		__resnip_test_true(_t, _player.stopped);
+	});
+
+	__resnip_test_case(_suite, "a snip whose frames are skipped still completes once", function(_t) {
+		var _counter = { hits: 0 };
+		var _player = __resnip_test_player(__resnip_test_snip({ loops: [{ first: 0, last: 4, repeats: -1 }], on_complete: __resnip_test_count, on_complete_argument: _counter }));
+		__resnip_test_equal(_t, _counter.hits, 1);
+	});
+
+	__resnip_test_case(_suite, "a completion script can play a snip that starts inside a skipped loop", function(_t) {
+		var _other = __resnip_test_make(10, 14, { end_mode: RESNIP_END.HOLD, loops: [{ first: 0, last: 1, repeats: -1 }] });
+		var _switch = function(_target, _player) {
+			resnip_player_play(_player, _target);
+		};
+		var _player = __resnip_test_player(__resnip_test_snip({ loops: [{ first: 0, last: 4, repeats: -1 }], on_complete: _switch, on_complete_argument: _other }));
+		__resnip_test_equal(_t, [_player.snip == _other, _player.frame, _player.stopped], [true, 2, false]);
+	});
 }

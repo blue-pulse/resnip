@@ -1,7 +1,7 @@
 /// @func resnip_snip_create(sprite, [options])
 /// @desc Creates a snip, which is a sprite or a run of its sub-images with a speed, loops and scripts. A snip is shared by every player and must not be changed after it is created, so make a variation with resnip_snip_clone. It has no native equivalent. Frames of loops, speeds and scripts count from 0 at the first image of the snip.
 /// @param {Asset.GMSprite} sprite The sprite to play
-/// @param {Struct} [options] Optional fields: first_image and last_image (sub-images, default the whole sprite), speed (above 0, default 1), frame_speeds (array of {frame, speed}), frame_scripts (array of {frame, callback, argument}), loops (array of {first, last, repeats}, where repeats 0 plays the frames once and below 0 skips them), end_mode (RESNIP_END), complete_on (RESNIP_COMPLETE), on_complete and on_complete_argument, next (a snip)
+/// @param {Struct} [options] Optional fields: first_image and last_image (sub-images, default the whole sprite), speed (0 or above, default 1), frame_speeds (array of {frame, speed}, where a speed of 0 holds the frame), frame_scripts (array of {frame, callback, argument}), loops (array of {first, last, repeats}, where repeats 0 plays the frames once and below 0 skips them), end_mode (RESNIP_END), complete_on (RESNIP_COMPLETE), on_complete and on_complete_argument, next (a snip) and next_options ({transition, backward}, see resnip_snip_set_next)
 /// @returns {Struct} The snip
 function resnip_snip_create(_sprite, _options = {}) {
 	// Sprite
@@ -19,8 +19,8 @@ function resnip_snip_create(_sprite, _options = {}) {
 
 	// Speed
 	var _speed = _options[$ "speed"] ?? RESNIP_DEFAULT_SNIP_SPEED;
-	if (_speed <= 0) {
-		__resnip_error("resnip_snip_create received speed " + string(_speed) + ". Use a speed above 0, and play backward with the backward option of resnip_player_play.");
+	if (_speed < 0) {
+		__resnip_error("resnip_snip_create received speed " + string(_speed) + ". Use a speed of 0 or above, and play backward with the backward option of resnip_player_play.");
 	}
 
 	// End mode
@@ -31,7 +31,7 @@ function resnip_snip_create(_sprite, _options = {}) {
 
 	// Completion mode
 	var _complete_on = _options[$ "complete_on"] ?? RESNIP_DEFAULT_COMPLETE_ON;
-	if (_complete_on < RESNIP_COMPLETE.EDGE || _complete_on > RESNIP_COMPLETE.CYCLE) {
+	if (_complete_on < RESNIP_COMPLETE.EDGE || _complete_on > RESNIP_COMPLETE.TAIL) {
 		__resnip_error("resnip_snip_create received complete_on " + string(_complete_on) + ". Use a value of RESNIP_COMPLETE.");
 	}
 
@@ -45,6 +45,12 @@ function resnip_snip_create(_sprite, _options = {}) {
 	var _next = _options[$ "next"];
 	if (_next != undefined && !is_struct(_next)) {
 		__resnip_error("resnip_snip_create received a next that is not a snip. Pass the result of resnip_snip_create.");
+	}
+
+	// How the next snip plays
+	var _next_options = _options[$ "next_options"] ?? {};
+	if (!is_struct(_next_options)) {
+		__resnip_error("resnip_snip_create received next_options that are not a struct. Pass {transition, backward}.");
 	}
 
 	// Build the snip
@@ -66,6 +72,8 @@ function resnip_snip_create(_sprite, _options = {}) {
 		on_complete: _on_complete,
 		on_complete_argument: _options[$ "on_complete_argument"],
 		next: _next,
+		next_transition: _next_options[$ "transition"] ?? true,
+		next_backward: _next_options[$ "backward"] ?? false,
 		// Private fields
 		__id: __resnip_next_id(),
 		__options: __resnip_options_merge({}, _options),

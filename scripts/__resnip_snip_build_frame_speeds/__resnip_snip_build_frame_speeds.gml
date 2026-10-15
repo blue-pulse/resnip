@@ -8,8 +8,8 @@ function __resnip_snip_build_frame_speeds(_entries, _count) {
 		__resnip_check_frame(_entry.frame, _count, "resnip_snip_create frame_speeds");
 
 		// Prevent a speed that cannot move
-		if (_entry.speed <= 0) {
-			__resnip_error("resnip_snip_create frame_speeds received speed " + string(_entry.speed) + " for frame " + string(_entry.frame) + ". Use a speed above 0, and play backward with the backward option of resnip_player_play.");
+		if (_entry.speed < 0) {
+			__resnip_error("resnip_snip_create frame_speeds received speed " + string(_entry.speed) + " for frame " + string(_entry.frame) + ". Use a speed of 0 or above, and play backward with the backward option of resnip_player_play.");
 		}
 
 		// Store the speed

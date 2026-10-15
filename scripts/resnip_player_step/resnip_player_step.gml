@@ -13,7 +13,7 @@ function resnip_player_step(_player, _steps = 1) {
 	while (_remaining > __RESNIP_EPSILON && !_player.stopped) {
 		// Speed of the current frame
 		var _snip = _player.snip;
-		var _rate = _snip.frame_speeds[_player.frame] * _snip.speed * _player.speed * _player.clock.scale * __resnip_sprite_scale(_snip);
+		var _rate = _player.__frame_speeds[_player.frame] * _snip.speed * _player.speed * _player.clock.scale * __resnip_sprite_scale(_snip);
 		if (_rate <= 0) {
 			return;
 		}
@@ -29,5 +29,10 @@ function resnip_player_step(_player, _steps = 1) {
 		_remaining -= max(_room, 0) / _rate;
 		_player.__progress = 0;
 		__resnip_player_move(_player);
+
+		// Stop for a pause that a callback set
+		if (_player.paused || _player.clock.paused) {
+			return;
+		}
 	}
 }

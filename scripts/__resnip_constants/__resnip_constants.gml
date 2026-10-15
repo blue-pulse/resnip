@@ -14,6 +14,7 @@
 enum RESNIP_END {
 	HOLD,
 	REWIND,
+	FASTFORWARD,
 	REPEAT,
 	PINGPONG,
 }
@@ -21,7 +22,8 @@ enum RESNIP_END {
 // When a pingpong snip counts as complete
 enum RESNIP_COMPLETE {
 	EDGE,
-	CYCLE,
+	HEAD,
+	TAIL,
 }
 
 // Where resnip_player_stop leaves the player

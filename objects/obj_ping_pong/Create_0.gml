@@ -5,7 +5,7 @@ my_snip = resnip_snip_create(sprite_index, {
 		{ frame: 0, speed: 0.5 },
 		{ frame: 9, speed: 0.5 },
 	],
-	// Try RESNIP_COMPLETE.CYCLE to turn only when the snip returns to where it started
+	// Try RESNIP_COMPLETE.HEAD to complete only when the snip comes back to its first frame
 	end_mode: RESNIP_END.PINGPONG,
 	complete_on: RESNIP_COMPLETE.EDGE,
 	on_complete: method(self, function(_argument, _player) {

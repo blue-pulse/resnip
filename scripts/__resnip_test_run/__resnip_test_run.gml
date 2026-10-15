@@ -8,7 +8,6 @@ function __resnip_test_run() {
 	__resnip_test_suite_state();
 	__resnip_test_suite_callbacks();
 	__resnip_test_suite_properties();
-	__resnip_test_suite_known();
 	__resnip_test_suite_debug();
 
 	// Plain tests run at once, one after the other

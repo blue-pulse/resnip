@@ -25,12 +25,6 @@ function __resnip_test_suite_input() {
 		}, "first_image -1");
 	});
 
-	__resnip_test_case(_suite, "a speed of zero throws", function(_t) {
-		__resnip_test_raises(_t, function() {
-			resnip_snip_create(red_cowboy_full, { speed: 0 });
-		}, "received speed 0");
-	});
-
 	__resnip_test_case(_suite, "a negative speed throws", function(_t) {
 		__resnip_test_raises(_t, function() {
 			resnip_snip_create(red_cowboy_full, { speed: -1 });
@@ -161,5 +155,35 @@ function __resnip_test_suite_input() {
 
 	__resnip_test_case(_suite, "the snip counts its frames", function(_t) {
 		__resnip_test_equal(_t, __resnip_test_snip().count, 5);
+	});
+
+	__resnip_test_case(_suite, "set_next with options that are not a struct throws", function(_t) {
+		__resnip_test_raises(_t, function() {
+			resnip_snip_set_next(__resnip_test_snip(), __resnip_test_snip(), 5);
+		}, "received options that are not a struct");
+	});
+
+	__resnip_test_case(_suite, "next_options that are not a struct throw", function(_t) {
+		__resnip_test_raises(_t, function() {
+			__resnip_test_snip({ next_options: 5 });
+		}, "received next_options that are not a struct");
+	});
+
+	__resnip_test_case(_suite, "a frame speed on a player with no snip throws", function(_t) {
+		__resnip_test_raises(_t, function() {
+			resnip_player_set_frame_speed(resnip_player_create(), 0, 1);
+		}, "plays no snip");
+	});
+
+	__resnip_test_case(_suite, "a frame speed for a frame outside the snip throws", function(_t) {
+		__resnip_test_raises(_t, function() {
+			resnip_player_set_frame_speed(__resnip_test_player(__resnip_test_snip()), 9, 1);
+		}, "received frame 9");
+	});
+
+	__resnip_test_case(_suite, "a negative frame speed on a player throws", function(_t) {
+		__resnip_test_raises(_t, function() {
+			resnip_player_set_frame_speed(__resnip_test_player(__resnip_test_snip()), 1, -1);
+		}, "received speed -1");
 	});
 }

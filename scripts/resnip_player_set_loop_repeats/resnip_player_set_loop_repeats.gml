@@ -1,5 +1,5 @@
 /// @func resnip_player_set_loop_repeats(player, loop, repeats)
-/// @desc Changes how many times a loop repeats for one player, while the game runs, without changing the shared snip. A count of 0 plays the loop once and below 0 skips it. The count is read when the player enters the loop and each time it reaches the end of the loop, so a change applies at the next of those.
+/// @desc Changes how many times a loop repeats for one player, while the game runs, without changing the shared snip. A count of 0 plays the loop once and below 0 skips it. The count is read when the player enters the loop and each time it reaches the end of the loop, so a change applies at the next of those. It replaces snip_set_loop_repeat of AESnips, which changed the loop for every user.
 /// @param {Struct} player The player to change
 /// @param {Struct} loop A loop of a snip, read from its loops array
 /// @param {Real} repeats The number of repeats after the first play, or undefined to use the loop value again

@@ -95,4 +95,22 @@ function __resnip_test_suite_callbacks() {
 		var _player = __resnip_test_player(__resnip_test_snip({ frame_scripts: [{ frame: 1, callback: _switch, argument: _other }] }));
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 3, true), ["10.0", "10.1", "10.1"]);
 	});
+
+	__resnip_test_case(_suite, "a callback that pauses the player ends the step in progress", function(_t) {
+		var _pause = function(_argument, _player) {
+			_player.paused = true;
+		};
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, frame_scripts: [{ frame: 1, callback: _pause }] }));
+		resnip_player_step(_player, 3);
+		__resnip_test_equal(_t, _player.frame, 1);
+	});
+
+	__resnip_test_case(_suite, "a callback that pauses the clock ends the step in progress", function(_t) {
+		var _pause = function(_argument, _player) {
+			_player.clock.paused = true;
+		};
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, frame_scripts: [{ frame: 1, callback: _pause }] }));
+		resnip_player_step(_player, 3);
+		__resnip_test_equal(_t, _player.frame, 1);
+	});
 }

@@ -1,5 +1,5 @@
 /// @func resnip_snip_clone(snip, [overrides])
-/// @desc Creates a new snip from the options of another one, with some options replaced. Loops get new identities, so a repeat count set on a player for the original does not apply to the clone. Transitions are not copied, so add them again. It has no native equivalent.
+/// @desc Creates a new snip from the options of another one, with some options replaced. Loops get new identities, so a repeat count set on a player for the original does not apply to the clone. Transitions are not copied, so add them again. It has no native equivalent. It replaces snip_clone, snip_clone_loops and snip_clone_transitions of AESnips.
 /// @param {Struct} snip The snip to copy
 /// @param {Struct} [overrides] Options to replace, with the same fields as resnip_snip_create plus sprite
 /// @returns {Struct} The new snip

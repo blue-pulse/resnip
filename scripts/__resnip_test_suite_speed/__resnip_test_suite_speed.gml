@@ -153,4 +153,62 @@ function __resnip_test_suite_speed() {
 		resnip_set_game_speed(30);
 		__resnip_test_equal(_t, __resnip_test_trace(_player, 4), [2, 3, 3, 4], "at 30");
 	});
+
+	// Speed of zero
+	__resnip_test_case(_suite, "a snip speed of zero holds the first frame", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ speed: 0 }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 3), [0, 0, 0]);
+	});
+
+	__resnip_test_case(_suite, "a frame speed of zero holds that frame", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, frame_speeds: [{ frame: 2, speed: 0 }] }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 6), [1, 2, 2, 2, 2, 2]);
+	});
+
+	// Frame speed of a player
+	__resnip_test_case(_suite, "changing the speed of a held frame releases it", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD, frame_speeds: [{ frame: 2, speed: 0 }] }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 4), [1, 2, 2, 2], "held");
+		resnip_player_set_frame_speed(_player, 2, 1);
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 3), [3, 4, 4], "released");
+	});
+
+	__resnip_test_case(_suite, "a frame speed set on a player leaves the snip and other players alone", function(_t) {
+		var _snip = __resnip_test_snip({ end_mode: RESNIP_END.HOLD });
+		var _slow = __resnip_test_player(_snip);
+		var _normal = __resnip_test_player(_snip);
+		resnip_player_set_frame_speed(_slow, 1, 0.5);
+		__resnip_test_equal(_t, __resnip_test_trace(_slow, 6), [1, 1, 2, 3, 4, 4], "the player that changed");
+		__resnip_test_equal(_t, __resnip_test_trace(_normal, 4), [1, 2, 3, 4], "the other player");
+		__resnip_test_equal(_t, _snip.frame_speeds[1], 1, "the snip");
+	});
+
+	__resnip_test_case(_suite, "an undefined frame speed gives the speed of the snip back", function(_t) {
+		var _snip = __resnip_test_snip({ end_mode: RESNIP_END.HOLD, frame_speeds: [{ frame: 1, speed: 0.5 }] });
+		var _player = __resnip_test_player(_snip);
+		resnip_player_set_frame_speed(_player, 1, 4);
+		resnip_player_set_frame_speed(_player, 1, undefined);
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 6), [1, 1, 2, 3, 4, 4]);
+	});
+
+	__resnip_test_case(_suite, "restarting the same snip keeps the frame speeds of a player", function(_t) {
+		var _snip = __resnip_test_snip({ end_mode: RESNIP_END.HOLD });
+		var _player = __resnip_test_player(_snip);
+		resnip_player_set_frame_speed(_player, 1, 0);
+		resnip_player_play(_player, _snip);
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 3), [1, 1, 1]);
+	});
+
+	__resnip_test_case(_suite, "playing another snip drops the frame speeds of a player", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD }));
+		resnip_player_set_frame_speed(_player, 1, 0);
+		resnip_player_play(_player, __resnip_test_make(10, 14, { end_mode: RESNIP_END.HOLD }));
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 4), [1, 2, 3, 4]);
+	});
+
+	__resnip_test_case(_suite, "a frame speed of a player works while the player plays backward", function(_t) {
+		var _player = __resnip_test_player(__resnip_test_snip({ end_mode: RESNIP_END.HOLD }), { backward: true });
+		resnip_player_set_frame_speed(_player, 3, 0.5);
+		__resnip_test_equal(_t, __resnip_test_trace(_player, 6), [3, 3, 2, 1, 0, 0]);
+	});
 }

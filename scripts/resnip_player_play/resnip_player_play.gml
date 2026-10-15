@@ -1,5 +1,5 @@
 /// @func resnip_player_play(player, snip, [options])
-/// @desc Plays a snip on a player now, or queues it for when the current one completes. The queue, the target of a transition and the next of a snip all answer what plays next, in that order. It replaces setting sprite_index and image_index by hand.
+/// @desc Plays a snip on a player now, or queues it for when the current one completes. The queue, the target of a transition and the next of a snip all answer what plays next, in that order. It replaces setting sprite_index and image_index by hand, and it covers snip_play, snip_play_next and snip_play_request of AESnips. A transition plays in its own direction, and the snip it leads to plays in the direction asked.
 /// @param {Struct} player The player that plays it
 /// @param {Struct} snip The snip to play
 /// @param {Struct} [options] Optional fields: transition (look for a transition from the current snip, default false), queue (wait for the current snip to complete, default false), restart (play even if it already plays, default true), backward (play from its last frame down, default false)
@@ -21,12 +21,14 @@ function resnip_player_play(_player, _snip, _options = {}) {
 	if (_queue && _player.snip != undefined && !_player.stopped) {
 		_player.__queue = _snip;
 		_player.__queue_transition = _transition;
+		_player.__queue_backward = _backward;
 		return true;
 	}
 
 	// Transition
 	var _use = _snip;
 	var _target = undefined;
+	var _target_backward = _backward;
 	var _from = _player.__target ?? _player.snip;
 	if (_transition && _from != undefined) {
 		var _found = resnip_transition_find(_from, _snip);
@@ -38,6 +40,10 @@ function resnip_player_play(_player, _snip, _options = {}) {
 	}
 
 	// Reset the state
+	if (_use != _player.snip) {
+		_player.__frame_speeds = _use.frame_speeds;
+		_player.__own_frame_speeds = false;
+	}
 	_player.snip = _use;
 	_player.direction = _backward ? RESNIP_BACKWARD : RESNIP_FORWARD;
 	_player.frame = _backward ? _use.count - 1 : 0;
@@ -45,9 +51,11 @@ function resnip_player_play(_player, _snip, _options = {}) {
 	_player.__progress = 0;
 	_player.__queue = undefined;
 	_player.__queue_transition = false;
+	_player.__queue_backward = false;
 	_player.__target = _target;
-	_player.__start_direction = _player.direction;
+	_player.__target_backward = _target_backward;
 	_player.__serial += 1;
+	_player.__skips = 0;
 	__resnip_player_reset_loops(_player);
 	__resnip_player_enter(_player);
 	return true;

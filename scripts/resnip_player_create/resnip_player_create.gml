@@ -17,10 +17,14 @@ function resnip_player_create(_clock = undefined) {
 		__loop: __RESNIP_NO_LOOP,
 		__passes: [],
 		__repeats: {},
+		__frame_speeds: undefined,
+		__own_frame_speeds: false,
 		__queue: undefined,
 		__queue_transition: false,
+		__queue_backward: false,
 		__target: undefined,
-		__start_direction: RESNIP_FORWARD,
+		__target_backward: false,
 		__serial: 0,
+		__skips: 0,
 	};
 }

@@ -1,7 +1,7 @@
 function __resnip_test_random_snip(_random) {
 	var _count = 1 + __resnip_test_random_next(_random, 6);
 	var _first_image = __resnip_test_random_next(_random, 14);
-	var _end_mode = __resnip_test_random_next(_random, 4);
+	var _end_mode = __resnip_test_random_next(_random, RESNIP_END.PINGPONG + 1);
 	var _repeating = (_end_mode == RESNIP_END.REPEAT || _end_mode == RESNIP_END.PINGPONG);
 	var _speeds = [0.5, 1, 2];
 
@@ -29,7 +29,7 @@ function __resnip_test_random_snip(_random) {
 		last_image: _first_image + _count - 1,
 		speed: _speeds[__resnip_test_random_next(_random, 3)],
 		end_mode: _end_mode,
-		complete_on: __resnip_test_random_next(_random, 2),
+		complete_on: __resnip_test_random_next(_random, RESNIP_COMPLETE.TAIL + 1),
 		loops: _loops,
 		frame_speeds: _frame_speeds,
 	});

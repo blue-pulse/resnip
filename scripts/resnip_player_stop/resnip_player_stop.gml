@@ -19,4 +19,5 @@ function resnip_player_stop(_player, _where = RESNIP_STOP.HERE) {
 
 	// Stop
 	_player.stopped = true;
+	_player.__target = undefined;
 }
