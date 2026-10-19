@@ -3,6 +3,4 @@
 /// @param {Struct} playback The playback to change
 function resnip_cancel_next(_playback) {
 	_playback.__queue = undefined;
-	_playback.__queue_transition = false;
-	_playback.__queue_backward = false;
 }

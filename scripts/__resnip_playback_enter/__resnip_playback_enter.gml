@@ -4,11 +4,10 @@ function __resnip_playback_enter(_playback) {
 
 	// Look for a loop to enter
 	if (_playback.__loop == __RESNIP_NO_LOOP) {
-		for (var _i = 0; _i < array_length(_snip.loops); _i++) {
+		var _candidates = _snip.__loops_at[_playback.frame];
+		for (var _j = 0; _j < array_length(_candidates); _j++) {
+			var _i = _candidates[_j];
 			var _loop = _snip.loops[_i];
-			if (_playback.frame < _loop.first || _playback.frame > _loop.last) {
-				continue;
-			}
 
 			var _repeats = __resnip_loop_repeat(_playback, _loop);
 			var _passes = _playback.__passes[_i];

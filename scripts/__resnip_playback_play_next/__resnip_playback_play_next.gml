@@ -4,8 +4,9 @@ function __resnip_playback_play_next(_playback) {
 	var _transition = false;
 	var _backward = false;
 	if (_next != undefined) {
-		_transition = _playback.__queue_transition;
-		_backward = _playback.__queue_backward;
+		_transition = _next.transition;
+		_backward = _next.backward;
+		_next = _next.snip;
 	} else {
 		_next = _playback.__target;
 		if (_next != undefined) {
@@ -24,6 +25,6 @@ function __resnip_playback_play_next(_playback) {
 	if (_next == _playback.snip) {
 		_transition = false;
 	}
-	resnip_play(_playback, _next, { transition: _transition, backward: _backward });
+	__resnip_playback_start(_playback, _next, _transition, _backward);
 	return true;
 }

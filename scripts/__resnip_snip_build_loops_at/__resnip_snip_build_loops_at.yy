@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"__resnip_sprite_scale",
+  "%Name":"__resnip_snip_build_loops_at",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__resnip_sprite_scale",
+  "name":"__resnip_snip_build_loops_at",
   "parent":{
     "name":"(System)",
     "path":"folders/Scripts/Resnip/(System).yy",

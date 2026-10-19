@@ -6,7 +6,9 @@
 function resnip_set_loop_repeats(_playback, _loop, _repeats) {
 	// Clear the override
 	if (_repeats == undefined) {
-		variable_struct_remove(_playback.__repeats, _loop.__key);
+		if (_playback.__repeats != undefined) {
+			variable_struct_remove(_playback.__repeats, _loop.__key);
+		}
 		return;
 	}
 
@@ -16,5 +18,6 @@ function resnip_set_loop_repeats(_playback, _loop, _repeats) {
 	}
 
 	// Store the override
+	_playback.__repeats ??= {};
 	_playback.__repeats[$ _loop.__key] = _repeats;
 }

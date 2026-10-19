@@ -55,6 +55,7 @@ function resnip_snip_create(_sprite, _options = {}) {
 
 	// Build the snip
 	var _count = _last_image - _first_image + 1;
+	var _loops = __resnip_snip_build_loops(_options[$ "loops"] ?? [], _count);
 	return {
 		// Public fields
 		sprite: _sprite,
@@ -66,7 +67,7 @@ function resnip_snip_create(_sprite, _options = {}) {
 		sprite_speed_type: sprite_get_speed_type(_sprite),
 		frame_speeds: __resnip_snip_build_frame_speeds(_options[$ "frame_speeds"] ?? [], _count),
 		frame_scripts: __resnip_snip_build_frame_scripts(_options[$ "frame_scripts"] ?? [], _count),
-		loops: __resnip_snip_build_loops(_options[$ "loops"] ?? [], _count),
+		loops: _loops,
 		end_mode: _end_mode,
 		complete_on: _complete_on,
 		on_complete: _on_complete,
@@ -77,5 +78,8 @@ function resnip_snip_create(_sprite, _options = {}) {
 		// Private fields
 		__id: __resnip_next_id(),
 		__options: __resnip_options_merge({}, _options),
+		__loops_at: __resnip_snip_build_loops_at(_loops, _count),
+		__scale: _speed * sprite_get_speed(_sprite),
+		__per_second: sprite_get_speed_type(_sprite) == spritespeed_framespersecond,
 	};
 }

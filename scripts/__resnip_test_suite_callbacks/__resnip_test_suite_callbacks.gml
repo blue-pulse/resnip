@@ -96,6 +96,16 @@ function __resnip_test_suite_callbacks() {
 		__resnip_test_equal(_t, __resnip_test_trace(_playback, 3, true), ["10.0", "10.1", "10.1"]);
 	});
 
+	__resnip_test_case(_suite, "the rest of a step runs at the speed of the snip a callback started", function(_t) {
+		var _slow = __resnip_test_make(10, 13, { speed: 0.5, end_mode: RESNIP_END.HOLD });
+		var _switch = function(_target, _playback) {
+			resnip_play(_playback, _target);
+		};
+		var _playback = __resnip_test_playback(__resnip_test_snip({ frame_scripts: [{ frame: 1, callback: _switch, argument: _slow }] }));
+		resnip_step(_playback, 3);
+		__resnip_test_equal(_t, [_playback.snip == _slow, _playback.frame], [true, 1]);
+	});
+
 	__resnip_test_case(_suite, "a callback that pauses the playback ends the step in progress", function(_t) {
 		var _pause = function(_argument, _playback) {
 			_playback.paused = true;

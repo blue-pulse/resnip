@@ -19,10 +19,9 @@ function resnip_set_frame_speed(_playback, _frame, _speed) {
 	}
 
 	// Copy the speeds of the snip on the first change
-	if (!_playback.__own_frame_speeds) {
+	if (_playback.__frame_speeds == _snip.frame_speeds) {
 		_playback.__frame_speeds = array_create(_snip.count);
 		array_copy(_playback.__frame_speeds, 0, _snip.frame_speeds, 0, _snip.count);
-		_playback.__own_frame_speeds = true;
 	}
 	_playback.__frame_speeds[_frame] = _speed ?? _snip.frame_speeds[_frame];
 }
