@@ -1,4 +1,4 @@
-/// @description Create the snip and the players
+/// @description Create the snip and the playbacks
 // Snip
 my_snip = resnip_snip_create(sprite_index, {
 	frame_speeds: [
@@ -8,15 +8,15 @@ my_snip = resnip_snip_create(sprite_index, {
 	// Try RESNIP_COMPLETE.HEAD to complete only when the snip comes back to its first frame
 	end_mode: RESNIP_END.PINGPONG,
 	complete_on: RESNIP_COMPLETE.EDGE,
-	on_complete: method(self, function(_argument, _player) {
-		if (_player == main_player) {
+	on_complete: method(self, function(_argument, _playback) {
+		if (_playback == main_playback) {
 			image_angle += 5;
 		}
 	}),
 });
 
-// Players
-main_player = resnip_player_create();
-copy_player = resnip_player_create();
-resnip_play(main_player, my_snip);
-resnip_play(copy_player, my_snip);
+// Playbacks
+main_playback = resnip_playback_create();
+copy_playback = resnip_playback_create();
+resnip_play(main_playback, my_snip);
+resnip_play(copy_playback, my_snip);

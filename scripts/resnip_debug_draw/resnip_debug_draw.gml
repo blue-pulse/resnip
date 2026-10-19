@@ -1,15 +1,15 @@
-/// @func resnip_debug_draw(player, x, y)
-/// @desc Draws every sub-image of the sprite of a player in a row, with the current frame lifted and its progress as a bar, a dot under frames that have a script, and a bracket under each loop. Loops are aqua when they repeat, green while played, yellow when they play once and red when skipped. It is a separate module, so leave it out of a build that does not need it. It has no native equivalent.
-/// @param {Struct} player The player to inspect
+/// @func resnip_debug_draw(playback, x, y)
+/// @desc Draws every sub-image of the sprite of a playback in a row, with the current frame lifted and its progress as a bar, a dot under frames that have a script, and a bracket under each loop. Loops are aqua when they repeat, green while played, yellow when they play once and red when skipped. It is a separate module, so leave it out of a build that does not need it. It has no native equivalent.
+/// @param {Struct} playback The playback to inspect
 /// @param {Real} x The x position of the panel
 /// @param {Real} y The y position of the panel
-function resnip_debug_draw(_player, _x, _y) {
+function resnip_debug_draw(_playback, _x, _y) {
 	// Variables
 	var _old_color = draw_get_color();
 	var _old_alpha = draw_get_alpha();
-	var _snip = _player.snip;
+	var _snip = _playback.snip;
 
-	// Player with no snip
+	// Playback with no snip
 	if (_snip == undefined) {
 		draw_set_color(__RESNIP_DEBUG_EMPTY_COLOR);
 		draw_rectangle(_x, _y, _x + 16, _y + 16, false);
@@ -24,7 +24,7 @@ function resnip_debug_draw(_player, _x, _y) {
 	var _step = _width + __RESNIP_DEBUG_GAP;
 	var _lift = floor(_height * __RESNIP_DEBUG_LIFT);
 	var _line = floor(_width * __RESNIP_DEBUG_LOOP_LINE);
-	var _current = resnip_frame_to_image(_snip, _player.frame);
+	var _current = resnip_frame_to_image(_snip, _playback.frame);
 
 	// Sub-images
 	for (var _i = 0; _i < sprite_get_number(_sprite); _i++) {
@@ -47,14 +47,14 @@ function resnip_debug_draw(_player, _x, _y) {
 	draw_set_alpha(1);
 	draw_set_color(__RESNIP_DEBUG_PROGRESS_COLOR);
 	var _bar_x = _x + _current * _step;
-	draw_rectangle(_bar_x, _y + _height + 1, _bar_x + _width * _player.__progress, _y + _height + _lift - 1, false);
+	draw_rectangle(_bar_x, _y + _height + 1, _bar_x + _width * _playback.__progress, _y + _height + _lift - 1, false);
 
 	// Loops
 	for (var _i = 0; _i < array_length(_snip.loops); _i++) {
 		var _loop = _snip.loops[_i];
-		var _repeats = __resnip_loop_repeat(_player, _loop);
+		var _repeats = __resnip_loop_repeat(_playback, _loop);
 		if (_repeats > 0) {
-			draw_set_color((_player.__loop == _i) ? __RESNIP_DEBUG_LOOP_ACTIVE_COLOR : __RESNIP_DEBUG_LOOP_COLOR);
+			draw_set_color((_playback.__loop == _i) ? __RESNIP_DEBUG_LOOP_ACTIVE_COLOR : __RESNIP_DEBUG_LOOP_COLOR);
 			draw_set_alpha(__RESNIP_DEBUG_LOOP_ALPHA);
 		} else {
 			draw_set_color((_repeats < 0) ? __RESNIP_DEBUG_LOOP_SKIP_COLOR : __RESNIP_DEBUG_LOOP_ONCE_COLOR);

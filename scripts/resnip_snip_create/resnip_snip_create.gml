@@ -1,5 +1,5 @@
 /// @func resnip_snip_create(sprite, [options])
-/// @desc Creates a snip, which is a sprite or a run of its sub-images with a speed, loops and scripts. A snip is shared by every player and must not be changed after it is created, so make a variation with resnip_snip_clone. It has no native equivalent. Frames of loops, speeds and scripts count from 0 at the first image of the snip.
+/// @desc Creates a snip, which is a sprite or a run of its sub-images with a speed, loops and scripts. A snip is shared by every playback and must not be changed after it is created, so make a variation with resnip_snip_clone. It has no native equivalent. Frames of loops, speeds and scripts count from 0 at the first image of the snip.
 /// @param {Asset.GMSprite} sprite The sprite to play
 /// @param {Struct} [options] Optional fields: first_image and last_image (sub-images, default the whole sprite), speed (0 or above, default 1), frame_speeds (array of {frame, speed}, where a speed of 0 holds the frame), frame_scripts (array of {frame, callback, argument}), loops (array of {first, last, repeats}, where repeats 0 plays the frames once and below 0 skips them), end_mode (RESNIP_END), complete_on (RESNIP_COMPLETE), on_complete and on_complete_argument, next (a snip) and next_options ({transition, backward}, see resnip_snip_set_next)
 /// @returns {Struct} The snip

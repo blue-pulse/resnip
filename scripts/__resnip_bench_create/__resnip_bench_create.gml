@@ -26,5 +26,5 @@ function __resnip_bench_create() {
 		array_push(_configs, { count: _sizes[_i], snip: _looped, loops: __RESNIP_BENCH_LOOP_COUNT });
 	}
 
-	return { configs: _configs, index: 0, players: [], steps: 0, micros: 0 };
+	return { configs: _configs, index: 0, playbacks: [], steps: 0, micros: 0 };
 }

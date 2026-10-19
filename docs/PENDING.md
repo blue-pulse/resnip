@@ -22,7 +22,7 @@ Done when two runs of unchanged code agree within 5 percent on the minimum for e
 
 Problem. Every figure in [0003](./decisions/0003-advance-time-with-an-integer-frame-and-an-accumulator.md) compares Resnip with an earlier Resnip. No run puts the two libraries side by side, so "as fast as AESnips" is a hypothesis. The reason to expect it is that Resnip uses structs and arrays and AESnips uses variables on the instance and lists, which was not checked.
 
-Shape. Run the same cases (1 000, 5 000 and 10 000 players, one sprite at one frame per step) through the `SnipPlayer` of AESnips in the private project under `.sandbox/` and record the method and the numbers in record 0003. The AESnips code stays out of the repository, so the result cannot be repeated by others, and the record must say so.
+Shape. Run the same cases (1 000, 5 000 and 10 000 playbacks, one sprite at one frame per step) through the `SnipPlayer` of AESnips in the private project under `.sandbox/` and record the method and the numbers in record 0003. The AESnips code stays out of the repository, so the result cannot be repeated by others, and the record must say so.
 
 Done when record 0003 holds both columns with their method.
 
@@ -30,11 +30,11 @@ Low priority.
 
 ## 3. The skip and the end of a snip call each other
 
-Problem. `__resnip_player_enter` follows a loop skip and `__resnip_player_finish` follows the end of a snip, and each can call the other. [0010](./decisions/0010-hold-a-snip-whose-every-frame-is-skipped.md) bounds this with a counter per player. The counter is reset by `resnip_play`, so two snips that are both fully skipped and name each other as `next` may still recurse without end. That is a hypothesis and not a finding, because it was not reproduced.
+Problem. `__resnip_playback_enter` follows a loop skip and `__resnip_playback_finish` follows the end of a snip, and each can call the other. [0010](./decisions/0010-hold-a-snip-whose-every-frame-is-skipped.md) bounds this with a counter per playback. The counter is reset by `resnip_play`, so two snips that are both fully skipped and name each other as `next` may still recurse without end. That is a hypothesis and not a finding, because it was not reproduced.
 
-Shape. Write the test that builds two such snips. If it hangs, make the skip iterative: find the next frame to play in a loop inside `__resnip_player_enter`, and finish the snip once when none is left, so no recursion remains and the counter goes away.
+Shape. Write the test that builds two such snips. If it hangs, make the skip iterative: find the next frame to play in a loop inside `__resnip_playback_enter`, and finish the snip once when none is left, so no recursion remains and the counter goes away.
 
-Done when that test passes and `__resnip_player_enter` has no recursive call.
+Done when that test passes and `__resnip_playback_enter` has no recursive call.
 
 ## 5. The YYC build keeps stale code after scripts change
 
@@ -48,7 +48,7 @@ Done when adding a script and running `test --yyc` links without a manual delete
 
 Problem. `resnip_snip_set_next` can run at any time, and `snip.__options` is a shallow copy, so changing an array that was passed to `resnip_snip_create` changes later clones. Both were read from the code and not run.
 
-Shape. Copy the arrays and structs of the options when the snip is created, and either document `resnip_snip_set_next` as setup only with a check that raises once the snip has been played, or accept the gap in [0002](./decisions/0002-keep-playback-state-in-the-player-and-fix-the-snip.md) as a decision.
+Shape. Copy the arrays and structs of the options when the snip is created, and either document `resnip_snip_set_next` as setup only with a check that raises once the snip has been played, or accept the gap in [0002](./decisions/0002-keep-the-state-in-the-playback-and-fix-the-snip.md) as a decision.
 
 Done when a test changes the passed array after creation and the clone does not change.
 
@@ -56,7 +56,7 @@ Low priority.
 
 ## 7. Behaviour that no test covers
 
-Problem. These were found by reading and have no test: a callback that throws; `resnip_instance_sync` with a stopped or backward player; a `direction` other than 1 or -1; a sprite in frames per game frame together with a gamespeed change; the parts of the debug panel other than that it draws.
+Problem. These were found by reading and have no test: a callback that throws; `resnip_instance_sync` with a stopped or backward playback; a `direction` other than 1 or -1; a sprite in frames per game frame together with a gamespeed change; the parts of the debug panel other than that it draws.
 
 Shape. One test per item in the suite that owns the area. Do not build features for them.
 
@@ -66,7 +66,7 @@ Low priority.
 
 ## 8. The test suite was not audited against the test rules
 
-Problem. Record [0015](./decisions/0015-write-a-test-only-if-it-protects-a-named-behaviour.md) was written after the 171 tests. Some may be a second example of a class that another test covers, one checks a private field (the clone test compares `__key` of two loops), and some may be too close to the implementation. A first reading on 2026-10-15 found these candidates, and it is not the audit: the eight tests of the suite `properties` and one test of `speed` use a loop and a branch, which breaks `T011` as written; the test `callbacks receive the argument and the player` of `flow` repeats two tests of `callbacks`; and `the snip counts its frames` of `input` checks a field value. Re-count before acting.
+Problem. Record [0015](./decisions/0015-write-a-test-only-if-it-protects-a-named-behaviour.md) was written after the 171 tests. Some may be a second example of a class that another test covers, one checks a private field (the clone test compares `__key` of two loops), and some may be too close to the implementation. A first reading on 2026-10-15 found these candidates, and it is not the audit: the eight tests of the suite `properties` and one test of `speed` use a loop and a branch, which breaks `T011` as written; the test `callbacks receive the argument and the playback` of `flow` repeats two tests of `callbacks`; and `the snip counts its frames` of `input` checks a field value. Re-count before acting.
 
 Shape. List each suite's tests against the gate of 0015, mark the ones that fail its first four questions, and delete or rewrite them. Run the mutation checks of `T004` before and after, so that deleting a test does not hide a fault that only it caught. Do not add tests while doing this.
 
@@ -79,7 +79,7 @@ Low priority.
 These shape code but are product calls. Do not decide them.
 
 - Resnip has no logo of its own. The Windows build uses the default icon of GameMaker, and the other platforms use the defaults of the IDE. Which logo, from Blue Pulse or new, goes in `options/windows/icons/icon.ico`?
-- Should a completion script that stops the player keep the next snip from starting? Today the next snip starts anyway ([0004](./decisions/0004-describe-the-end-of-a-snip-with-a-mode-and-a-completion-rule.md)).
+- Should a completion script that stops the playback keep the next snip from starting? Today the next snip starts anyway ([0004](./decisions/0004-describe-the-end-of-a-snip-with-a-mode-and-a-completion-rule.md)).
 
 ## Operational, not code
 

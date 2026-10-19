@@ -7,12 +7,12 @@ function __resnip_bench_step(_bench) {
 	// Variables
 	var _config = _bench.configs[_bench.index];
 
-	// Create the players
-	if (array_length(_bench.players) == 0) {
+	// Create the playbacks
+	if (array_length(_bench.playbacks) == 0) {
 		for (var _i = 0; _i < _config.count; _i++) {
-			var _player = resnip_player_create();
-			resnip_play(_player, _config.snip);
-			array_push(_bench.players, _player);
+			var _playback = resnip_playback_create();
+			resnip_play(_playback, _config.snip);
+			array_push(_bench.playbacks, _playback);
 		}
 		_bench.steps = 0;
 		_bench.micros = 0;
@@ -21,7 +21,7 @@ function __resnip_bench_step(_bench) {
 	// Time the step
 	var _start = get_timer();
 	for (var _i = 0; _i < _config.count; _i++) {
-		resnip_step(_bench.players[_i]);
+		resnip_step(_bench.playbacks[_i]);
 	}
 	var _elapsed = get_timer() - _start;
 
@@ -34,8 +34,8 @@ function __resnip_bench_step(_bench) {
 	// Report the result
 	if (_bench.steps >= __RESNIP_BENCH_STEPS) {
 		var _measured = __RESNIP_BENCH_STEPS - __RESNIP_BENCH_WARMUP;
-		show_debug_message("[BENCH] players=" + string(_config.count) + " loops=" + string(_config.loops) + " step_us=" + string(_bench.micros / _measured) + " player_ns=" + string(_bench.micros * 1000 / _measured / _config.count));
-		_bench.players = [];
+		show_debug_message("[BENCH] playbacks=" + string(_config.count) + " loops=" + string(_config.loops) + " step_us=" + string(_bench.micros / _measured) + " playback_ns=" + string(_bench.micros * 1000 / _measured / _config.count));
+		_bench.playbacks = [];
 		_bench.index += 1;
 	}
 	return false;

@@ -15,8 +15,8 @@ AESnips is a good idea held back by its age. It was written before structs, arra
 The rewrite aims at the following.
 
 - **Current language features.** Structs and arrays in place of data structures, so GameMaker's garbage collector frees what is no longer used.
-- **One playback core.** Playing on an instance and playing on a standalone player share the same code, so a fix is made once.
-- **No hidden state.** Playback state lives in the player and not in variables added to the calling instance.
+- **One playback core.** Playing through an instance and playing apart from one share the same code, so a fix is made once.
+- **No hidden state.** The state of an animation lives in its playback and not in variables added to the calling instance.
 - **A clear public API.** Public names start with `resnip_`, everything internal is marked as private, and every public function is documented in the editor.
 - **Predictable behaviour.** One convention for frame numbers, and a check for bad input that says what went wrong and how to fix it.
 

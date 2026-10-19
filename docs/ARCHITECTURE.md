@@ -10,9 +10,9 @@ Update it when a part is added, removed or renamed, or when an invariant or boun
 
 ## Bird's-eye view
 
-Resnip plays a sprite, or a run of its sub-images, as an animation. A **snip** is the definition: a sprite, a frame range, speeds, loops, scripts and an end behaviour. A **player** holds all the state of one animation that plays a snip: the frame, the direction, the progress inside the frame and what comes next. The game calls `resnip_step` once per step, and the player spends the time of that step frame by frame. Everything else is built around that call.
+Resnip plays a sprite, or a run of its sub-images, as an animation. A **snip** is the definition: a sprite, a frame range, speeds, loops, scripts and an end behaviour. A **playback** holds all the state of one animation that plays a snip: the frame, the direction, the progress inside the frame and what comes next. The game calls `resnip_step` once per step, and the playback spends the time of that step frame by frame. Everything else is built around that call.
 
-The one fact the rest follows from: the player is the only code that plays. A snip never changes after setup, and an instance never holds state of the library. Instance mode, drawing and the debug panel read a player and add nothing to it.
+The one fact the rest follows from: the playback is the only code that plays. A snip never changes after setup, and an instance never holds state of the library. Instance mode, drawing and the debug panel read a playback and add nothing to it.
 
 ## Codemap
 
@@ -31,32 +31,32 @@ Every public name starts with `resnip_`, and each has JSDoc.
 - Snip: `resnip_snip_create`, `resnip_snip_clone`, `resnip_snip_set_next`.
 - Transition: `resnip_transition_add`, `resnip_transition_find`, `resnip_transition_remove`.
 - Clock: `resnip_clock_create`, `resnip_clock_default`, `resnip_clock_set_scale`.
-- Player: `resnip_player_create`, `resnip_play`, `resnip_step`, `resnip_stop`, `resnip_cancel_next`, `resnip_set_speed`, `resnip_set_loop_repeats`, `resnip_set_frame_speed`.
+- Playback: `resnip_playback_create`, `resnip_play`, `resnip_step`, `resnip_stop`, `resnip_cancel_next`, `resnip_set_speed`, `resnip_set_loop_repeats`, `resnip_set_frame_speed`.
 - Conversion: `resnip_frame_to_image`, `resnip_image_to_frame`.
 - Adapters: `resnip_instance_sync`, `resnip_draw`, `resnip_draw_ext`, and the debug panel `resnip_debug_draw`.
 
 ### Internal code
 
-`Scripts/Resnip/(System)` holds the scripts that start with `__resnip_`. The player is moved by `__resnip_player_move` (one frame forward or back, with the loop edge), `__resnip_player_enter` (loops and the frame script), `__resnip_player_finish` (the end of a snip), `__resnip_player_complete` and `__resnip_player_play_next` (completion and what plays next), `__resnip_player_reset_loops` and `__resnip_player_give_up`. The rest are helpers: `__resnip_loop_repeat`, `__resnip_sprite_scale`, `__resnip_check_frame`, `__resnip_snip_build_*`, `__resnip_options_merge`, `__resnip_transition_key`, `__resnip_next_id` and `__resnip_error`.
+`Scripts/Resnip/(System)` holds the scripts that start with `__resnip_`. The playback is moved by `__resnip_playback_move` (one frame forward or back, with the loop edge), `__resnip_playback_enter` (loops and the frame script), `__resnip_playback_finish` (the end of a snip), `__resnip_playback_complete` and `__resnip_playback_play_next` (completion and what plays next), `__resnip_playback_reset_loops` and `__resnip_playback_give_up`. The rest are helpers: `__resnip_loop_repeat`, `__resnip_sprite_scale`, `__resnip_check_frame`, `__resnip_snip_build_*`, `__resnip_options_merge`, `__resnip_transition_key`, `__resnip_next_id` and `__resnip_error`.
 
 ### Demo, tests and benchmark
 
 - The demo is `rm_main` with `obj_red_cowboy`, `obj_blue_cowboy`, `obj_ping_pong`, `obj_runner`, `obj_bullet` and `obj_explain`. It uses the sprites in `sprites/`.
 - The tests are `rm_test` with `obj_resnip_test`. See [Tests](#tests).
-- The benchmark is `rm_bench` with `obj_resnip_bench`, `__resnip_bench_create` and `__resnip_bench_step`. It prints `[BENCH] players=N loops=M step_us=...` lines.
+- The benchmark is `rm_bench` with `obj_resnip_bench`, `__resnip_bench_create` and `__resnip_bench_step`. It prints `[BENCH] playbacks=N loops=M step_us=...` lines.
 - `tools/` holds the Python command line (`gm.py` with `doctor`, `run`, `test` and `bench`), which finds a runtime, builds the Igor command and reads the `[RESULT]` line of the test run.
 
 ### Tests
 
 `python tools/gm.py test` runs `rm_test`. The suites are `end`, `speed`, `loops`, `flow`, `input`, `state`, `callbacks`, `properties` and `debug`. On 2026-10-15 they held 171 plain tests and one scenario, 172 in all, and all passed on the VM and on YYC. Re-run before citing that count.
 
-Time is deterministic: `__resnip_test_reset` sets the gamespeed of the engine to 15 with `game_set_speed` before each test, so a sprite of 15 frames per second moves one frame per step. A test calls `resnip_step` with a number of steps and reads the player. `properties` is the architectural check: it runs 200 seeded cases per property against the invariants below. `__resnip_test_known_failure` registers a fault that is known and not fixed.
+Time is deterministic: `__resnip_test_reset` sets the gamespeed of the engine to 15 with `game_set_speed` before each test, so a sprite of 15 frames per second moves one frame per step. A test calls `resnip_step` with a number of steps and reads the playback. `properties` is the architectural check: it runs 200 seeded cases per property against the invariants below. `__resnip_test_known_failure` registers a fault that is known and not fixed.
 
 ## Invariants
 
 - A snip is not written after setup, apart from its `next`. The test `playing never changes the snip` detects a write during play.
-- All playback state lives in the player. No variable of the library is added to an instance.
-- The frame of a player is always inside `[0, count - 1]`. The property `the frame stays inside the snip` detects it.
+- All the state of an animation lives in the playback. No variable of the library is added to an instance.
+- The frame of a playback is always inside `[0, count - 1]`. The property `the frame stays inside the snip` detects it.
 - Two steps give the same result as one step of their sum. The property `two steps give the same result as one step of their sum` detects it.
 - A script runs for every frame entered, never only for the frame where a step lands.
 - The library reads no global, asset or setting of the game, apart from the gamespeed of the engine, which it reads with `game_get_speed(gamespeed_fps)`. No test detects it, and it holds by attention alone (`C013`).
@@ -66,11 +66,11 @@ Time is deterministic: `__resnip_test_reset` sets the gamespeed of the engine to
 
 ### Definition and state
 
-A snip answers no question about time. A player answers all of them and never writes the snip. A change that must differ per user, a loop count or a frame speed, is an override stored in the player ([0002](./decisions/0002-keep-playback-state-in-the-player-and-fix-the-snip.md)).
+A snip answers no question about time. A playback answers all of them and never writes the snip. A change that must differ per user, a loop count or a frame speed, is an override stored in the playback ([0002](./decisions/0002-keep-the-state-in-the-playback-and-fix-the-snip.md)).
 
 ### Core and adapters
 
-The core is the clock and the player with the single step. The adapters, `resnip_instance_sync`, the drawing functions and the debug panel, depend on the core and the core does not know them ([0008](./decisions/0008-sync-an-instance-from-a-player.md)).
+The core is the clock and the playback with the single step. The adapters, `resnip_instance_sync`, the drawing functions and the debug panel, depend on the core and the core does not know them ([0008](./decisions/0008-sync-an-instance-from-a-playback.md)).
 
 ### Library and game
 
@@ -92,11 +92,11 @@ The step algorithm lives in `resnip_step` ([0003](./decisions/0003-advance-time-
 
 ### Changing speed while the game runs
 
-Three controls change the pace of animations during play, and none of them touches the gamespeed of the engine. `resnip_set_speed(player, x)` changes one player. `resnip_clock_set_scale(clock, x)` changes every player that follows the clock, so `resnip_clock_default()` gives a slow motion for all of them. `resnip_step(player, steps)` takes a fraction of a step, which serves delta time: `resnip_step(player, delta_time / 1000000 * game_get_speed(gamespeed_fps))` keeps an animation on the clock of the wall when the game runs below its gamespeed. The gamespeed is the target the game is set to, and `fps_real` is what it achieves.
+Three controls change the pace of animations during play, and none of them touches the gamespeed of the engine. `resnip_set_speed(playback, x)` changes one playback. `resnip_clock_set_scale(clock, x)` changes every playback that follows the clock, so `resnip_clock_default()` gives a slow motion for all of them. `resnip_step(playback, steps)` takes a fraction of a step, which serves delta time: `resnip_step(playback, delta_time / 1000000 * game_get_speed(gamespeed_fps))` keeps an animation on the clock of the wall when the game runs below its gamespeed. The gamespeed is the target the game is set to, and `fps_real` is what it achieves.
 
 ### Callbacks
 
-A frame script and a completion script are called as `callback(argument, player)` ([0011](./decisions/0011-run-a-callback-for-every-frame-entered.md)). They run inside `resnip_play` and `resnip_step`, so they can call both again.
+A frame script and a completion script are called as `callback(argument, playback)` ([0011](./decisions/0011-run-a-callback-for-every-frame-entered.md)). They run inside `resnip_play` and `resnip_step`, so they can call both again.
 
 ### Errors and messages
 
@@ -111,8 +111,8 @@ A frame script and a completion script are called as `callback(argument, player)
 - **Snip.** A fixed definition of an animation: sprite, frame range, speeds, loops, scripts and end behaviour.
 - **Sub-image.** One image of a GameMaker sprite, counted from 0 in the sprite.
 - **Frame.** One image of a snip, counted from 0 at its first sub-image. `resnip_frame_to_image` and `resnip_image_to_frame` convert.
-- **Player.** The state of one animation that plays a snip.
-- **Clock.** A struct with `paused` and `scale` that players share.
+- **Playback.** The state of one animation that plays a snip.
+- **Clock.** A struct with `paused` and `scale` that playbacks share.
 - **Loop.** A run of frames of a snip that plays once and then repeats a count of times. A count below 0 skips it.
 - **Transition.** A snip that plays between two others, found by from and to.
 - **Step.** One game step, the unit of the step function.

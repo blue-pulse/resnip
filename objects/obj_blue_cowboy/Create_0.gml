@@ -1,4 +1,4 @@
-/// @description Create the snip and the players
+/// @description Create the snip and the playbacks
 // Snip
 my_snip = resnip_snip_create(blue_cowboy_sprite, {
 	frame_speeds: [
@@ -16,20 +16,20 @@ my_snip = resnip_snip_create(blue_cowboy_sprite, {
 	],
 });
 
-// Players
-main_player = resnip_player_create();
-copy_player = resnip_player_create();
-resnip_play(main_player, my_snip);
-resnip_play(copy_player, my_snip);
+// Playbacks
+main_playback = resnip_playback_create();
+copy_playback = resnip_playback_create();
+resnip_play(main_playback, my_snip);
+resnip_play(copy_playback, my_snip);
 
 // Variables
 fire_count = 1;
 
 // Loops start with 0 repeats, so each key press sets how many shots the loops play
 set_fire_count = function(_count) {
-	var _players = [main_player, copy_player];
-	for (var _i = 0; _i < array_length(_players); _i++) {
-		resnip_set_loop_repeats(_players[_i], my_snip.loops[1], _count - 1);
-		resnip_set_loop_repeats(_players[_i], my_snip.loops[0], (_count == 0) ? -1 : 0);
+	var _playbacks = [main_playback, copy_playback];
+	for (var _i = 0; _i < array_length(_playbacks); _i++) {
+		resnip_set_loop_repeats(_playbacks[_i], my_snip.loops[1], _count - 1);
+		resnip_set_loop_repeats(_playbacks[_i], my_snip.loops[0], (_count == 0) ? -1 : 0);
 	}
 };

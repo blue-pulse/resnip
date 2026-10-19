@@ -1,3 +1,3 @@
-function __resnip_test_take_over(_target, _player) {
-	resnip_play(_player, _target);
+function __resnip_test_take_over(_target, _playback) {
+	resnip_play(_playback, _target);
 }

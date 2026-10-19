@@ -1,9 +1,9 @@
-/// @description Create the players
-// Players
-main_player = resnip_player_create();
-copy_player = resnip_player_create();
-resnip_play(main_player, obj_runner_snip_holder.left_snip);
-resnip_play(copy_player, obj_runner_snip_holder.left_snip);
+/// @description Create the playbacks
+// Playbacks
+main_playback = resnip_playback_create();
+copy_playback = resnip_playback_create();
+resnip_play(main_playback, obj_runner_snip_holder.left_snip);
+resnip_play(copy_playback, obj_runner_snip_holder.left_snip);
 
 // Variables
 facing_left = true;
@@ -13,6 +13,6 @@ turn = function(_transition, _now) {
 	facing_left = !facing_left;
 	var _snip = facing_left ? obj_runner_snip_holder.left_snip : obj_runner_snip_holder.right_snip;
 	var _options = { transition: _transition, queue: !_now };
-	resnip_play(main_player, _snip, _options);
-	resnip_play(copy_player, _snip, _options);
+	resnip_play(main_playback, _snip, _options);
+	resnip_play(copy_playback, _snip, _options);
 };

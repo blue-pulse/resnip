@@ -21,7 +21,7 @@ The library had `resnip_set_game_speed(fps)` and a default of 60. A game that fo
 
 The scale of a sprite in frames per second is the sprite speed divided by `game_get_speed(gamespeed_fps)`, read at each step, so it cannot be forgotten or go out of date when the game changes its gamespeed. The value is the target that the game is set to and not the measured rate, which is the right base because GameMaker converts the speed of its own sprites the same way.
 
-Changing the pace of animations while the game runs needs no gamespeed call. `resnip_set_speed` changes one player, `resnip_clock_set_scale` changes every player of a clock, and `resnip_step` takes a fraction of a step for delta time ([ARCHITECTURE.md](../ARCHITECTURE.md#changing-speed-while-the-game-runs)).
+Changing the pace of animations while the game runs needs no gamespeed call. `resnip_set_speed` changes one playback, `resnip_clock_set_scale` changes every playback of a clock, and `resnip_step` takes a fraction of a step for delta time ([ARCHITECTURE.md](../ARCHITECTURE.md#changing-speed-while-the-game-runs)).
 
 ## Considered options
 

@@ -87,9 +87,9 @@ function __resnip_test_suite_input() {
 	});
 
 	// Speed values
-	__resnip_test_case(_suite, "a negative player speed throws", function(_t) {
+	__resnip_test_case(_suite, "a negative playback speed throws", function(_t) {
 		__resnip_test_raises(_t, function() {
-			resnip_set_speed(resnip_player_create(), -1);
+			resnip_set_speed(resnip_playback_create(), -1);
 		}, "resnip_set_speed received -1");
 	});
 
@@ -99,10 +99,10 @@ function __resnip_test_suite_input() {
 		}, "resnip_clock_set_scale received -1");
 	});
 
-	__resnip_test_case(_suite, "fractional loop repeats on a player throw", function(_t) {
+	__resnip_test_case(_suite, "fractional loop repeats on a playback throw", function(_t) {
 		__resnip_test_raises(_t, function() {
 			var _snip = __resnip_test_snip({ loops: [{ first: 0, last: 1, repeats: 1 }] });
-			resnip_set_loop_repeats(resnip_player_create(), _snip.loops[0], 1.5);
+			resnip_set_loop_repeats(resnip_playback_create(), _snip.loops[0], 1.5);
 		}, "resnip_set_loop_repeats received 1.5");
 	});
 
@@ -163,21 +163,21 @@ function __resnip_test_suite_input() {
 		}, "received next_options that are not a struct");
 	});
 
-	__resnip_test_case(_suite, "a frame speed on a player with no snip throws", function(_t) {
+	__resnip_test_case(_suite, "a frame speed on a playback with no snip throws", function(_t) {
 		__resnip_test_raises(_t, function() {
-			resnip_set_frame_speed(resnip_player_create(), 0, 1);
+			resnip_set_frame_speed(resnip_playback_create(), 0, 1);
 		}, "plays no snip");
 	});
 
 	__resnip_test_case(_suite, "a frame speed for a frame outside the snip throws", function(_t) {
 		__resnip_test_raises(_t, function() {
-			resnip_set_frame_speed(__resnip_test_player(__resnip_test_snip()), 9, 1);
+			resnip_set_frame_speed(__resnip_test_playback(__resnip_test_snip()), 9, 1);
 		}, "received frame 9");
 	});
 
-	__resnip_test_case(_suite, "a negative frame speed on a player throws", function(_t) {
+	__resnip_test_case(_suite, "a negative frame speed on a playback throws", function(_t) {
 		__resnip_test_raises(_t, function() {
-			resnip_set_frame_speed(__resnip_test_player(__resnip_test_snip()), 1, -1);
+			resnip_set_frame_speed(__resnip_test_playback(__resnip_test_snip()), 1, -1);
 		}, "received speed -1");
 	});
 }

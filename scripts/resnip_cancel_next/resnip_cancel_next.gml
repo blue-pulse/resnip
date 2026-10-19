@@ -1,8 +1,8 @@
-/// @func resnip_cancel_next(player)
-/// @desc Drops the snip queued by resnip_play. While a transition plays, the snip it leads to stays, since that is where the player was going.
-/// @param {Struct} player The player to change
-function resnip_cancel_next(_player) {
-	_player.__queue = undefined;
-	_player.__queue_transition = false;
-	_player.__queue_backward = false;
+/// @func resnip_cancel_next(playback)
+/// @desc Drops the snip queued by resnip_play. While a transition plays, the snip it leads to stays, since that is where the playback was going.
+/// @param {Struct} playback The playback to change
+function resnip_cancel_next(_playback) {
+	_playback.__queue = undefined;
+	_playback.__queue_transition = false;
+	_playback.__queue_backward = false;
 }

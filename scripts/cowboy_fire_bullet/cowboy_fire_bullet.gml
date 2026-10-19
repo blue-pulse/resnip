@@ -1,8 +1,8 @@
-///@func cowboy_fire_bullet(bullet_speed, player)
-///@desc Fires a bullet from the instance when its own player reaches the shooting frame, and ignores the extra players that draw the same snip
-function cowboy_fire_bullet(_bullet_speed, _player) {
-	// Prevent extra players from firing
-	if (_player != main_player) {
+///@func cowboy_fire_bullet(bullet_speed, playback)
+///@desc Fires a bullet from the instance when its own playback reaches the shooting frame, and ignores the extra playbacks that draw the same snip
+function cowboy_fire_bullet(_bullet_speed, _playback) {
+	// Prevent extra playbacks from firing
+	if (_playback != main_playback) {
 		return;
 	}
 

@@ -4,7 +4,7 @@
 
 This record decides how the public functions are named. Read it before you add a public function or rename one. It covers the verb names of the functions that act on a player, and the names that keep a noun. It does not cover the rule of the prefix and the case, which is `C003` in [CONTRIBUTING.md](../CONTRIBUTING.md). Update it when a function changes group.
 
-- Status: accepted
+- Status: accepted, and its name of the type is superseded by [0016](./0016-name-the-type-playback.md)
 - Date: 2026-10-15
 - Decision-makers: the maintainer
 

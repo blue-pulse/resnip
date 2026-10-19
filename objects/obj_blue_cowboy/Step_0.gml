@@ -1,8 +1,8 @@
-/// @description Step the players and read the shot count
-// Players
-resnip_step(main_player);
-resnip_step(copy_player);
-resnip_instance_sync(main_player);
+/// @description Step the playbacks and read the shot count
+// Playbacks
+resnip_step(main_playback);
+resnip_step(copy_playback);
+resnip_instance_sync(main_playback);
 
 // Shot count
 if (keyboard_lastkey >= ord("0") && keyboard_lastkey <= ord("9")) {

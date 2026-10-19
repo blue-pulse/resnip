@@ -1,4 +1,4 @@
 // Debug panel
-if (debug_player != undefined) {
-	resnip_debug_draw(debug_player, 8, 8);
+if (debug_playback != undefined) {
+	resnip_debug_draw(debug_playback, 8, 8);
 }

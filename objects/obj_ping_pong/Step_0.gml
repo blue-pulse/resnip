@@ -1,4 +1,4 @@
-/// @description Step the players
-resnip_step(main_player);
-resnip_step(copy_player);
-resnip_instance_sync(main_player);
+/// @description Step the playbacks
+resnip_step(main_playback);
+resnip_step(copy_playback);
+resnip_instance_sync(main_playback);

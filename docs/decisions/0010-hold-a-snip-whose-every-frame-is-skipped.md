@@ -2,7 +2,7 @@
 
 ## About this document
 
-This record decides what happens when loops with a count below 0 skip every frame of a snip. Read it before you change `__resnip_player_enter`, the loop skip, or `__resnip_player_give_up`. It covers the skip counter, the limit and the warning. It does not cover the loop count itself, which is [0002](./0002-keep-playback-state-in-the-player-and-fix-the-snip.md), or the end modes, which are [0004](./0004-describe-the-end-of-a-snip-with-a-mode-and-a-completion-rule.md). Update it when the skip logic stops recursing.
+This record decides what happens when loops with a count below 0 skip every frame of a snip. Read it before you change `__resnip_playback_enter`, the loop skip, or `__resnip_playback_give_up`. It covers the skip counter, the limit and the warning. It does not cover the loop count itself, which is [0002](./0002-keep-the-state-in-the-playback-and-fix-the-snip.md), or the end modes, which are [0004](./0004-describe-the-end-of-a-snip-with-a-mode-and-a-completion-rule.md). Update it when the skip logic stops recursing.
 
 - Status: accepted
 - Date: 2026-10-15
@@ -10,16 +10,16 @@ This record decides what happens when loops with a count below 0 skip every fram
 
 ## Summary
 
-- A player counts the skips it follows. When the count reaches the number of loops of the snip, the player holds its last frame going forward or its first going backward, stops, and prints a `[WARNING]`.
+- A playback counts the skips it follows. When the count reaches the number of loops of the snip, the playback holds its last frame going forward or its first going backward, stops, and prints a `[WARNING]`.
 - Never remove the limit while the skip and the end of a snip call each other.
 
 ## Context and problem statement
 
-A loop with a count below 0 is skipped: the player jumps past it. When the loops cover every frame, the jump leaves the snip, the snip ends, REPEAT or PINGPONG start again, the loops reset, and the jump happens again without any frame in between. `__resnip_player_enter` and `__resnip_player_finish` call each other without end.
+A loop with a count below 0 is skipped: the playback jumps past it. When the loops cover every frame, the jump leaves the snip, the snip ends, REPEAT or PINGPONG start again, the loops reset, and the jump happens again without any frame in between. `__resnip_playback_enter` and `__resnip_playback_finish` call each other without end.
 
 ## Decision outcome
 
-`__resnip_player_enter` keeps `__skips` on the player. It adds one before it follows a skip and subtracts one after. If `__skips` already equals the number of loops of the snip, it calls `__resnip_player_give_up`, which prints the warning and stops the player. `resnip_play` resets the counter. A chain of skips that lands on a real frame never reaches the limit, because each loop skips once per pass.
+`__resnip_playback_enter` keeps `__skips` on the playback. It adds one before it follows a skip and subtracts one after. If `__skips` already equals the number of loops of the snip, it calls `__resnip_playback_give_up`, which prints the warning and stops the playback. `resnip_play` resets the counter. A chain of skips that lands on a real frame never reaches the limit, because each loop skips once per pass.
 
 ## Considered options
 

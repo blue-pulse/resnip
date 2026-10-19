@@ -2,7 +2,7 @@
 
 ## About this document
 
-This record decides that Resnip is a rewrite of AESnips that keeps its concepts and replaces its code. Read it before you add a feature that AESnips had, or before you ask why a behaviour differs from it. It covers what is kept, what changes, what is dropped, how the end types map, and what a person who knows AESnips will notice. It does not cover the detail of each change, which are records [0002](./0002-keep-playback-state-in-the-player-and-fix-the-snip.md) to [0011](./0011-run-a-callback-for-every-frame-entered.md), and it does not describe AESnips itself, which is [reference/aesnips.md](../reference/aesnips.md). Update it when a kept concept is dropped or a dropped one returns.
+This record decides that Resnip is a rewrite of AESnips that keeps its concepts and replaces its code. Read it before you add a feature that AESnips had, or before you ask why a behaviour differs from it. It covers what is kept, what changes, what is dropped, how the end types map, and what a person who knows AESnips will notice. It does not cover the detail of each change, which are records [0002](./0002-keep-the-state-in-the-playback-and-fix-the-snip.md) to [0011](./0011-run-a-callback-for-every-frame-entered.md), and it does not describe AESnips itself, which is [reference/aesnips.md](../reference/aesnips.md). Update it when a kept concept is dropped or a dropped one returns.
 
 - Status: accepted
 - Date: 2026-10-15
@@ -15,20 +15,20 @@ This record decides that Resnip is a rewrite of AESnips that keeps its concepts 
 
 ## Context and problem statement
 
-AESnips 0.1.4, by William Jones under the MIT licence, plays sprite animations with very little code. It was written before structs, arrays and method variables became the normal way to write GML. It keeps three `ds_list` per snip, adds `ae_snip_` variables to the calling instance, advances a float `image_index` with an epsilon, writes playback logic twice (instance and standalone player), reaches "what plays next" by three paths, and has about 60 accessors and a global pause variable. Reading its code found ten faults, listed in [reference/aesnips.md](../reference/aesnips.md). The maintainer considers upstream inactive, so there is nothing to merge back.
+AESnips 0.1.4, by William Jones under the MIT licence, plays sprite animations with very little code. It was written before structs, arrays and method variables became the normal way to write GML. It keeps three `ds_list` per snip, adds `ae_snip_` variables to the calling instance, advances a float `image_index` with an epsilon, writes playback logic twice (instance and standalone `SnipPlayer`), reaches "what plays next" by three paths, and has about 60 accessors and a global pause variable. Reading its code found ten faults, listed in [reference/aesnips.md](../reference/aesnips.md). The maintainer considers upstream inactive, so there is nothing to merge back.
 
 ## Decision outcome
 
-Resnip keeps these concepts: a snip as a definition apart from playback state, a speed per frame multiplied by the speed of the snip, loops with a repeat count that can change at run time, transitions found by from and to, a queue and a successor for what plays next, a script on a frame with an argument, a script on completion, backward playback, the speed type of the sprite, and a standalone player.
+Resnip keeps these concepts: a snip as a definition apart from playback state, a speed per frame multiplied by the speed of the snip, loops with a repeat count that can change at run time, transitions found by from and to, a queue and a successor for what plays next, a script on a frame with an argument, a script on completion, backward playback, the speed type of the sprite, and playing with no instance.
 
 Resnip changes how they are built:
 
-- Playback state lives in a player and the snip is fixed ([0002](./0002-keep-playback-state-in-the-player-and-fix-the-snip.md)).
+- The state of an animation lives in a playback and the snip is fixed ([0002](./0002-keep-the-state-in-the-playback-and-fix-the-snip.md)).
 - Time is an integer frame plus an accumulator ([0003](./0003-advance-time-with-an-integer-frame-and-an-accumulator.md)).
 - The seven end types become five end modes and three completion rules ([0004](./0004-describe-the-end-of-a-snip-with-a-mode-and-a-completion-rule.md)).
 - Queue, successor and transition target become one rule ([0005](./0005-decide-what-plays-next-with-one-rule.md)).
-- Direction lives in the player ([0006](./0006-keep-direction-in-the-player.md)) and pause in a clock ([0007](./0007-share-pause-and-scale-through-a-clock.md)).
-- Instance mode becomes one sync function ([0008](./0008-sync-an-instance-from-a-player.md)).
+- Direction lives in the playback ([0006](./0006-keep-direction-in-the-playback.md)) and pause in a clock ([0007](./0007-share-pause-and-scale-through-a-clock.md)).
+- Instance mode becomes one sync function ([0008](./0008-sync-an-instance-from-a-playback.md)).
 
 Resnip drops the accessors (read the struct field), the clones of loops and transitions (one `resnip_snip_clone`), `ds_list` and manual destruction, `snip_play_request` (the `restart` option of `resnip_play`), and the playback logic written twice.
 
@@ -50,14 +50,14 @@ Resnip drops the accessors (read the struct field), the clones of loops and tran
 - A frame script runs on the step its frame appears, one step earlier than in AESnips, and the script of the last frame runs.
 - A pingpong turn does not repeat the edge frame.
 - A step that crosses frames uses the speed of each frame, and the rest of a step passes on.
-- A direction belongs to the player. A snip that plays backward after another one carries the option in its `next`.
-- Pausing, loop counts and frame speeds are set for one player or one clock, and never change a snip that others share.
+- A direction belongs to the playback. A snip that plays backward after another one carries the option in its `next`.
+- Pausing, loop counts and frame speeds are set for one playback or one clock, and never change a snip that others share.
 - A speed of 0 holds a frame, as in AESnips, but a snip cannot be changed to release it. Use `resnip_set_frame_speed` ([0009](./0009-let-a-speed-of-zero-hold-a-frame.md)).
 
 ## Considered options
 
 - Port the code file by file was refused, because it carries the faults, the `ds_list` and the duplicated playback logic.
-- Keep instance mode as the main mode was refused, because it needs state on the calling instance and a second playback code.
+- Keep instance mode as the main mode was refused, because it needs state on the calling instance and a second code that plays.
 - Fix AESnips upstream was refused, because the maintainer considers upstream inactive.
 
 ## Consequences

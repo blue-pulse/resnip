@@ -148,14 +148,14 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 
 | Before you touch | Read |
 | --- | --- |
-| `resnip_step` or any `__resnip_player_*` script | [Architecture: time and speed](./ARCHITECTURE.md#time-and-speed), [0003](./decisions/0003-advance-time-with-an-integer-frame-and-an-accumulator.md) |
+| `resnip_step` or any `__resnip_playback_*` script | [Architecture: time and speed](./ARCHITECTURE.md#time-and-speed), [0003](./decisions/0003-advance-time-with-an-integer-frame-and-an-accumulator.md) |
 | `__resnip_sprite_scale`, or anything that reads the gamespeed | [0013](./decisions/0013-read-the-gamespeed-from-the-engine.md) |
-| The name of a public function | [0014](./decisions/0014-name-the-functions-that-act-on-a-player-by-their-verb.md), `C003` |
+| The name of a public function, or of the type that holds the state of an animation | [0014](./decisions/0014-name-the-functions-that-act-on-a-player-by-their-verb.md), [0016](./decisions/0016-name-the-type-playback.md), `C003` |
 | The end of a snip, `end_mode` or `complete_on` | [0004](./decisions/0004-describe-the-end-of-a-snip-with-a-mode-and-a-completion-rule.md) |
 | `next`, the queue or transitions | [0005](./decisions/0005-decide-what-plays-next-with-one-rule.md) |
-| A loop count or a frame speed set at run time | [0002](./decisions/0002-keep-playback-state-in-the-player-and-fix-the-snip.md) |
-| `direction`, `backward` or pause | [0006](./decisions/0006-keep-direction-in-the-player.md), [0007](./decisions/0007-share-pause-and-scale-through-a-clock.md) |
-| `resnip_instance_sync` | [0008](./decisions/0008-sync-an-instance-from-a-player.md) |
+| A loop count or a frame speed set at run time | [0002](./decisions/0002-keep-the-state-in-the-playback-and-fix-the-snip.md) |
+| `direction`, `backward` or pause | [0006](./decisions/0006-keep-direction-in-the-playback.md), [0007](./decisions/0007-share-pause-and-scale-through-a-clock.md) |
+| `resnip_instance_sync` | [0008](./decisions/0008-sync-an-instance-from-a-playback.md) |
 | A speed of 0, or a loop with a count below 0 | [0009](./decisions/0009-let-a-speed-of-zero-hold-a-frame.md), [0010](./decisions/0010-hold-a-snip-whose-every-frame-is-skipped.md) |
 | A callback, frame script or completion script | [0011](./decisions/0011-run-a-callback-for-every-frame-entered.md) |
 | Behaviour that differs from AESnips | [0001](./decisions/0001-rewrite-aesnips-with-structs-and-one-playback-core.md), [AESnips](./reference/aesnips.md) |
