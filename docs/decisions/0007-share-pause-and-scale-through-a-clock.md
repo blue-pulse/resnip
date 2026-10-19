@@ -19,7 +19,7 @@ AESnips pauses everything with the global variable `AE_SNIP_GLOBAL_IS_PAUSED`, a
 
 ## Decision outcome
 
-`resnip_clock_create` returns a clock, `resnip_clock_default` returns the one that lives in the library state, and `resnip_clock_set_scale` validates the scale. A playback made without a clock follows the default. A step does nothing when the playback or its clock is paused. A pause set by a callback ends the step in progress, because the step checks it after each frame that it crosses.
+`resnip_clock_create` returns a clock, `resnip_clock_default` returns the one that lives in the library state, and `resnip_clock_set_scale` validates the scale. A playback made without a clock follows the default. A step does nothing when the playback or its clock is paused. A pause set by a callback ends the step in progress, because the step checks it after each callback and after each move that goes through `__resnip_playback_move`.
 
 ## Considered options
 
@@ -28,6 +28,6 @@ AESnips pauses everything with the global variable `AE_SNIP_GLOBAL_IS_PAUSED`, a
 
 ## Consequences
 
-- Pinned by tests: `a paused playback holds even when the clock runs`, `a paused clock holds the playback`, `the default clock pauses its playbacks`, and in the suite `callbacks` `a callback that pauses the playback ends the step in progress` and `a callback that pauses the clock ends the step in progress`. Removing the check after the frame move fails two tests, and removing the check at the top of the step fails one (checked on 2026-10-15).
-- The check after each frame move costs about 3 to 4 percent on YYC at the worst case of the benchmark. The method is in [0003](./0003-advance-time-with-an-integer-frame-and-an-accumulator.md), and it is unverified from the repository. That cost is accepted.
+- Pinned by tests: `a paused playback holds even when the clock runs`, `a paused clock holds the playback`, `the default clock pauses its playbacks`, and in the suite `callbacks` `a callback that pauses the playback ends the step in progress` and `a callback that pauses the clock ends the step in progress`. Removing the pause checks after a callback fails two tests, and removing the pause checks at the top of the step fails four (checked on 2026-10-19).
+- The check after each frame move costs about 3 to 4 percent on YYC at the worst case of the benchmark. The method is in [0003](./0003-advance-time-with-an-integer-frame-and-an-accumulator.md), and it is unverified from the repository. That cost is accepted. The step now makes that check only after a callback or after a move through `__resnip_playback_move`, and the cost was not measured again.
 - The time that remains in a step when a callback pauses the playback is dropped, which is accepted.

@@ -29,6 +29,6 @@ AESnips runs a frame script one step after the frame appears, only for the frame
 
 ## Consequences
 
-- Pinned by tests in the suite `callbacks`, among them `a frame script receives its argument`, `a frame script receives the playback that entered the frame`, `completion runs before the script of the frame it wraps to`, `the script of the last frame runs when it is entered`, `the frames a large step crosses run their scripts in order`, `scripts run in reverse order while playing backward`, `a callback that stops the playback holds it on that frame` and `a callback that plays another snip replaces the current one`.
+- Pinned by tests in the suite `callbacks`, among them `a frame script receives its argument`, `a frame script receives the playback that entered the frame`, `completion runs before the script of the frame it wraps to`, `the script of the last frame runs when it is entered`, `the frames a large step crosses run their scripts in order`, `scripts run in reverse order while playing backward`, `a callback that stops the playback holds it on that frame`, `a callback that plays another snip replaces the current one` and `the rest of a step runs at the speed of the snip a callback started`.
 - User code runs inside `resnip_play` and `resnip_step`, so it can re-enter them. The tests above cover play, stop, speed and pause, and a callback that throws is not covered, which is a gap.
 - A person who knows AESnips sees scripts one step earlier, as [0001](./0001-rewrite-aesnips-with-structs-and-one-playback-core.md) says.

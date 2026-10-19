@@ -2,7 +2,7 @@
 
 ## About this document
 
-This record decides how a playback measures time. Read it before you change `resnip_step`, the way a frame is entered, or the speed formula. It covers the integer frame, the accumulator, the speed formula, the sprite speed type, and what the benchmark shows today. It does not cover loops or ends, which are [0004](./0004-describe-the-end-of-a-snip-with-a-mode-and-a-completion-rule.md) and [0002](./0002-keep-the-state-in-the-playback-and-fix-the-snip.md). Update it when the step algorithm or a measurement changes.
+This record decides how a playback measures time. Read it before you change `resnip_step`, the way a frame is entered, or the speed formula. It covers the integer frame, the accumulator, the speed formula, the sprite speed type, the step that enters a frame itself, and what the benchmark shows today. It does not cover loops or ends, which are [0004](./0004-describe-the-end-of-a-snip-with-a-mode-and-a-completion-rule.md) and [0002](./0002-keep-the-state-in-the-playback-and-fix-the-snip.md). Update it when the step algorithm or a measurement changes.
 
 - Status: accepted
 - Date: 2026-10-15
@@ -23,6 +23,8 @@ The rate of a frame is `frame_speed * snip speed * playback speed * clock scale 
 
 A step takes the time to finish the current frame, `(1 - progress) / rate`, subtracts it from what remains, moves, and repeats with the speed of the new frame. The remainder passes to the next frame and to the next snip. A script runs for every frame entered, even at a high speed. A rate of 0 or below ends the step without spending time. Equality at the edge of a frame is tolerated by `1e-6`, as `__RESNIP_EPSILON`.
 
+The step enters the next frame itself when no loop and no edge of the snip is involved, and the snip stores at creation what the step reads, so the last bit of the rate can differ from the product in the order above. [0017](./0017-enter-the-next-frame-in-the-step-and-allocate-only-what-is-used.md) decides that, with its measurements and the options it refused.
+
 ## Considered options
 
 - Keep the float index with an epsilon was refused, because of the drift above and because it cannot run a script for each frame crossed.
@@ -30,8 +32,8 @@ A step takes the time to finish the current frame, `(1 - progress) / rate`, subt
 
 ## Consequences
 
-- Pinned by tests in the suite `speed`: `no drift before the tenth step of a frame`, `no drift on the tenth step of a frame`, `a frame speed above one shortens only its own frame`, `several steps at once move several frames` and `a gamespeed set during play changes the pace of a sprite in frames per second`. Breaking `_remaining -= max(_room, 0) / _rate` fails seven tests.
-- Cost today. Method: `python tools/gm.py bench` on 2026-10-15, runtime 2026.0.0.23, Windows 11, mean of steps 11 to 130 in the room `rm_bench` with the library set to a gamespeed of 15 and a sprite of 15 frames per second, so every step crosses a frame, which is the worst case. The benchmark now gets the same one frame per step from a copy of the sprite at the engine gamespeed, and these figures were not taken again. Microseconds per step for all the playbacks. Two runs of the same code differed by up to 30 percent in single cases, so read these as an order of magnitude and re-run before citing.
+- Pinned by tests in the suite `speed`: `no drift before the tenth step of a frame`, `no drift on the tenth step of a frame`, `a frame speed above one shortens only its own frame`, `several steps at once move several frames` and `a gamespeed set during play changes the pace of a sprite in frames per second`. Breaking `_remaining -= _room / _rate` fails seven tests (checked on 2026-10-19).
+- Cost today. Method: `python tools/gm.py bench` on 2026-10-15, runtime 2026.0.0.23, Windows 11, mean of steps 11 to 130 in the room `rm_bench` with the library set to a gamespeed of 15 and a sprite of 15 frames per second, so every step crosses a frame, which is the worst case. The benchmark now gets the same one frame per step from a copy of the sprite at the engine gamespeed, and these figures were not taken again. Microseconds per step for all the playbacks. Two runs of the same code differed by up to 30 percent in single cases, so read these as an order of magnitude and re-run before citing. The step has changed since, and these figures were not taken again.
 
 | Playbacks | Loops | YYC | VM |
 | --- | --- | --- | --- |
@@ -44,5 +46,5 @@ A step takes the time to finish the current frame, `(1 - progress) / rate`, subt
 
 - One hundred animated playbacks cost about 0.1 ms per step on YYC at this worst case, derived from the 1 000 playback rows by dividing, and not measured separately. A sprite that stays several steps on a frame costs less.
 - Cost of the fixes of 2026-10-14. Method: alternating runs of two copies of the project, the code before and the code after, best of two rounds, minimum of 490 steps per case, on YYC and on the VM. The code after was between 1 percent faster and 7 percent slower on YYC and between 4 and 6 percent slower on the VM. The copies and the modified benchmark live in `.sandbox/`, so nobody else can repeat this, and it is unverified from the repository. The part that the check for a pause set inside a callback adds was about 3 to 4 percent on YYC.
-- Resnip has not been measured against AESnips. A claim that one is faster than the other would be unverified.
+- How Resnip compares with AESnips, and what the step costs today, is in [0017](./0017-enter-the-next-frame-in-the-step-and-allocate-only-what-is-used.md).
 - The benchmark of the repository reports a mean, which hides the noise. Item 1 of [PENDING.md](../PENDING.md) asks for the minimum and the median.

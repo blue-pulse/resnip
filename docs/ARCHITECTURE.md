@@ -37,7 +37,7 @@ Every public name starts with `resnip_`, and each has JSDoc.
 
 ### Internal code
 
-`Scripts/Resnip/(System)` holds the scripts that start with `__resnip_`. The playback is moved by `__resnip_playback_move` (one frame forward or back, with the loop edge), `__resnip_playback_enter` (loops and the frame script), `__resnip_playback_finish` (the end of a snip), `__resnip_playback_complete` and `__resnip_playback_play_next` (completion and what plays next), `__resnip_playback_reset_loops` and `__resnip_playback_give_up`. The rest are helpers: `__resnip_loop_repeat`, `__resnip_sprite_scale`, `__resnip_check_frame`, `__resnip_snip_build_*`, `__resnip_options_merge`, `__resnip_transition_key`, `__resnip_next_id` and `__resnip_error`.
+`Scripts/Resnip/(System)` holds the scripts that start with `__resnip_`. `resnip_step` enters the next frame itself when it is not the edge of a loop or of the snip and no loop would be entered or skipped there. `__resnip_playback_move` (one frame forward or back, with the loop edge) takes every other move. The playback is also moved by `__resnip_playback_start` (what `resnip_play` and what plays next do to start a snip), `__resnip_playback_enter` (loops and the frame script), `__resnip_playback_loop_waits` (whether entering a frame would enter or skip a loop), `__resnip_playback_finish` (the end of a snip), `__resnip_playback_complete` and `__resnip_playback_play_next` (completion and what plays next), `__resnip_playback_reset_loops` and `__resnip_playback_give_up`. The rest are helpers: `__resnip_loop_repeat`, `__resnip_check_frame`, `__resnip_snip_build_*`, `__resnip_options_merge`, `__resnip_transition_key`, `__resnip_next_id` and `__resnip_error`.
 
 ### Demo, tests and benchmark
 
@@ -48,7 +48,7 @@ Every public name starts with `resnip_`, and each has JSDoc.
 
 ### Tests
 
-`python tools/gm.py test` runs `rm_test`. The suites are `end`, `speed`, `loops`, `flow`, `input`, `state`, `callbacks`, `properties` and `debug`. On 2026-10-15 they held 171 plain tests and one scenario, 172 in all, and all passed on the VM and on YYC. Re-run before citing that count.
+`python tools/gm.py test` runs `rm_test`. The suites are `end`, `speed`, `loops`, `flow`, `input`, `state`, `callbacks`, `properties` and `debug`. On 2026-10-19 the run reported 172 tests, and all passed on the VM and on YYC. Re-run before citing that count.
 
 Time is deterministic: `__resnip_test_reset` sets the gamespeed of the engine to 15 with `game_set_speed` before each test, so a sprite of 15 frames per second moves one frame per step. A test calls `resnip_step` with a number of steps and reads the playback. `properties` is the architectural check: it runs 200 seeded cases per property against the invariants below. `__resnip_test_known_failure` registers a fault that is known and not fixed.
 
@@ -59,6 +59,7 @@ Time is deterministic: `__resnip_test_reset` sets the gamespeed of the engine to
 - The frame of a playback is always inside `[0, count - 1]`. The property `the frame stays inside the snip` detects it.
 - Two steps give the same result as one step of their sum. The property `two steps give the same result as one step of their sum` detects it.
 - A script runs for every frame entered, never only for the frame where a step lands.
+- `resnip_step` and `__resnip_playback_move` apply the same loop rules, so a rule changed in one must change in the other ([0017](./decisions/0017-enter-the-next-frame-in-the-step-and-allocate-only-what-is-used.md)). Breaking the loop edge, the loop test or the script call of the step on its own fails tests (checked on 2026-10-19), and no test compares the two paths directly.
 - The library reads no global, asset or setting of the game, apart from the gamespeed of the engine, which it reads with `game_get_speed(gamespeed_fps)`. No test detects it, and it holds by attention alone (`C013`).
 - Every public function has JSDoc, and every internal name starts with `__`. No test detects it.
 
