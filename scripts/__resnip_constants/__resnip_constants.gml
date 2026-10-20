@@ -1,6 +1,6 @@
 // Library data
-#macro RESNIP_VERSION "0.1.0"
-#macro RESNIP_DATE "2026-10-10"
+#macro RESNIP_VERSION "0.2.0"
+#macro RESNIP_DATE "2026-10-19"
 
 // Direction of playback
 #macro RESNIP_FORWARD 1

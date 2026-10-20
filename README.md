@@ -29,6 +29,58 @@ Resnip keeps the concepts of AESnips.
 - A **transition** plays a connecting snip between two snips.
 - A snip can run a script on a chosen frame, follow another snip when it ends, and play forward, backward or back and forth.
 - Snips can be queued, paused and resumed one by one or all at once.
+- A snip can start on any of its frames, and can follow the duration that the sprite editor gives each frame.
+
+## Recipes
+
+Each recipe uses only the public functions. The code of each was run as a test in a copy of the project on 2026-10-19, with runtime 2026.0.0.23 on the VM and on YYC, except the drawing, which was not run.
+
+### Hitstop
+
+Give the fighters of a hit a clock of their own, and pause it for a few steps when the hit lands. A paused clock holds every playback on its frame and keeps the time already spent in it, so the animation resumes exactly where it stopped.
+
+```gml
+// Create
+hit_clock = resnip_clock_create();
+playback = resnip_playback_create(hit_clock);
+hitstop = 0;
+
+// When the hit lands, hold for 4 steps
+hitstop = 4;
+
+// Step
+hit_clock.paused = hitstop > 0;
+hitstop = max(hitstop - 1, 0);
+resnip_step(playback);
+```
+
+Set `paused` on one playback instead to stop only that one, and use `resnip_clock_set_scale` for a slow motion instead of a stop.
+
+### An intro and a part that repeats
+
+Make two snips of one sprite, the intro and the part that repeats, and make the second the next of the first. The intro plays once and the second part repeats.
+
+```gml
+var _body = resnip_snip_create(spr_charge, { first_image: 4, last_image: 9 });
+var _intro = resnip_snip_create(spr_charge, { first_image: 0, last_image: 3, next: _body });
+resnip_play(playback, _intro);
+```
+
+### One animation, one sprite per direction
+
+When the sprites of the directions have the same frames and the same timing, play one snip and draw with the sprite of the direction. The frame, the time inside it, the loops and the scripts all carry over when the character turns, because the playback never changes.
+
+```gml
+// Create
+walk = resnip_snip_create(spr_walk_down);
+sprites = [spr_walk_right, spr_walk_up, spr_walk_left, spr_walk_down];
+resnip_play(playback, walk);
+
+// Draw
+draw_sprite(sprites[facing], resnip_frame_to_image(playback.snip, playback.frame), x, y);
+```
+
+With `resnip_instance_sync`, set `sprite_index = sprites[facing]` after the call. When the directions have different timings, give each its own snip and turn with `resnip_play_from(playback, snip, playback.frame)`, which keeps the frame but starts it again, so each turn shows that frame a little longer.
 
 ## Requirements
 
