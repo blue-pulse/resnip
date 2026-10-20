@@ -24,27 +24,76 @@ Resnip plays sprite animations in GameMaker. You describe an animation once, and
 - Start a snip on any of its frames.
 - Follow the time that the sprite editor gives each frame.
 
-## Example
+## Use it
 
-```js
-// Create
-walk = resnip_snip_create(spr_walk);
-playback = resnip_playback_create();
-resnip_play(playback, walk);
-
-// Step
-resnip_step(playback);
-
-// Draw
-resnip_draw(playback, x, y);
-```
+Download `Resnip.yymps` from the [latest release](https://github.com/blue-pulse/resnip/releases/latest) and import it into your project as a local package. It needs GameMaker LTS 2026 or later.
 
 Two words to know:
 
-- A **snip** describes an animation: a sprite, or some of its images, plus its speed, loops, scripts and what happens at the end. A snip does not change once it is made, so many objects can share one.
-- A **playback** is one animation that is playing. It knows the snip, the current frame and what plays next. You call `resnip_step` on it once per step.
+- **Snip**: a description of an animation. It is a sprite, or some of its images, plus its speed, its loops, its scripts and what happens at the end. A snip never changes once it is made, so many objects can share one.
+- **Playback**: one animation that is playing right now. It remembers which snip it plays and which frame it is on.
 
-By default a snip repeats when it reaches its last frame.
+## Your first animation
+
+Put this in an object. `spr_walk` stands for any sprite of your project.
+
+```js
+// Create event
+walk = resnip_snip_create(spr_walk);   // describe the animation
+playback = resnip_playback_create();   // make the thing that plays it
+resnip_play(playback, walk);           // start playing
+
+// Step event
+resnip_step(playback);                 // move the animation forward, once per step
+
+// Draw event
+resnip_draw(playback, x, y);           // draw the current frame
+```
+
+The sprite now plays and starts again each time it reaches its last frame. Choose another ending with `end_mode` (see below).
+
+### Drawing with `draw_self`
+
+Resnip keeps the state of the animation in the playback, not in your object, so `draw_self()` alone draws whatever sprite the object already had. If you want to use `draw_self()`, or you need the object's collision mask to follow the animation, copy the animation to the object after each step:
+
+```js
+// Step event
+resnip_step(playback);
+resnip_instance_sync(playback);   // sets sprite_index and image_index, and image_speed to 0
+
+// Draw event
+draw_self();
+```
+
+### What happens at the end
+
+Give the snip an `end_mode` when you make it.
+
+```js
+var _open = resnip_snip_create(spr_door_open, { end_mode: RESNIP_END.HOLD });
+```
+
+| End mode | What the snip does at its last frame |
+| --- | --- |
+| `RESNIP_END.REPEAT` | Starts again. This is the default |
+| `RESNIP_END.HOLD` | Stays on the last frame |
+| `RESNIP_END.REWIND` | Goes back to the first frame and stops |
+| `RESNIP_END.FASTFORWARD` | Goes to the last frame and stops |
+| `RESNIP_END.PINGPONG` | Plays back and forth |
+
+## Try the demo
+
+Download or clone the repository, open `resnip.yyp` in GameMaker LTS 2026 and run it. You need nothing else.
+
+## Explore the repository
+
+In the asset browser, the folder `Resnip` is the library, `Demo` is the demo you just ran, `Tests` holds the tests and the benchmark, and `Bootstrap` holds the room that starts them.
+
+| Path | What it holds |
+| --- | --- |
+| `scripts/`, `objects/`, `rooms/`, `sprites/` | The resources of the project, one folder each, as GameMaker keeps them on disk |
+| `docs/` | The documentation for people who work on Resnip |
+| `tools/` | Command line tools for contributors |
 
 ## Why a rewrite
 
@@ -58,101 +107,16 @@ AESnips was written before structs and arrays became the usual way to write GML.
 
 A few things behave differently from AESnips, such as when a frame script runs. [Record 0001](./docs/decisions/0001-rewrite-aesnips-with-structs-and-one-playback-core.md) lists them.
 
-## Recipes
+## Contribute
 
-These use only the public functions. The code of each recipe was run as a test on 2026-10-19, with runtime 2026.0.0.23 on the VM and on YYC. The drawing was not run.
+You do not need the command line to use Resnip, but you do to work on it. The tests and the benchmark run through Python and the GameMaker runtime, and `docs/CONTRIBUTING.md` has the commands. Read these in order.
 
-### Hitstop
-
-Give the fighters of a hit a clock of their own, and pause it for a few steps when the hit lands. A paused clock holds every playback on its frame, and the animation goes on from the same point when the clock runs again.
-
-```js
-// Create
-hit_clock = resnip_clock_create();
-playback = resnip_playback_create(hit_clock);
-hitstop = 0;
-
-// When the hit lands, hold for 4 steps
-hitstop = 4;
-
-// Step
-hit_clock.paused = hitstop > 0;
-hitstop = max(hitstop - 1, 0);
-resnip_step(playback);
-```
-
-To stop only one playback, set `paused` on that playback. For a slow motion instead of a stop, use `resnip_clock_set_scale`.
-
-### An intro and a part that repeats
-
-Make two snips from one sprite, and make the second the `next` of the first. The intro plays once, and then the second part repeats.
-
-```js
-var _body = resnip_snip_create(spr_charge, { first_image: 4, last_image: 9 });
-var _intro = resnip_snip_create(spr_charge, { first_image: 0, last_image: 3, next: _body });
-resnip_play(playback, _intro);
-```
-
-### One animation, one sprite per direction
-
-If the sprites of all directions have the same frames and timing, play one snip and draw the sprite of the direction you face. The frame, the loops and the scripts carry over when the character turns, because the playback does not change.
-
-```js
-// Create
-walk = resnip_snip_create(spr_walk_down);
-sprites = [spr_walk_right, spr_walk_up, spr_walk_left, spr_walk_down];
-resnip_play(playback, walk);
-
-// Draw
-draw_sprite(sprites[facing], resnip_frame_to_image(playback.snip, playback.frame), x, y);
-```
-
-If you use `resnip_instance_sync`, set `sprite_index = sprites[facing]` after the call.
-
-If the directions have different timings, give each its own snip and turn with `resnip_play_from(playback, snip, playback.frame)`. It keeps the frame but starts it again, so each turn shows that frame a little longer.
-
-## Install
-
-Everything the library needs is in the folder `Resnip` of the asset browser. It uses no sprite, object, room or font of the project, so it is the only folder to export as a local package from the IDE and import into your project. Inside it, `_Internal` holds the parts you should leave alone, and the other folders hold what you can call.
-
-## Requirements
-
-- GameMaker LTS 2026. The project file records IDE version 2026.0.0.16, and the tests ran with runtime 2026.0.0.23.
-- Python, for the command line tools in `tools/`. The minimum version is `requires-python` in `tools/pyproject.toml`.
-
-## Run it
-
-Open `resnip.yyp` in GameMaker and run it to see the demo. To run it from the command line, use the repository root:
-
-```sh
-python tools/gm.py doctor   # Shows what the tools found and what is missing
-python tools/gm.py run      # Starts the demo with Igor on the VM
-```
-
-The commands for the tests and the benchmark are in [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md#commands).
-
-## What is in the repository
-
-| Path | What it holds |
-| --- | --- |
-| `scripts/` | The library (`resnip_*`, `__resnip_*`), the tests (`__resnip_test_*`) and the benchmark (`__resnip_bench_*`) |
-| `objects/`, `rooms/` | The demo, the test room and the benchmark room |
-| `sprites/` | Art for the demo and the tests |
-| `tools/` | The Python command line that runs the project with Igor |
-| `docs/` | The documentation |
-
-The IDE shows the scripts in virtual folders, and on disk each resource has its own folder.
-
-## Where to go next
-
-Read these in order.
-
+- [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md): the commands and the rules for everyone who works on it.
 - [docs/PRINCIPLES.md](./docs/PRINCIPLES.md): the principles every change is judged against.
 - [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md): the map of the library, its invariants and its boundaries.
-- [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md): the commands and the rules for everyone who works on it.
 - [docs/decisions/](./docs/decisions/): why each larger choice was made, what was refused, and what differs from AESnips.
-- [docs/reference/](./docs/reference/): how AESnips, Igor, GMS MCP and the GameMaker manual behave.
 - [docs/PENDING.md](./docs/PENDING.md): the known work that is unfinished.
+- [docs/reference/](./docs/reference/): how AESnips, Igor, GMS MCP and the GameMaker manual behave.
 - [AGENTS.md](./AGENTS.md): where an AI coding agent starts.
 
 ## Credits and licence
