@@ -30,3 +30,4 @@ AESnips keeps one direction on the snip and another on the instance, and combine
 
 - Pinned by tests in the suites `end` and `loops` that run each end mode and each loop backward, among them `repeat backward wraps to the last frame` and `a loop plays backward`. The property `a backward run mirrors the forward run` checks 200 seeded snips in HOLD, REPEAT and PINGPONG.
 - Setting `direction` in the middle of a run turns the playback in place. A negative value other than -1 is not checked, which is a gap and not a decision.
+- Without this decision, reversing a snip that is playing turns it around for every playback that uses it.

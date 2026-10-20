@@ -51,3 +51,4 @@ The step does not change, a playback keeps its 17 fields, and the frame stays in
 - Behaviour when no frame is given was checked against the code before with the fixed trace of 2 240 steps and 2 000 random scenarios on the VM and on YYC, with no difference.
 - Pinned by the tests in the suite `flow` under "Start frame" and in the suite `input` under "Start frame". Each was checked by breaking the code once (rule `T004`).
 - A character that turns by starting another snip on the same frame shows that frame a little longer at each turn, which is accepted and documented with the recipe.
+- Without this decision, a game that resumes an animation or desynchronises copies of it keeps no way to start on a frame, or a second copy of what a start resets drifts from the first.

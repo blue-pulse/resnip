@@ -4,9 +4,9 @@
 
 This document holds the rules for working on Resnip. It is for anyone who works on this repository, and it binds everyone the same way. Follow each rule exactly as written. The maintainer is the owner of the project, the user is whoever is working in it at the moment, and only the maintainer may override a rule, and only in chat.
 
-It contains the commands you run, what you must always do, what you must never do, and what to read before you change a given area. It does not explain how the library is organised, which is [ARCHITECTURE.md](./ARCHITECTURE.md), and it does not argue the larger decisions, which are the records in [decisions/](./decisions/). The external tools are described in [reference/](./reference/), and the backlog is [PENDING.md](./PENDING.md).
+It contains the commands you run, what you must always do, what you must never do, and what to read before you change a given area. It does not explain how the library is organised, which is [ARCHITECTURE.md](./ARCHITECTURE.md), and it does not argue the larger decisions, which are the records in [decisions/](./decisions/). The external tools are described in [reference/](./reference/), and the backlog is [PENDING.md](./PENDING.md). The principles behind every rule are in [PRINCIPLES.md](./PRINCIPLES.md). No tool checks a rule of this document, so each holds by attention alone.
 
-Each rule carries a stable code: a letter for its section and three digits, such as `C009`. Cite a rule by its code. Always and Never share one sequence per letter, so a list shows gaps. A rule that names no authority is a local convention that no external standard names.
+Each rule carries a stable code, the way Ruff codes its lint rules: a letter for its section and three digits, such as `C009`. Cite a rule by its code, in a document, a code comment or a review. Always and Never share one sequence per letter, so a list shows gaps. A rule that names no authority is a local convention that no external standard names.
 
 | Code | Section | Always | Never |
 | --- | --- | --- | --- |
@@ -20,11 +20,11 @@ Each rule carries a stable code: a letter for its section and three digits, such
 
 A new rule takes the next free number of its letter and goes at the end of its section. A code is never reused or renumbered, and a retired rule keeps its line as `Retired` with one sentence saying why.
 
-Update it when a rule is added, changed or retired. Each rule is one line with its reason. A decision that is architecturally significant, expensive to reverse or likely to be proposed again also gets a record under `decisions/`. Anything smaller stays a line here.
+Update it when a rule is added, changed or retired. Each rule is one line with its reason. A choice that looks wrong but is deliberate also gets a record under `decisions/`, as [0020](./decisions/0020-record-architecture-decisions-with-a-fence-and-a-cost.md) states. Anything smaller stays a line here.
 
 ## Commands
 
-Run them from the repository root. They need Python 3.11 or later and a GameMaker runtime of the same year as the IDE version that saved `resnip.yyp`.
+Run them from the repository root. They need the Python version in `tools/pyproject.toml` (3.11 or later today) and a GameMaker runtime of the same year as the IDE version that saved `resnip.yyp`.
 
 | Task | Command |
 | --- | --- |
@@ -41,18 +41,19 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 ### Code
 
 - `C001` Write everything in English, including identifiers, comments, commit messages and documents, because one language serves every reader.
-- `C002` Use the plain word, such as `use` over `utilize`, because short words read faster.
+- `C002` Use the plain word, such as `use` over `utilize`, because short words read faster, as the Google developer documentation style guide asks for clear and straightforward language.
 - `C003` Name public functions `resnip_action` in snake_case and public constants and enums with the `RESNIP_` prefix, because GameMaker has one global namespace for scripts and the prefix keeps the library out of the game's names.
 - `C004` Name arguments and locals `_snake`, everything internal `__resnip_snake`, and private members of a struct `__snake`, because the marks say who may call or read a name.
 - `C005` Keep one function per script, named like the function, with internal scripts in the `(System)` folder, because the editor finds a script by its name.
 - `C006` Hand the library every value of the game through a function, except the gamespeed, which the library reads with `game_get_speed(gamespeed_fps)`, because the gamespeed is a setting of the engine and a setter is one more call to forget. See [0013](./decisions/0013-read-the-gamespeed-from-the-engine.md).
 - `C007` Document every public function with JSDoc: what it does, what it returns, how it differs from the native function or from AESnips when one resembles it, and one `@param {Type} name Description` line per argument, because the editor shows it as help.
-- `C008` Put constants in enums and macros, and keep configuration in setup functions apart from behaviour, because a repeated literal drifts.
+- `C008` Put constants in enums and macros, and keep configuration in setup functions apart from behaviour, because a repeated literal drifts. Authority: Fowler's *Refactoring* catalogues it as Replace Magic Literal, and Dijkstra names the separation of concerns in "On the role of scientific thought".
 - `C009` Prefer code that works, then code a newcomer understands on first read, then small replaceable units, and weigh speed only after those.
-- `C010` Mark a short function that runs often with `gml_pragma("forceinline")`, and only a short one, because inlining a long function grows every caller.
-- `C011` Print messages with the level in brackets, `[INFO]`, `[WARNING]`, `[ERROR]` or `[DEBUG]`, and make a message about a failure say why it failed and what would change it.
+- `C010` Mark a short function that runs often with `gml_pragma("forceinline")`, and only a short one, because inlining a long function grows every caller. Authority: the GameMaker manual on `gml_pragma`, which says YYC honours it (the VM does not, see [0017](./decisions/0017-enter-the-next-frame-in-the-step-and-allocate-only-what-is-used.md)).
+- `C011` Print messages with the level in brackets, `[INFO]`, `[WARNING]`, `[ERROR]` or `[DEBUG]`, so every line reads the same. The names follow the severities of RFC 5424 (syslog), whose list was not read in full.
 - `C012` Comment in one line: a label for a block, or the reason where the code is hard to follow.
 - `C020` Write gamespeed as one word in names, text and comments, because GameMaker does (`gamespeed_fps`).
+- `C021` Make a message that reports a failure say why it failed and what would change it, in the words of somebody who has not read the code, so a log line saves them opening a file.
 
 ### Project files
 
@@ -77,7 +78,8 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 - `D002` Open every document under `docs/` with an "About this document" block, because it lets a reader decide in ten seconds.
 - `D003` Record a measurement as its method, its number and its date, and say whether the repository lets anyone repeat it, because a number without a method cannot be checked.
 - `D004` Keep scratch work, probes and benchmark copies in `.sandbox/`, which git ignores, and let no rule depend on a file there, because the repository must stand without it.
-- `D005` Name the standard a rule rests on, or say it is a local convention.
+- `D005` Name the standard or practice a rule rests on, with its author or issuer, say when the rule departs from it, and say it is a local convention when none exists, so somebody who disagrees can check the reasoning, as [PRINCIPLES.md](./PRINCIPLES.md) asks. Say plainly when you could not read the source.
+- `D008` Write each document in `reference/` about its subject alone, with no mention of this project, its tools or any machine, and with no link to another document, so it stays correct whatever happens to the rest.
 
 ### Version control
 
@@ -92,7 +94,7 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 
 ### Agents
 
-- `A001` Read this whole document before changing anything, then [ARCHITECTURE.md](./ARCHITECTURE.md), and read the decision records before changing anything that looks wrong.
+- `A001` Read this whole document before changing anything, then [PRINCIPLES.md](./PRINCIPLES.md) and [ARCHITECTURE.md](./ARCHITECTURE.md), and read the decision records before changing anything that looks wrong.
 - `A002` Treat every rule as binding. Only the maintainer may override one, and only in the conversation.
 - `A003` Stop and ask when a task seems to need breaking a rule or reopening a decision, and do not choose silently.
 - `A004` Add a file under `docs/` only when the user asks.
@@ -100,6 +102,7 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 - `A006` Report in the conversation what you did and what you verified, and say plainly what you could not verify.
 - `A007` Keep to the scope of the request, and mention what you notice elsewhere without changing it.
 - `A008` When the user asks for a commit, follow `G003`.
+- `A014` When a run fails, read what `python tools/gm.py doctor` prints before anything else, so nobody rebuilds the Igor command or reads the Igor guide again.
 
 ## Never
 
@@ -108,9 +111,9 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 - `C013` Never read a global, an asset or a setting of the game from the library, apart from the gamespeed, because `C006` hands such values in.
 - `C014` Never use a leading underscore to mark a type, because the underscore already marks scope under `C004`.
 - `C015` Never repeat a literal that an enum or a macro could name.
-- `C016` Never write a decorative comment, a comment over more than one line, two comments stacked, or a semicolon in comment text.
-- `C017` Never add a feature, a flag or error handling for a case nobody asked for or that cannot happen, because each one is code to keep.
-- `C018` Never refactor unrelated code while fixing a bug, because it hides the fix in the diff.
+- `C016` Never write a decorative comment, a comment over more than one line, two comments stacked, or a semicolon in comment text. The one exception is the JSDoc that `C007` requires on a public function.
+- `C017` Never add a feature, a flag or error handling for a case nobody asked for or that cannot happen, because each one is code to keep. This is the YAGNI principle of Extreme Programming.
+- `C018` Never refactor unrelated code while fixing a bug, because it hides the fix in the diff, and never optimise before measuring, as Knuth warns in "Structured Programming with go to Statements".
 - `C019` Never golf code, because `C009` puts readability before brevity.
 
 ### Project files

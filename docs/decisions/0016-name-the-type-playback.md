@@ -40,3 +40,4 @@ The three reasons of 0014 do not hold:
 - The line of the benchmark reads `[BENCH] playbacks=N` and `playback_ns=`, so figures taken before 2026-10-18 carry the old labels.
 - The files of records 0002, 0006 and 0008 changed name. Record 0014 keeps its name and its text, apart from the line that says what supersedes it.
 - The 171 tests passed on the VM and on YYC after the change.
+- Without this decision, the type is read as something that belongs to the character of the game, as the maintainer read `SnipPlayer`.

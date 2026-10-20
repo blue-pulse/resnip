@@ -15,7 +15,7 @@ This record decides which unit tests this repository accepts and why. Read it be
 
 ## Context and problem statement
 
-A test costs time every time it runs, is read and breaks. One that cannot catch a bug, or that fails when nothing is wrong, gives nothing back and teaches people to ignore red. A suite grows noisy when tests are written per method, per branch or per percentage point. The suite of this repository holds 171 tests, which a reader should be able to trust without reading each one.
+A test costs time every time it runs, is read and breaks. One that cannot catch a bug, or that fails when nothing is wrong, gives nothing back and teaches people to ignore red. A suite grows noisy when tests are written per method, per branch or per percentage point. The suite of this repository held 171 tests on 2026-10-15, which a reader should be able to trust without reading each one.
 
 ## Decision outcome
 
@@ -45,6 +45,7 @@ A test is Arrange, Act, Assert, checks one behaviour, is named as a sentence, ca
 - The existing 171 tests were written before this record and were not audited against it. Some may be redundant or too close to the implementation. That is a gap and not a decision, and it is item 8 of [PENDING.md](../PENDING.md).
 - A test that stays has a reason that can be stated in one sentence, which makes a failing test easier to read.
 - Drawing, sound and layout that cannot be read back have no test, and the documents say so instead of adding a test that cannot fail.
+- Without this decision, the suite grows by method, by branch and by percentage point, tests that cannot fail teach people to ignore red, and a refactor that changes nothing visible breaks tests that read private fields.
 
 ## Sources
 

@@ -2,7 +2,7 @@
 
 ## About this document
 
-This document is the map of Resnip, a sprite animation library for GameMaker. It is for someone who needs to find their way around before changing it. It follows the structure of matklad's article "ARCHITECTURE.md" (2021): a bird's-eye view, a codemap, invariants, boundaries and cross-cutting concerns.
+This document is the map of Resnip, a sprite animation library for GameMaker. It is for someone who needs to find their way around before changing it. It follows the structure of matklad's article "ARCHITECTURE.md" (2021): a bird's-eye view, a codemap, invariants, boundaries and cross-cutting concerns, with a glossary and a table of third-party components added.
 
 It contains what rarely changes: the shape of the library, where things live, what must always hold, where one part ends and another begins, and the concerns that cut across all of them. It names files and functions without linking to them, so search for a name to find it. It leaves out the rules to follow, which are [CONTRIBUTING.md](./CONTRIBUTING.md), the reasons behind each larger choice, which are the records in [decisions/](./decisions/), and how GameMaker, Igor and AESnips behave, which is [reference/](./reference/).
 

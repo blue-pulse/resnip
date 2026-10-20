@@ -39,3 +39,4 @@ AESnips has seven end types, and each one mixes what happens at the end with whe
 - Pinned by tests in the suite `end`, among them `fastforward backward jumps to the last frame and stays`, `pingpong with head backward completes when it first reaches the first frame` and `pingpong with tail backward completes only on the return`. Breaking each of the HEAD rule and the FASTFORWARD frame fails tests (checked on 2026-10-15).
 - A snip of one frame completes every step in REPEAT and in PINGPONG with EDGE. That is a consequence and not a defect.
 - A completion script that stops the playback does not prevent the next snip from starting, because the next snip is chosen after the script. That is unresolved and is under "Waiting on the user" in [PENDING.md](../PENDING.md).
+- Without this decision, each new case of ending adds a type that mixes what happens at the end with when the snip completes, as the seven types of AESnips do.

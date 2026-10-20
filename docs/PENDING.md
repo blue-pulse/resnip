@@ -8,7 +8,7 @@ Each entry states the problem, the shape of the fix, and how you know it is done
 
 It does not record what was done, because the code, its tests and git record that. It holds no rules or deliberate constraints, which are in [CONTRIBUTING.md](./CONTRIBUTING.md) and [decisions/](./decisions/).
 
-Update it when an item is found, changes shape, or closes. Never act on an entry unless the user asks.
+Update it when an item is found, changes shape, or closes. Nothing here is acted on unless the maintainer asks (`A005`).
 
 ## 1. The benchmark hides its own noise
 
@@ -74,9 +74,9 @@ Done when every test in the suite has a behaviour that can be named in one sente
 
 Low priority.
 
-## Waiting on the user, not on us
+## Waiting on the maintainer
 
-These shape code but are product calls. Do not decide them.
+These shape code but are product calls that only the maintainer makes.
 
 - Resnip has no logo of its own. The Windows build uses the default icon of GameMaker, and the other platforms use the defaults of the IDE. Which logo, from Blue Pulse or new, goes in `options/windows/icons/icon.ico`?
 - Should a completion script that stops the playback keep the next snip from starting? Today the next snip starts anyway ([0004](./decisions/0004-describe-the-end-of-a-snip-with-a-mode-and-a-completion-rule.md)).

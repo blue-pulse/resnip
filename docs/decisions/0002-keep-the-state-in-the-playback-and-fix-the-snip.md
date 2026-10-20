@@ -39,3 +39,4 @@ Run-time changes are overrides of one playback:
 - Many playbacks share one snip with no copy. The test `playbacks on one snip do not affect each other` and `playing never changes the snip` in the suite `properties` hold this over 200 seeded cases each.
 - `snip.__options` is a shallow copy, so changing an array that was passed to `resnip_snip_create` after the call changes later clones. That is a gap and not a decision, read from the code and not run.
 - `resnip_snip_set_next` can change a shared snip at any time, not only during setup. The JSDoc says setup only, and nothing enforces it. That is a gap and not a decision, read from the code and not run.
+- Without this decision, a setter on a shared snip changes the animation of every user of it, which is the fault of AESnips that this record removes.

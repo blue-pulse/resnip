@@ -36,3 +36,4 @@ Changing the pace of animations while the game runs needs no gamespeed call. `re
 - The benchmark can no longer set the library to 15 without slowing the engine to 15. It copies the sprite and sets its speed to the gamespeed of the engine, which gives one frame per step at any gamespeed.
 - Cost of the call. Method: two copies of the library in one process, one with the call removed, alternating runs of the worst case of the benchmark with 5 000 playbacks, runtime 2026.0.0.23, 2026-10-18 and 2026-10-19. Removing the call gained 0.7 percent on the VM, which is noise, and 4.5 percent on YYC. The harness lives in `.sandbox/`, so the repository does not let anyone repeat it.
 - The 171 tests pass on the VM and on YYC after the change (2026-10-15, runtime 2026.0.0.23).
+- Without this decision, a game that forgets to set the gamespeed gets no error and its sprites in frames per second run at the wrong pace (half the pace at a gamespeed of 30 against a default of 60).

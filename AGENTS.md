@@ -9,8 +9,9 @@ This directory is your whole sandbox. Never leave it, not to look for a file you
 ## Read first
 
 1. `docs/CONTRIBUTING.md` in full. Its rules bind you like any contributor, and the ones under code `A` are written for you.
-2. `docs/ARCHITECTURE.md`.
-3. `docs/decisions/`, before you change anything that looks wrong.
+2. `docs/PRINCIPLES.md`
+3. `docs/ARCHITECTURE.md`.
+4. `docs/decisions/`, before you change anything that looks wrong.
 
 ## Navigating the repository
 
@@ -21,6 +22,7 @@ This directory is your whole sandbox. Never leave it, not to look for a file you
 
 ## Checks
 
+- When a run fails, read what `python tools/gm.py doctor` prints before anything else (`A014`). The guides to the external tools are in `docs/reference/`.
 - Run the tests with `python tools/gm.py test`, and again with `--yyc` before you share a build. Delete `.sandbox/igor/cache` first when you changed scripts (`T006`).
 - After a change, run `git status` and `git diff` and look at every `.yy` that changed (`G002`).
 - Say what you verified and what you could not, including anything that needs the game to run (`A006`).

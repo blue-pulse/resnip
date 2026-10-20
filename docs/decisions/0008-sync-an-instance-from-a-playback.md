@@ -30,3 +30,4 @@ The playback is the only code that plays. An instance that wants masks, collisio
 
 - Pinned by one test in the suite `state`: `instance sync copies the sprite, the sub-image and stops image_speed`. It covers a playback that plays forward only. A stopped or backward playback is not tested, which is a gap.
 - An instance that plays two animations at once uses two playbacks and syncs from the one that drives its sprite.
+- Without this decision, state of the library returns to the instance and a second code that plays returns with it, so every fix is made twice.

@@ -4,7 +4,7 @@
 
 This record is the decision about how decisions are recorded in this repository. It is for anyone about to write, supersede or look for a decision record. It states the format, the threshold for a record and the fields each one carries. It does not record any architectural decision of its own. Update it only when the way records are kept changes.
 
-- Status: accepted
+- Status: superseded by [0020](./0020-record-architecture-decisions-with-a-fence-and-a-cost.md)
 - Date: 2026-10-15
 - Decision-makers: the maintainer
 

@@ -85,7 +85,7 @@ With `resnip_instance_sync`, set `sprite_index = sprites[facing]` after the call
 ## Requirements
 
 - GameMaker LTS 2026. The project file records IDE version 2026.0.0.16, and the tests ran with runtime 2026.0.0.23.
-- Python 3.11 or later, for the command line tools in `tools/`.
+- Python, for the command line tools in `tools/`. The minimum version is `requires-python` in `tools/pyproject.toml`.
 
 ## Run it
 
@@ -98,13 +98,7 @@ With `resnip_instance_sync`, set `sprite_index = sprites[facing]` after the call
 
    `doctor` shows what the tools found and what is missing. `run` builds the project with Igor on the VM and starts the demo.
 
-Other commands:
-
-| Command | What it does |
-| --- | --- |
-| `python tools/gm.py test` | Runs the test room on the VM and reports the result |
-| `python tools/gm.py test --yyc` | The same, built with YYC |
-| `python tools/gm.py bench` | Runs the benchmark room |
+The commands for the tests and the benchmark are in [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md#commands).
 
 ## Project organisation
 
@@ -122,6 +116,7 @@ The IDE shows the scripts in virtual folders, and on disk each resource has its 
 
 We recommend reading the following documents in the order listed.
 
+- [docs/PRINCIPLES.md](./docs/PRINCIPLES.md): the principles every change is judged against.
 - [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md): the map of the library, its invariants and its boundaries.
 - [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md): the commands and the rules that bind everyone who works on it.
 - [docs/decisions/](./docs/decisions/): why each larger choice was made, what was refused, and what differs from AESnips.

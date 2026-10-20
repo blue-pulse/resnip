@@ -33,3 +33,4 @@ The type is still called a player. It reads as a player of playback and not as t
 - A person who knows AESnips sees `resnip_play(player, snip)` where AESnips has `snip_play(snip, transition)`. The JSDoc of `resnip_play`, `resnip_set_loop_repeats` and `resnip_set_frame_speed` says which functions of AESnips they replace.
 - `resnip_set_speed` sits beside `resnip_clock_set_scale`, and `resnip_set_speed` acts on a player while `game_set_speed` acts on the engine. That is accepted.
 - The 171 tests, the demo and the benchmark use the new names, and `git grep` finds no use of the old ones outside `docs/reference/` (2026-10-15).
+- Without this decision, the word `player` returns to every function name although it distinguishes nothing, since the library has one mode.

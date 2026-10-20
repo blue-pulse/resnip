@@ -39,3 +39,4 @@ Transitions live in a registry in the library state, found by from and to, so a 
 - `resnip_stop` forgets the target of a running transition, so `restart: false` no longer thinks the playback is heading there. Pinned by `a stopped playback can play the target of a transition it left`.
 - The registry holds its snips until `resnip_transition_remove` is called, which is accepted.
 - A transition snip's own `next` is ignored while it runs as a transition, because the target wins. That is accepted.
+- Without this decision, the queue, the successor and the transition target become three paths again, each with its own code and flag, and a fix in one misses the others.
