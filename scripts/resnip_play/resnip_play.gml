@@ -7,7 +7,7 @@
 function resnip_play(_playback, _snip, _options) {
 	// Start now when no option is given, before any local so the VM builds no locals for it
 	if (_options == undefined) {
-		__resnip_playback_start(_playback, _snip, false, false);
+		__resnip_playback_start(_playback, _snip, false, false, undefined);
 		return true;
 	}
 
@@ -29,6 +29,6 @@ function resnip_play(_playback, _snip, _options) {
 	}
 
 	// Start it now
-	__resnip_playback_start(_playback, _snip, _transition, _backward);
+	__resnip_playback_start(_playback, _snip, _transition, _backward, undefined);
 	return true;
 }

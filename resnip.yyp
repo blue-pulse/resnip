@@ -136,6 +136,7 @@
     {"id":{"name":"resnip_image_to_frame","path":"scripts/resnip_image_to_frame/resnip_image_to_frame.yy",},},
     {"id":{"name":"resnip_instance_sync","path":"scripts/resnip_instance_sync/resnip_instance_sync.yy",},},
     {"id":{"name":"resnip_play","path":"scripts/resnip_play/resnip_play.yy",},},
+    {"id":{"name":"resnip_play_from","path":"scripts/resnip_play_from/resnip_play_from.yy",},},
     {"id":{"name":"resnip_playback_create","path":"scripts/resnip_playback_create/resnip_playback_create.yy",},},
     {"id":{"name":"resnip_set_frame_speed","path":"scripts/resnip_set_frame_speed/resnip_set_frame_speed.yy",},},
     {"id":{"name":"resnip_set_loop_repeats","path":"scripts/resnip_set_loop_repeats/resnip_set_loop_repeats.yy",},},

@@ -19,7 +19,7 @@ AESnips runs a frame script one step after the frame appears, only for the frame
 
 ## Decision outcome
 
-`callback(argument, playback)` is the only calling form, for a frame script and for the completion script. A frame script runs when the frame is entered, including the first frame of a snip, which runs inside `resnip_play`. One script is allowed per frame, and a second one is an error. A callback may stop the playback, change its speed, pause it or play another snip. A callback that plays another snip replaces the current one, and the completion that started it does not start a second one.
+`callback(argument, playback)` is the only calling form, for a frame script and for the completion script. A frame script runs when the frame is entered, including the first frame of a snip, which runs inside `resnip_play`, and the frame `resnip_play_from` starts on ([0019](./0019-start-a-snip-on-a-chosen-frame.md)). One script is allowed per frame, and a second one is an error. A callback may stop the playback, change its speed, pause it or play another snip. A callback that plays another snip replaces the current one, and the completion that started it does not start a second one.
 
 ## Considered options
 

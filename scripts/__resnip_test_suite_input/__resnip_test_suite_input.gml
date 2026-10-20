@@ -180,4 +180,30 @@ function __resnip_test_suite_input() {
 			resnip_set_frame_speed(__resnip_test_playback(__resnip_test_snip()), 1, -1);
 		}, "received speed -1");
 	});
+
+	// Start frame
+	__resnip_test_case(_suite, "the last frame is a valid start frame", function(_t) {
+		var _playback = resnip_playback_create();
+		resnip_play_from(_playback, __resnip_test_snip(), 4);
+		__resnip_test_equal(_t, _playback.frame, 4);
+	});
+
+	__resnip_test_case(_suite, "a start frame past the last frame is refused", function(_t) {
+		__resnip_test_raises(_t, function() {
+			resnip_play_from(resnip_playback_create(), __resnip_test_snip(), 5);
+		}, "resnip_play_from received frame 5");
+	});
+
+	__resnip_test_case(_suite, "a start frame below zero is refused", function(_t) {
+		__resnip_test_raises(_t, function() {
+			resnip_play_from(resnip_playback_create(), __resnip_test_snip(), -1);
+		}, "resnip_play_from received frame -1");
+	});
+
+	__resnip_test_case(_suite, "a start frame that is not whole is refused", function(_t) {
+		__resnip_test_raises(_t, function() {
+			resnip_play_from(resnip_playback_create(), __resnip_test_snip(), 1.5);
+		}, "resnip_play_from received frame 1.5");
+	});
+
 }

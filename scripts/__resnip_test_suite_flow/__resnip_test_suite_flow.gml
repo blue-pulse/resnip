@@ -308,4 +308,53 @@ function __resnip_test_suite_flow() {
 		var _clone = resnip_snip_clone(_snip, { speed: 2 });
 		__resnip_test_equal(_t, [_clone.next_transition, _clone.next_backward], [false, true]);
 	});
+
+	// Start frame
+	__resnip_test_case(_suite, "a snip can start on a given frame", function(_t) {
+		var _playback = resnip_playback_create();
+		resnip_play_from(_playback, __resnip_test_snip(), 2);
+		__resnip_test_equal(_t, _playback.frame, 2, "at once");
+		__resnip_test_equal(_t, __resnip_test_trace(_playback, 4), [3, 4, 0, 1], "after");
+	});
+
+	__resnip_test_case(_suite, "a snip started backward on a given frame plays down from it", function(_t) {
+		var _playback = resnip_playback_create();
+		resnip_play_from(_playback, __resnip_test_snip(), 2, true);
+		__resnip_test_equal(_t, __resnip_test_trace(_playback, 4), [1, 0, 4, 3]);
+	});
+
+	__resnip_test_case(_suite, "the script of the start frame runs when the snip starts", function(_t) {
+		var _log = [];
+		var _scripts = [{ frame: 0, callback: __resnip_test_log_frame, argument: _log }, { frame: 2, callback: __resnip_test_log_frame, argument: _log }];
+		resnip_play_from(resnip_playback_create(), __resnip_test_snip({ frame_scripts: _scripts }), 2);
+		__resnip_test_equal(_t, _log, [2]);
+	});
+
+	__resnip_test_case(_suite, "a start frame inside a loop plays the rest of the loop and then its repeats", function(_t) {
+		var _playback = resnip_playback_create();
+		resnip_play_from(_playback, __resnip_test_snip({ loops: [{ first: 1, last: 3, repeats: 1 }] }), 2);
+		__resnip_test_equal(_t, __resnip_test_trace(_playback, 6), [3, 1, 2, 3, 4, 0]);
+	});
+
+	__resnip_test_case(_suite, "a start frame inside a skipped loop starts after the loop", function(_t) {
+		var _playback = resnip_playback_create();
+		resnip_play_from(_playback, __resnip_test_snip({ loops: [{ first: 1, last: 2, repeats: -1 }] }), 1);
+		__resnip_test_equal(_t, _playback.frame, 3);
+	});
+
+	__resnip_test_case(_suite, "a start frame starts at the beginning of that frame", function(_t) {
+		var _snip = __resnip_test_snip({ speed: 0.25 });
+		var _playback = __resnip_test_playback(_snip);
+		resnip_step(_playback, 2);
+		resnip_play_from(_playback, _snip, 0);
+		resnip_step(_playback, 2);
+		__resnip_test_equal(_t, _playback.frame, 0);
+	});
+
+	__resnip_test_case(_suite, "playing from a frame drops the queued snip", function(_t) {
+		var _playback = __resnip_test_playback(__resnip_test_make(10, 11));
+		resnip_play(_playback, __resnip_test_make(14, 15), { queue: true });
+		resnip_play_from(_playback, __resnip_test_snip(), 2);
+		__resnip_test_equal(_t, __resnip_test_trace(_playback, 4, true), ["2.3", "2.4", "2.0", "2.1"]);
+	});
 }

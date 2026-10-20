@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"resnip_play_from",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"resnip_play_from",
+  "parent":{
+    "name":"Resnip",
+    "path":"folders/Scripts/Resnip.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

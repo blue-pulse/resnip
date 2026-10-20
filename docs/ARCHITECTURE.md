@@ -31,13 +31,13 @@ Every public name starts with `resnip_`, and each has JSDoc.
 - Snip: `resnip_snip_create`, `resnip_snip_clone`, `resnip_snip_set_next`.
 - Transition: `resnip_transition_add`, `resnip_transition_find`, `resnip_transition_remove`.
 - Clock: `resnip_clock_create`, `resnip_clock_default`, `resnip_clock_set_scale`.
-- Playback: `resnip_playback_create`, `resnip_play`, `resnip_step`, `resnip_stop`, `resnip_cancel_next`, `resnip_set_speed`, `resnip_set_loop_repeats`, `resnip_set_frame_speed`.
+- Playback: `resnip_playback_create`, `resnip_play`, `resnip_play_from`, `resnip_step`, `resnip_stop`, `resnip_cancel_next`, `resnip_set_speed`, `resnip_set_loop_repeats`, `resnip_set_frame_speed`.
 - Conversion: `resnip_frame_to_image`, `resnip_image_to_frame`.
 - Adapters: `resnip_instance_sync`, `resnip_draw`, `resnip_draw_ext`, and the debug panel `resnip_debug_draw`.
 
 ### Internal code
 
-`Scripts/Resnip/(System)` holds the scripts that start with `__resnip_`. `resnip_step` enters the next frame itself when it is not the edge of a loop or of the snip and no loop would be entered or skipped there. `__resnip_playback_move` (one frame forward or back, with the loop edge) takes every other move. The playback is also moved by `__resnip_playback_start` (what `resnip_play` and what plays next do to start a snip), `__resnip_playback_enter` (loops and the frame script), `__resnip_playback_loop_waits` (whether entering a frame would enter or skip a loop), `__resnip_playback_finish` (the end of a snip), `__resnip_playback_complete` and `__resnip_playback_play_next` (completion and what plays next), `__resnip_playback_reset_loops` and `__resnip_playback_give_up`. The rest are helpers: `__resnip_loop_repeat`, `__resnip_check_frame`, `__resnip_snip_build_*`, `__resnip_options_merge`, `__resnip_transition_key`, `__resnip_next_id` and `__resnip_error`.
+`Scripts/Resnip/(System)` holds the scripts that start with `__resnip_`. `resnip_step` enters the next frame itself when it is not the edge of a loop or of the snip and no loop would be entered or skipped there. `__resnip_playback_move` (one frame forward or back, with the loop edge) takes every other move. The playback is also moved by `__resnip_playback_start` (what `resnip_play`, `resnip_play_from` and what plays next do to start a snip), `__resnip_playback_enter` (loops and the frame script), `__resnip_playback_loop_waits` (whether entering a frame would enter or skip a loop), `__resnip_playback_finish` (the end of a snip), `__resnip_playback_complete` and `__resnip_playback_play_next` (completion and what plays next), `__resnip_playback_reset_loops` and `__resnip_playback_give_up`. The rest are helpers: `__resnip_loop_repeat`, `__resnip_check_frame`, `__resnip_snip_build_*`, `__resnip_options_merge`, `__resnip_transition_key`, `__resnip_next_id` and `__resnip_error`.
 
 ### Demo, tests and benchmark
 

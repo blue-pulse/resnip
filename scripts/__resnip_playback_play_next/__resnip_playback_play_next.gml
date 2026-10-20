@@ -25,6 +25,6 @@ function __resnip_playback_play_next(_playback) {
 	if (_next == _playback.snip) {
 		_transition = false;
 	}
-	__resnip_playback_start(_playback, _next, _transition, _backward);
+	__resnip_playback_start(_playback, _next, _transition, _backward, undefined);
 	return true;
 }
