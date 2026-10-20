@@ -111,6 +111,10 @@ If you use `resnip_instance_sync`, set `sprite_index = sprites[facing]` after th
 
 If the directions have different timings, give each its own snip and turn with `resnip_play_from(playback, snip, playback.frame)`. It keeps the frame but starts it again, so each turn shows that frame a little longer.
 
+## Install
+
+Everything the library needs is in the folder `Resnip` of the asset browser. It uses no sprite, object, room or font of the project, so it is the only folder to export as a local package from the IDE and import into your project. Inside it, `_Internal` holds the parts you should leave alone, and the other folders hold what you can call.
+
 ## Requirements
 
 - GameMaker LTS 2026. The project file records IDE version 2026.0.0.16, and the tests ran with runtime 2026.0.0.23.

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"resnip_snip_clone",
   "parent":{
-    "name":"Resnip",
-    "path":"folders/Scripts/Resnip.yy",
+    "name":"Definitions",
+    "path":"folders/Resnip/Definitions.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

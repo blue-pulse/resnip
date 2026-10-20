@@ -17,8 +17,8 @@
   ],
   "name":"rm_test",
   "parent":{
-    "name":"Tests",
-    "path":"folders/Tests.yy",
+    "name":"Harness",
+    "path":"folders/Tests/Harness.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

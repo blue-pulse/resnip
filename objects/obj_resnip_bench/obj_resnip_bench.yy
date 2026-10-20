@@ -9,8 +9,8 @@
   "name":"obj_resnip_bench",
   "overriddenProperties":[],
   "parent":{
-    "name":"Tests",
-    "path":"folders/Tests.yy",
+    "name":"Bench",
+    "path":"folders/Tests/Bench.yy",
   },
   "parentObjectId":null,
   "persistent":false,

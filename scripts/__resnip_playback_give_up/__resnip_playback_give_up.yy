@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__resnip_playback_give_up",
   "parent":{
-    "name":"(System)",
-    "path":"folders/Scripts/Resnip/(System).yy",
+    "name":"_Internal",
+    "path":"folders/Resnip/_Internal.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

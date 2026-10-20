@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"resnip_instance_sync",
   "parent":{
-    "name":"Resnip",
-    "path":"folders/Scripts/Resnip.yy",
+    "name":"Adapters",
+    "path":"folders/Resnip/Adapters.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

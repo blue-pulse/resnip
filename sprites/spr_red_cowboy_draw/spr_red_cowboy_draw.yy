@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"red_cowboy_draw",
+  "%Name":"spr_red_cowboy_draw",
   "bboxMode":0,
   "bbox_bottom":31,
   "bbox_left":7,
@@ -25,19 +25,19 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"7d9803ae-c476-453f-aa9c-cc22f7c3b8a9","blendMode":0,"displayName":"default","isLocked":false,"name":"7d9803ae-c476-453f-aa9c-cc22f7c3b8a9","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"red_cowboy_draw",
+  "name":"spr_red_cowboy_draw",
   "nineSlice":null,
   "origin":0,
   "parent":{
     "name":"Cowboys",
-    "path":"folders/Sprites/Cowboys.yy",
+    "path":"folders/Demo/Sprites/Cowboys.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"red_cowboy_draw",
+    "%Name":"spr_red_cowboy_draw",
     "autoRecord":true,
     "backdropHeight":1080,
     "backdropImageOpacity":0.5,
@@ -61,7 +61,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"red_cowboy_draw",
+    "name":"spr_red_cowboy_draw",
     "playback":1,
     "playbackSpeed":15.0,
     "playbackSpeedType":0,
@@ -73,19 +73,19 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ed473311-bac4-48cd-a93d-45e71787459d","path":"sprites/red_cowboy_draw/red_cowboy_draw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ed473311-bac4-48cd-a93d-45e71787459d","path":"sprites/spr_red_cowboy_draw/spr_red_cowboy_draw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"55c344b8-7119-4875-8eec-9f4a49b0e977","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"cf63e990-081c-4da2-b090-423ac88f3719","path":"sprites/red_cowboy_draw/red_cowboy_draw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"cf63e990-081c-4da2-b090-423ac88f3719","path":"sprites/spr_red_cowboy_draw/spr_red_cowboy_draw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"ee562a11-f2ba-46c9-beaa-c45768687390","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e08fde7c-e20b-4980-86d0-7bf10efd43db","path":"sprites/red_cowboy_draw/red_cowboy_draw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e08fde7c-e20b-4980-86d0-7bf10efd43db","path":"sprites/spr_red_cowboy_draw/spr_red_cowboy_draw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"7caf62cc-fbe3-496f-8125-73c1f28d04cd","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0ed43df0-4c2e-4a26-9415-7d55a7c6f714","path":"sprites/red_cowboy_draw/red_cowboy_draw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0ed43df0-4c2e-4a26-9415-7d55a7c6f714","path":"sprites/spr_red_cowboy_draw/spr_red_cowboy_draw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"a0dda9dc-3b01-41e0-891b-5f5f41141356","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5ee668a8-67fc-4c73-9882-416545f36d4e","path":"sprites/red_cowboy_draw/red_cowboy_draw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5ee668a8-67fc-4c73-9882-416545f36d4e","path":"sprites/spr_red_cowboy_draw/spr_red_cowboy_draw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"99c6e51a-19e4-4c35-88d4-ea9851f4b765","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

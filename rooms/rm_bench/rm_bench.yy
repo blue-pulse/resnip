@@ -17,8 +17,8 @@
   ],
   "name":"rm_bench",
   "parent":{
-    "name":"Tests",
-    "path":"folders/Tests.yy",
+    "name":"Bench",
+    "path":"folders/Tests/Bench.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

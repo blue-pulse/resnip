@@ -1,14 +1,14 @@
 /// @description Create the snips, the transitions and the playbacks
 // Snips
-idle_snip = resnip_snip_create(red_cowboy_full, { first_image: 0, last_image: 2, speed: 0.5 });
-draw_snip = resnip_snip_create(red_cowboy_full, { first_image: 3, last_image: 6, end_mode: RESNIP_END.HOLD });
-fire_snip = resnip_snip_create(red_cowboy_full, {
+idle_snip = resnip_snip_create(spr_red_cowboy_full, { first_image: 0, last_image: 2, speed: 0.5 });
+draw_snip = resnip_snip_create(spr_red_cowboy_full, { first_image: 3, last_image: 6, end_mode: RESNIP_END.HOLD });
+fire_snip = resnip_snip_create(spr_red_cowboy_full, {
 	first_image: 7,
 	last_image: 10,
 	end_mode: RESNIP_END.HOLD,
 	frame_scripts: [{ frame: 1, callback: method(self, cowboy_fire_bullet), argument: -6 }],
 });
-holster_snip = resnip_snip_create(red_cowboy_full, {
+holster_snip = resnip_snip_create(spr_red_cowboy_full, {
 	first_image: 11,
 	last_image: 19,
 	end_mode: RESNIP_END.HOLD,

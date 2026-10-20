@@ -63,7 +63,7 @@ function __resnip_test_suite_state() {
 		with (_owner) {
 			resnip_instance_sync(_playback);
 		}
-		__resnip_test_equal(_t, _owner.sprite_index, red_cowboy_full, "sprite");
+		__resnip_test_equal(_t, _owner.sprite_index, spr_red_cowboy_full, "sprite");
 		__resnip_test_equal(_t, _owner.image_index, 5, "sub-image");
 		__resnip_test_equal(_t, _owner.image_speed, 0, "image speed");
 	});

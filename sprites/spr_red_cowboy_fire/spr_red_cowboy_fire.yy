@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"red_cowboy_fire",
+  "%Name":"spr_red_cowboy_fire",
   "bboxMode":0,
   "bbox_bottom":31,
   "bbox_left":2,
@@ -24,19 +24,19 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"7d9803ae-c476-453f-aa9c-cc22f7c3b8a9","blendMode":0,"displayName":"default","isLocked":false,"name":"7d9803ae-c476-453f-aa9c-cc22f7c3b8a9","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"red_cowboy_fire",
+  "name":"spr_red_cowboy_fire",
   "nineSlice":null,
   "origin":0,
   "parent":{
     "name":"Cowboys",
-    "path":"folders/Sprites/Cowboys.yy",
+    "path":"folders/Demo/Sprites/Cowboys.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"red_cowboy_fire",
+    "%Name":"spr_red_cowboy_fire",
     "autoRecord":true,
     "backdropHeight":1080,
     "backdropImageOpacity":0.5,
@@ -60,7 +60,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"red_cowboy_fire",
+    "name":"spr_red_cowboy_fire",
     "playback":1,
     "playbackSpeed":15.0,
     "playbackSpeedType":0,
@@ -72,16 +72,16 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b66346e0-1858-43f4-a021-3a9be1609abe","path":"sprites/red_cowboy_fire/red_cowboy_fire.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b66346e0-1858-43f4-a021-3a9be1609abe","path":"sprites/spr_red_cowboy_fire/spr_red_cowboy_fire.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"9c542c39-5b25-4069-a595-cb58bb2eea9c","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c59ec2b7-87b6-4bc3-ba71-7de58e90741d","path":"sprites/red_cowboy_fire/red_cowboy_fire.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c59ec2b7-87b6-4bc3-ba71-7de58e90741d","path":"sprites/spr_red_cowboy_fire/spr_red_cowboy_fire.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"0aab4a09-0e01-468e-8c5c-353b34c7d997","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7899b905-d43f-49e6-8065-ae2b90cbf024","path":"sprites/red_cowboy_fire/red_cowboy_fire.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7899b905-d43f-49e6-8065-ae2b90cbf024","path":"sprites/spr_red_cowboy_fire/spr_red_cowboy_fire.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"28152752-b0e5-4ec2-a381-af3d01e1db50","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1f503d1e-84ee-48ff-b59f-837ffd1ab94e","path":"sprites/red_cowboy_fire/red_cowboy_fire.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1f503d1e-84ee-48ff-b59f-837ffd1ab94e","path":"sprites/spr_red_cowboy_fire/spr_red_cowboy_fire.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"8adf79c4-a18a-48f6-8f64-79fa12254727","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

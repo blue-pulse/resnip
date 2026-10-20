@@ -17,8 +17,8 @@
   ],
   "name":"rm_init",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"Bootstrap",
+    "path":"folders/Bootstrap.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

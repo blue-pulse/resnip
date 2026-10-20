@@ -17,6 +17,7 @@ This directory is your whole sandbox. Never leave it, not to look for a file you
 
 - Code lives in `scripts/<name>/<name>.gml`, one function per script. Public names start with `resnip_`, and internal names start with `__resnip_`. Search for a name to find it.
 - Test code starts with `__resnip_test_`, and the benchmark with `__resnip_bench_`. Search results are crowded by tests, so filter on `scripts/resnip_*` or `scripts/__resnip_playback_*` to read the library alone.
+- In the IDE, the library is the folder `Resnip`, and what is public sits outside `Resnip/_Internal`. A resource says which virtual folder it is in with `parent` in its `.yy` (`S003`).
 - `resnip.yyp`, `resnip.resource_order` and every `.yy` are written by the GameMaker IDE and are fragile (`P001`). The art under `sprites/` and the pages under `docs/reference/` are not yours to edit (`A009`).
 - `.sandbox/` is ignored by git. It holds private work, and no rule depends on it (`D004`).
 

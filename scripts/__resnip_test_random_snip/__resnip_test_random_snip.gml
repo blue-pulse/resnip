@@ -24,7 +24,7 @@ function __resnip_test_random_snip(_random) {
 		}
 	}
 
-	return resnip_snip_create(red_cowboy_full, {
+	return resnip_snip_create(spr_red_cowboy_full, {
 		first_image: _first_image,
 		last_image: _first_image + _count - 1,
 		speed: _speeds[__resnip_test_random_next(_random, 3)],

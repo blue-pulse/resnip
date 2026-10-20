@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"resnip_stop",
   "parent":{
-    "name":"Resnip",
-    "path":"folders/Scripts/Resnip.yy",
+    "name":"Playback",
+    "path":"folders/Resnip/Playback.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"resnip_debug_draw",
   "parent":{
-    "name":"Debug",
-    "path":"folders/Scripts/Resnip/Debug.yy",
+    "name":"Adapters",
+    "path":"folders/Resnip/Adapters.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

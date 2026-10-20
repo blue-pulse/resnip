@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"resnip_clock_default",
   "parent":{
-    "name":"Resnip",
-    "path":"folders/Scripts/Resnip.yy",
+    "name":"Clocks",
+    "path":"folders/Resnip/Clocks.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

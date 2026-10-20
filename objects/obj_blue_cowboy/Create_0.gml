@@ -1,6 +1,6 @@
 /// @description Create the snip and the playbacks
 // Snip
-my_snip = resnip_snip_create(blue_cowboy_sprite, {
+my_snip = resnip_snip_create(spr_blue_cowboy, {
 	frame_speeds: [
 		{ frame: 4, speed: 0.2 },
 		{ frame: 8, speed: 0.2 },

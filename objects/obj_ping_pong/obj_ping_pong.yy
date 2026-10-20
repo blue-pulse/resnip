@@ -10,8 +10,8 @@
   "name":"obj_ping_pong",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Logic",
+    "path":"folders/Demo/Logic.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"ping_pong_sprite",
-    "path":"sprites/ping_pong_sprite/ping_pong_sprite.yy",
+    "name":"spr_ping_pong",
+    "path":"sprites/spr_ping_pong/spr_ping_pong.yy",
   },
   "spriteMaskId":null,
   "visible":true,

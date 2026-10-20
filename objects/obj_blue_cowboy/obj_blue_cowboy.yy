@@ -10,8 +10,8 @@
   "name":"obj_blue_cowboy",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Logic",
+    "path":"folders/Demo/Logic.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"blue_cowboy_sprite",
-    "path":"sprites/blue_cowboy_sprite/blue_cowboy_sprite.yy",
+    "name":"spr_blue_cowboy",
+    "path":"sprites/spr_blue_cowboy/spr_blue_cowboy.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -3,31 +3,31 @@ function __resnip_test_suite_input() {
 
 	// Snip options
 	__resnip_test_case(_suite, "the last image of the sprite is valid", function(_t) {
-		var _snip = resnip_snip_create(red_cowboy_full, { last_image: 19 });
+		var _snip = resnip_snip_create(spr_red_cowboy_full, { last_image: 19 });
 		__resnip_test_equal(_t, _snip.last_image, 19);
 	});
 
 	__resnip_test_case(_suite, "a last image past the sprite throws", function(_t) {
 		__resnip_test_raises(_t, function() {
-			resnip_snip_create(red_cowboy_full, { last_image: 20 });
+			resnip_snip_create(spr_red_cowboy_full, { last_image: 20 });
 		}, "last_image 20");
 	});
 
 	__resnip_test_case(_suite, "a first image after the last throws", function(_t) {
 		__resnip_test_raises(_t, function() {
-			resnip_snip_create(red_cowboy_full, { first_image: 5, last_image: 4 });
+			resnip_snip_create(spr_red_cowboy_full, { first_image: 5, last_image: 4 });
 		}, "first_image 5");
 	});
 
 	__resnip_test_case(_suite, "a negative first image throws", function(_t) {
 		__resnip_test_raises(_t, function() {
-			resnip_snip_create(red_cowboy_full, { first_image: -1 });
+			resnip_snip_create(spr_red_cowboy_full, { first_image: -1 });
 		}, "first_image -1");
 	});
 
 	__resnip_test_case(_suite, "a negative speed throws", function(_t) {
 		__resnip_test_raises(_t, function() {
-			resnip_snip_create(red_cowboy_full, { speed: -1 });
+			resnip_snip_create(spr_red_cowboy_full, { speed: -1 });
 		}, "received speed -1");
 	});
 
@@ -209,7 +209,7 @@ function __resnip_test_suite_input() {
 	// Sprite durations
 	__resnip_test_case(_suite, "sprite_durations that is not a bool is refused", function(_t) {
 		__resnip_test_raises(_t, function() {
-			resnip_snip_create(__resnip_test_timed_sprite, { sprite_durations: 1 });
+			resnip_snip_create(spr_resnip_test_timed, { sprite_durations: 1 });
 		}, "resnip_snip_create received sprite_durations 1");
 	});
 }

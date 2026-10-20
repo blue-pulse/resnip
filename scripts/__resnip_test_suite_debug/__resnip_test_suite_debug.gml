@@ -3,7 +3,7 @@ function __resnip_test_suite_debug() {
 
 	// The panel draws in the Draw event of the test object, so a drawing error ends the run without a result
 	__resnip_test_scenario(_suite, "the debug panel draws while its playback advances", 5, function(_t) {
-		var _snip = resnip_snip_create(red_cowboy_full, {
+		var _snip = resnip_snip_create(spr_red_cowboy_full, {
 			loops: [{ first: 5, last: 8, repeats: 2 }],
 			frame_scripts: [{ frame: 6, callback: function() {} }],
 		});

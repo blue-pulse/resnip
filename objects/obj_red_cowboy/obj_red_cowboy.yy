@@ -11,8 +11,8 @@
   "name":"obj_red_cowboy",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Logic",
+    "path":"folders/Demo/Logic.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"red_cowboy_full",
-    "path":"sprites/red_cowboy_full/red_cowboy_full.yy",
+    "name":"spr_red_cowboy_full",
+    "path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",
   },
   "spriteMaskId":null,
   "visible":true,

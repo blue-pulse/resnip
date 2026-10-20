@@ -10,8 +10,8 @@
   "name":"obj_resnip_test",
   "overriddenProperties":[],
   "parent":{
-    "name":"Tests",
-    "path":"folders/Tests.yy",
+    "name":"Harness",
+    "path":"folders/Tests/Harness.yy",
   },
   "parentObjectId":null,
   "persistent":false,

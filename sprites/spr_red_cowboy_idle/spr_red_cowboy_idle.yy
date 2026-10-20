@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"red_cowboy_idle",
+  "%Name":"spr_red_cowboy_idle",
   "bboxMode":0,
   "bbox_bottom":31,
   "bbox_left":7,
@@ -23,19 +23,19 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"7d9803ae-c476-453f-aa9c-cc22f7c3b8a9","blendMode":0,"displayName":"default","isLocked":false,"name":"7d9803ae-c476-453f-aa9c-cc22f7c3b8a9","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"red_cowboy_idle",
+  "name":"spr_red_cowboy_idle",
   "nineSlice":null,
   "origin":0,
   "parent":{
     "name":"Cowboys",
-    "path":"folders/Sprites/Cowboys.yy",
+    "path":"folders/Demo/Sprites/Cowboys.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"red_cowboy_idle",
+    "%Name":"spr_red_cowboy_idle",
     "autoRecord":true,
     "backdropHeight":1080,
     "backdropImageOpacity":0.5,
@@ -59,7 +59,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"red_cowboy_idle",
+    "name":"spr_red_cowboy_idle",
     "playback":1,
     "playbackSpeed":15.0,
     "playbackSpeedType":0,
@@ -73,13 +73,13 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4ab2de84-b422-437d-9432-498aafa987ad","path":"sprites/red_cowboy_idle/red_cowboy_idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4ab2de84-b422-437d-9432-498aafa987ad","path":"sprites/spr_red_cowboy_idle/spr_red_cowboy_idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"87871c50-f38d-4bdf-9a46-ab77b45bb6ae","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ed473311-bac4-48cd-a93d-45e71787459d","path":"sprites/red_cowboy_idle/red_cowboy_idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ed473311-bac4-48cd-a93d-45e71787459d","path":"sprites/spr_red_cowboy_idle/spr_red_cowboy_idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"36f31c1c-43b6-4dd8-b536-d58aaed85305","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"63005d86-450b-4dc6-8ba5-dabc01c9e7dc","path":"sprites/red_cowboy_idle/red_cowboy_idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"63005d86-450b-4dc6-8ba5-dabc01c9e7dc","path":"sprites/spr_red_cowboy_idle/spr_red_cowboy_idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"c8c16834-e4ff-4d1e-8f32-c2c8e2886d4f","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

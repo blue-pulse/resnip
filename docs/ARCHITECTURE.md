@@ -16,17 +16,22 @@ The one fact the rest follows from: the playback is the only code that plays. A 
 
 ## Codemap
 
-The disk holds one folder per GameMaker resource (`scripts/<name>/`, `objects/<name>/`). The IDE shows a virtual tree, and this codemap names the resource folders of that tree, `Scripts/Resnip`, `Scripts/Resnip/(System)`, `Tests/Harness`, `Tests/Suites` and `Tests/Bench`.
+The disk holds one folder per GameMaker resource (`scripts/<name>/`, `objects/<name>/`). The IDE shows a virtual tree, shaped by the rules `S001` to `S007` of [CONTRIBUTING.md](./CONTRIBUTING.md), and this codemap names its folders from what depends on nothing to what depends on it.
+
+- `Resnip` is the library, and the only folder a user exports. What a user may call sits in `Definitions`, `Playback`, `Clocks` and `Adapters`. `_Internal` holds everything else, which may change in any version without notice.
+- `Bootstrap` holds `rm_init` and `obj_init`, the entry of the demo, the tests and the benchmark.
+- `Demo` holds the demo: `Logic` for its objects, room and script, and `Sprites` with `Cowboys` and `Movement`.
+- `Tests` holds `Harness` (the test runner and its helpers), `Suites` and `Bench` (the benchmark).
 
 ### Entry points and configuration
 
 - `resnip.yyp` is the project file, and `resnip.resource_order` the order of its resources. Both are fragile (`P001`).
 - `rm_init` and `obj_init` read the environment variable `RESNIP_MODE` and go to `rm_test` for `test`, `rm_bench` for `bench`, and `rm_main`, the demo, otherwise.
-- `__resnip_constants` holds the version, the enums `RESNIP_END`, `RESNIP_COMPLETE` and `RESNIP_STOP`, and the direction macros. `__resnip_config` holds the defaults. `__resnip_system` holds the library state.
+- `resnip_constants` holds the version, the enums `RESNIP_END`, `RESNIP_COMPLETE` and `RESNIP_STOP`, and the direction macros, which a user needs. `__resnip_constants` holds two internal values. `__resnip_config` holds the defaults. `__resnip_system` holds the library state.
 
 ### Public API
 
-Every public name starts with `resnip_`, and each has JSDoc.
+Every public name starts with `resnip_`, and each has JSDoc. Anything in `Resnip` outside `_Internal` is public, and anything in `_Internal` is exempt from compatibility, as PEP 8 allows for internal interfaces. The library is at 0.x, so even the public names may change, as item 4 of Semantic Versioning allows for major version zero (both read on 2026-10-19 through a page summariser).
 
 - Snip: `resnip_snip_create`, `resnip_snip_clone`, `resnip_snip_set_next`.
 - Transition: `resnip_transition_add`, `resnip_transition_find`, `resnip_transition_remove`.
@@ -37,11 +42,11 @@ Every public name starts with `resnip_`, and each has JSDoc.
 
 ### Internal code
 
-`Scripts/Resnip/(System)` holds the scripts that start with `__resnip_`. `resnip_step` enters the next frame itself when it is not the edge of a loop or of the snip and no loop would be entered or skipped there. `__resnip_playback_move` (one frame forward or back, with the loop edge) takes every other move. The playback is also moved by `__resnip_playback_start` (what `resnip_play`, `resnip_play_from` and what plays next do to start a snip), `__resnip_playback_enter` (loops and the frame script), `__resnip_playback_loop_waits` (whether entering a frame would enter or skip a loop), `__resnip_playback_finish` (the end of a snip), `__resnip_playback_complete` and `__resnip_playback_play_next` (completion and what plays next), `__resnip_playback_reset_loops` and `__resnip_playback_give_up`. The rest are helpers: `__resnip_loop_repeat`, `__resnip_check_frame`, `__resnip_snip_build_*`, `__resnip_options_merge`, `__resnip_transition_key`, `__resnip_next_id` and `__resnip_error`.
+`Resnip/_Internal` holds the scripts that start with `__resnip_`. `resnip_step` enters the next frame itself when it is not the edge of a loop or of the snip and no loop would be entered or skipped there. `__resnip_playback_move` (one frame forward or back, with the loop edge) takes every other move. The playback is also moved by `__resnip_playback_start` (what `resnip_play`, `resnip_play_from` and what plays next do to start a snip), `__resnip_playback_enter` (loops and the frame script), `__resnip_playback_loop_waits` (whether entering a frame would enter or skip a loop), `__resnip_playback_finish` (the end of a snip), `__resnip_playback_complete` and `__resnip_playback_play_next` (completion and what plays next), `__resnip_playback_reset_loops` and `__resnip_playback_give_up`. The rest are helpers: `__resnip_loop_repeat`, `__resnip_check_frame`, `__resnip_snip_build_*`, `__resnip_options_merge`, `__resnip_transition_key`, `__resnip_next_id` and `__resnip_error`.
 
 ### Demo, tests and benchmark
 
-- The demo is `rm_main` with `obj_red_cowboy`, `obj_blue_cowboy`, `obj_ping_pong`, `obj_runner`, `obj_bullet` and `obj_explain`. It uses the sprites in `sprites/`.
+- The demo is `rm_main` with `obj_red_cowboy`, `obj_blue_cowboy`, `obj_ping_pong`, `obj_runner`, `obj_bullet` and `obj_explain`. It uses the sprites in `Demo/Sprites`.
 - The tests are `rm_test` with `obj_resnip_test`. See [Tests](#tests).
 - The benchmark is `rm_bench` with `obj_resnip_bench`, `__resnip_bench_create` and `__resnip_bench_step`. It prints `[BENCH] playbacks=N loops=M step_us=...` lines.
 - `tools/` holds the Python command line (`gm.py` with `doctor`, `run`, `test` and `bench`), which finds a runtime, builds the Igor command and reads the `[RESULT]` line of the test run.

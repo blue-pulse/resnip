@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"cowboy_fire_bullet",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "name":"Logic",
+    "path":"folders/Demo/Logic.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

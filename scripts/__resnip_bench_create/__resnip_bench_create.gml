@@ -5,7 +5,7 @@
 
 function __resnip_bench_create() {
 	// A copy of the sprite that runs at the gamespeed, so every step moves one frame
-	var _sprite = sprite_duplicate(red_cowboy_full);
+	var _sprite = sprite_duplicate(spr_red_cowboy_full);
 	sprite_set_speed(_sprite, game_get_speed(gamespeed_fps), spritespeed_framespersecond);
 
 	// Loops

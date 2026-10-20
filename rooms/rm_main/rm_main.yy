@@ -27,8 +27,8 @@
   ],
   "name":"rm_main",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"Logic",
+    "path":"folders/Demo/Logic.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

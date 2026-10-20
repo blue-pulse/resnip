@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"ping_pong_sprite",
+  "%Name":"spr_ping_pong",
   "bboxMode":0,
   "bbox_bottom":63,
   "bbox_left":0,
@@ -30,19 +30,19 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"3636976d-ddc7-43da-bf06-61f2ed97eeb4","blendMode":0,"displayName":"default","isLocked":false,"name":"3636976d-ddc7-43da-bf06-61f2ed97eeb4","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"ping_pong_sprite",
+  "name":"spr_ping_pong",
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Sprites",
-    "path":"folders/Sprites.yy",
+    "name":"Movement",
+    "path":"folders/Demo/Sprites/Movement.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"ping_pong_sprite",
+    "%Name":"spr_ping_pong",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -66,7 +66,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"ping_pong_sprite",
+    "name":"spr_ping_pong",
     "playback":1,
     "playbackSpeed":30.0,
     "playbackSpeedType":0,
@@ -80,34 +80,34 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ac842a35-5916-46b3-8f2f-b91e7b361dac","path":"sprites/ping_pong_sprite/ping_pong_sprite.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ac842a35-5916-46b3-8f2f-b91e7b361dac","path":"sprites/spr_ping_pong/spr_ping_pong.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"608f0462-1ba7-43ab-916f-eade52f33690","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3e10e407-347c-4790-9d95-354d5e79c46c","path":"sprites/ping_pong_sprite/ping_pong_sprite.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3e10e407-347c-4790-9d95-354d5e79c46c","path":"sprites/spr_ping_pong/spr_ping_pong.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"f7c7f029-25d0-483b-a6bd-3718521943d7","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6286d27e-3b2a-4b6c-8157-fb85c1938f41","path":"sprites/ping_pong_sprite/ping_pong_sprite.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6286d27e-3b2a-4b6c-8157-fb85c1938f41","path":"sprites/spr_ping_pong/spr_ping_pong.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"8e76d093-626f-42c9-9bee-f815615b23b0","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0dd5b287-e638-4c17-a8c1-00a9688d8a4e","path":"sprites/ping_pong_sprite/ping_pong_sprite.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0dd5b287-e638-4c17-a8c1-00a9688d8a4e","path":"sprites/spr_ping_pong/spr_ping_pong.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"6851f393-7f0a-4492-89e9-435963de4de6","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"57aebcde-f327-4a14-a598-73539883567f","path":"sprites/ping_pong_sprite/ping_pong_sprite.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"57aebcde-f327-4a14-a598-73539883567f","path":"sprites/spr_ping_pong/spr_ping_pong.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"141dd2fd-835f-481f-8ac0-c8bfc01c9b3e","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b2f94743-52b0-45d2-b8ee-daf79b3938aa","path":"sprites/ping_pong_sprite/ping_pong_sprite.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b2f94743-52b0-45d2-b8ee-daf79b3938aa","path":"sprites/spr_ping_pong/spr_ping_pong.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"4b07edc9-ec2e-44b5-87fd-92ca9fdafc35","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b476dacd-0371-458d-914f-5654c42d97d7","path":"sprites/ping_pong_sprite/ping_pong_sprite.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b476dacd-0371-458d-914f-5654c42d97d7","path":"sprites/spr_ping_pong/spr_ping_pong.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"eb2ce398-4936-4174-aa22-d32e8d436e56","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"79cfcf90-df97-41cb-a692-5bdb080e7fe7","path":"sprites/ping_pong_sprite/ping_pong_sprite.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"79cfcf90-df97-41cb-a692-5bdb080e7fe7","path":"sprites/spr_ping_pong/spr_ping_pong.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"b084443e-98b7-4cb8-8c5a-1653dbe33758","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"709d58a3-7f97-43f1-a53b-71567d5ce119","path":"sprites/ping_pong_sprite/ping_pong_sprite.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"709d58a3-7f97-43f1-a53b-71567d5ce119","path":"sprites/spr_ping_pong/spr_ping_pong.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"6cc77930-7b1e-48e2-98c1-fe2608c58fa6","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5706ee1c-3537-4832-88bb-9bb29f6cb573","path":"sprites/ping_pong_sprite/ping_pong_sprite.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5706ee1c-3537-4832-88bb-9bb29f6cb573","path":"sprites/spr_ping_pong/spr_ping_pong.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"16567176-5f7e-4838-aaa7-b2a1753a20c9","IsCreationKey":false,"Key":9.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

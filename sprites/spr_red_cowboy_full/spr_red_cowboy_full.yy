@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"red_cowboy_full",
+  "%Name":"spr_red_cowboy_full",
   "bboxMode":0,
   "bbox_bottom":31,
   "bbox_left":2,
@@ -40,19 +40,19 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"7d9803ae-c476-453f-aa9c-cc22f7c3b8a9","blendMode":0,"displayName":"default","isLocked":false,"name":"7d9803ae-c476-453f-aa9c-cc22f7c3b8a9","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"red_cowboy_full",
+  "name":"spr_red_cowboy_full",
   "nineSlice":null,
   "origin":0,
   "parent":{
     "name":"Cowboys",
-    "path":"folders/Sprites/Cowboys.yy",
+    "path":"folders/Demo/Sprites/Cowboys.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"red_cowboy_full",
+    "%Name":"spr_red_cowboy_full",
     "autoRecord":true,
     "backdropHeight":1080,
     "backdropImageOpacity":0.5,
@@ -76,7 +76,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"red_cowboy_full",
+    "name":"spr_red_cowboy_full",
     "playback":1,
     "playbackSpeed":15.0,
     "playbackSpeedType":0,
@@ -90,64 +90,64 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c470fd2e-1f83-447b-8e7e-3cb13f9edae7","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c470fd2e-1f83-447b-8e7e-3cb13f9edae7","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"f95d31a5-c133-474b-904b-3c96f641dc72","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ed473311-bac4-48cd-a93d-45e71787459d","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ed473311-bac4-48cd-a93d-45e71787459d","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"bb83245b-6f3c-4f8a-92a8-a97bdd96f08e","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5c605577-80ab-4ec3-8dc8-9d966311bff4","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5c605577-80ab-4ec3-8dc8-9d966311bff4","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"bb4e556b-9c37-4c9e-b378-fa15873b2860","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"cf63e990-081c-4da2-b090-423ac88f3719","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"cf63e990-081c-4da2-b090-423ac88f3719","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"f8144fc1-c50f-4003-959f-9844ab68507e","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e08fde7c-e20b-4980-86d0-7bf10efd43db","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e08fde7c-e20b-4980-86d0-7bf10efd43db","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"bc84fac7-406b-4278-97ac-9d6915bdacef","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0ed43df0-4c2e-4a26-9415-7d55a7c6f714","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0ed43df0-4c2e-4a26-9415-7d55a7c6f714","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"4b24a6be-7413-43ed-a263-faddc67542da","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5ee668a8-67fc-4c73-9882-416545f36d4e","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5ee668a8-67fc-4c73-9882-416545f36d4e","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"58832e8f-a326-4a68-a91e-907d763c0dfb","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b66346e0-1858-43f4-a021-3a9be1609abe","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b66346e0-1858-43f4-a021-3a9be1609abe","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"a21ddcaf-b413-4c05-8beb-fd148f00ea0e","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c59ec2b7-87b6-4bc3-ba71-7de58e90741d","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c59ec2b7-87b6-4bc3-ba71-7de58e90741d","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"f9bfbf4c-85c3-4bcb-95c7-196a68df2f5b","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7899b905-d43f-49e6-8065-ae2b90cbf024","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7899b905-d43f-49e6-8065-ae2b90cbf024","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"955eced2-cde6-44f8-a4b6-8d162477067d","IsCreationKey":false,"Key":9.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1f503d1e-84ee-48ff-b59f-837ffd1ab94e","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1f503d1e-84ee-48ff-b59f-837ffd1ab94e","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"f51b8ca7-7b01-42e4-81a9-954e8a41657e","IsCreationKey":false,"Key":10.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"35513ae0-b4e9-4088-908c-99c30d4b1159","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"35513ae0-b4e9-4088-908c-99c30d4b1159","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"3d8d3cbf-5f4b-41e2-8f14-01c8d2044693","IsCreationKey":false,"Key":11.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"001cc31f-3c73-414c-9168-091e72821efd","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"001cc31f-3c73-414c-9168-091e72821efd","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"fb6e3a74-813f-488d-8911-bb846ad95b72","IsCreationKey":false,"Key":12.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c214f0b5-c956-4998-ab6f-53dfc2467ab6","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c214f0b5-c956-4998-ab6f-53dfc2467ab6","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"8579c21c-2604-4173-980a-ae8140f00828","IsCreationKey":false,"Key":13.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"448e72f6-c632-46e5-b59c-cc0850c5af8a","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"448e72f6-c632-46e5-b59c-cc0850c5af8a","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"64b3616c-2864-4251-8a75-17baa4bc3251","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7540336a-0252-409a-97cd-671c9036a9c2","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7540336a-0252-409a-97cd-671c9036a9c2","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"dc8ca2cf-3987-4eb4-940e-2103a79d2a3c","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"017d3c73-38af-4cba-b4d1-24f5bb1ef1a0","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"017d3c73-38af-4cba-b4d1-24f5bb1ef1a0","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"fe247ac8-c2ed-49d9-8c8f-ac236777804d","IsCreationKey":false,"Key":16.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7225bf5d-01e1-4e5f-81bd-143a9fbb64c8","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7225bf5d-01e1-4e5f-81bd-143a9fbb64c8","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"706e0c3c-51d7-409a-ab45-03b9eec48d83","IsCreationKey":false,"Key":17.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f6e3a05b-5e6c-4b2b-aedc-1218b0c7894e","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f6e3a05b-5e6c-4b2b-aedc-1218b0c7894e","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"2878c613-0c41-4e31-9de2-8a68a4024dc7","IsCreationKey":false,"Key":18.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a8830a96-2a60-46e6-9ad1-638adb952335","path":"sprites/red_cowboy_full/red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a8830a96-2a60-46e6-9ad1-638adb952335","path":"sprites/spr_red_cowboy_full/spr_red_cowboy_full.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"2d171953-6d69-494b-a965-6d031abd5d85","IsCreationKey":false,"Key":19.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

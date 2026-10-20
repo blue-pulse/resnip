@@ -12,8 +12,8 @@
   "name":"obj_runner",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Logic",
+    "path":"folders/Demo/Logic.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"run_left_sprite",
-    "path":"sprites/run_left_sprite/run_left_sprite.yy",
+    "name":"spr_run_left",
+    "path":"sprites/spr_run_left/spr_run_left.yy",
   },
   "spriteMaskId":null,
   "visible":true,

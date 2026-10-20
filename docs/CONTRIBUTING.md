@@ -12,6 +12,7 @@ Each rule carries a stable code, the way Ruff codes its lint rules: a letter for
 | --- | --- | --- | --- |
 | `C` | Code | [Always](#code) | [Never](#code-1) |
 | `P` | Project files | [Always](#project-files) | [Never](#project-files-1) |
+| `S` | Structure | [Always](#structure) | [Never](#structure-1) |
 | `T` | Testing | [Always](#testing) | [Never](#testing-1) |
 | `D` | Documents and scratch work | [Always](#documents-and-scratch-work) | [Never](#documents-and-scratch-work-1) |
 | `G` | Version control | [Always](#version-control) | [Never](#version-control-1) |
@@ -44,7 +45,7 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 - `C002` Use the plain word, such as `use` over `utilize`, because short words read faster, as the Google developer documentation style guide asks for clear and straightforward language.
 - `C003` Name public functions `resnip_action` in snake_case and public constants and enums with the `RESNIP_` prefix, because GameMaker has one global namespace for scripts and the prefix keeps the library out of the game's names.
 - `C004` Name arguments and locals `_snake`, everything internal `__resnip_snake`, and private members of a struct `__snake`, because the marks say who may call or read a name.
-- `C005` Keep one function per script, named like the function, with internal scripts in the `(System)` folder, because the editor finds a script by its name.
+- `C005` Keep one function per script, named like the function, with internal scripts in the `_Internal` folder, because the editor finds a script by its name.
 - `C006` Hand the library every value of the game through a function, except the gamespeed, which the library reads with `game_get_speed(gamespeed_fps)`, because the gamespeed is a setting of the engine and a setter is one more call to forget. See [0013](./decisions/0013-read-the-gamespeed-from-the-engine.md).
 - `C007` Document every public function with JSDoc: what it does, what it returns, how it differs from the native function or from AESnips when one resembles it, and one `@param {Type} name Description` line per argument, because the editor shows it as help.
 - `C008` Put constants in enums and macros, and keep configuration in setup functions apart from behaviour, because a repeated literal drifts. Authority: Fowler's *Refactoring* catalogues it as Replace Magic Literal, and Dijkstra names the separation of concerns in "On the role of scientific thought".
@@ -58,6 +59,17 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 ### Project files
 
 - `P001` Edit `resnip.yyp`, each `.yy` and `resnip.resource_order` as little as possible and keep the exact line format the IDE writes, because the IDE is fragile with them.
+
+### Structure
+
+The folders below are the virtual folders of the IDE. On disk, GameMaker keeps one folder per resource under `scripts/`, `objects/` and the like, and `parent` in the `.yy` of a resource says which virtual folder it belongs to.
+
+- `S001` Group the folders by domain and not by type of resource, so everything about one part lives together and the names show what the project is for. Authority: Martin's "Screaming Architecture", which was not re-read.
+- `S002` Name a folder with one word, so a folder is found at a glance. This is a local convention.
+- `S003` Keep the library in the folder `Resnip`, with what a user may call in folders by area and everything else in `Resnip/_Internal`, so a person sees at once what to call and what to leave alone. PEP 8 marks internal interfaces with a leading underscore and Go keeps them in a directory named `internal`, and the Input, DB and SparkleStore libraries of Juju Adams use a `(System)` folder for the same purpose (all read on 2026-10-19 through a page summariser). The parentheses are not used here because the maintainer does not like them.
+- `S004` Prefix sprites with `spr_`, objects with `obj_` and rooms with `rm_`, because the name is the only context a resource has in code. Scripts carry no prefix, since `C003` and `C004` name them. This is a local convention.
+- `S005` Keep to 4 levels of folders at most, and aim for 5 to 9 items per folder, subdividing above 9 by responsibility and merging below 5 when the items belong together. This follows "flat is better than nested" from PEP 20 and Miller's "The Magical Number Seven, Plus or Minus Two" as a heuristic and not a law. `_Internal` and `Harness` hold more than 9 because they are searched by name.
+- `S006` Put a resource shared by several parts in the nearest common ancestor of its users, so no asset is duplicated or owned by chance.
 
 ### Testing
 
@@ -120,6 +132,10 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 
 - `P002` Never turn a legacy option of the project on, such as the collision compatibility mode, the legacy JSON parsing or the copy-on-write of arrays, because they keep deprecated behaviour alive. See [0012](./decisions/0012-keep-every-legacy-option-of-the-project-off.md).
 
+### Structure
+
+- `S007` Never put resources and subfolders in the same folder, because a mixed folder hides its structure and invites loose items.
+
 ### Testing
 
 - `T007` Never let a test name or compare with another library, because a test states the behaviour of Resnip in its own terms.
@@ -164,6 +180,7 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 | A speed of 0, or a loop with a count below 0 | [0009](./decisions/0009-let-a-speed-of-zero-hold-a-frame.md), [0010](./decisions/0010-hold-a-snip-whose-every-frame-is-skipped.md) |
 | A callback, frame script or completion script | [0011](./decisions/0011-run-a-callback-for-every-frame-entered.md) |
 | Behaviour that differs from AESnips | [0001](./decisions/0001-rewrite-aesnips-with-structs-and-one-playback-core.md), [AESnips](./reference/aesnips.md) |
+| The virtual folders, or where a new resource goes | [Architecture: codemap](./ARCHITECTURE.md#codemap), `S001` to `S007`, `P001` |
 | `options/main/options_main.yy` or a platform option | [0012](./decisions/0012-keep-every-legacy-option-of-the-project-off.md), `P001`, `P002` |
 | A test, or the rules for tests | [0015](./decisions/0015-write-a-test-only-if-it-protects-a-named-behaviour.md), `T001` to `T013` |
 | The test harness, `tools/` or the benchmark | [Architecture: tests](./ARCHITECTURE.md#tests), `T001` to `T007` |
