@@ -19,7 +19,7 @@ AESnips advances a float `image_index` with `math_get_epsilon()` at the edges. A
 
 ## Decision outcome
 
-The rate of a frame is `frame_speed * snip speed * playback speed * clock scale * sprite scale`, in frames per step. The sprite scale is the sprite speed when the sprite runs in frames per game frame, and the sprite speed divided by the gamespeed when it runs in frames per second. The gamespeed is read from the engine at every step, so a change applies at once, and [0013](./0013-read-the-gamespeed-from-the-engine.md) decides that input.
+The rate of a frame is `frame_speed * snip speed * playback speed * clock scale * sprite scale`, in frames per step. A snip that asks for the durations of its sprite divides each frame speed by the duration of that frame, once, when it is created ([0018](./0018-let-a-snip-ask-for-the-durations-of-its-sprite.md)). The sprite scale is the sprite speed when the sprite runs in frames per game frame, and the sprite speed divided by the gamespeed when it runs in frames per second. The gamespeed is read from the engine at every step, so a change applies at once, and [0013](./0013-read-the-gamespeed-from-the-engine.md) decides that input.
 
 A step takes the time to finish the current frame, `(1 - progress) / rate`, subtracts it from what remains, moves, and repeats with the speed of the new frame. The remainder passes to the next frame and to the next snip. A script runs for every frame entered, even at a high speed. A rate of 0 or below ends the step without spending time. Equality at the edge of a frame is tolerated by `1e-6`, as `__RESNIP_EPSILON`.
 

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__resnip_snip_build_durations",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__resnip_snip_build_durations",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Scripts/Resnip/(System).yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

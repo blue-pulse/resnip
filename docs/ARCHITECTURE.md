@@ -48,7 +48,7 @@ Every public name starts with `resnip_`, and each has JSDoc.
 
 ### Tests
 
-`python tools/gm.py test` runs `rm_test`. The suites are `end`, `speed`, `loops`, `flow`, `input`, `state`, `callbacks`, `properties` and `debug`. On 2026-10-19 the run reported 172 tests, and all passed on the VM and on YYC. Re-run before citing that count.
+`python tools/gm.py test` runs `rm_test`. The suites are `end`, `speed`, `loops`, `flow`, `input`, `state`, `callbacks`, `properties` and `debug`. On 2026-10-19 the run reported 192 tests, and all passed on the VM and on YYC. Re-run before citing that count.
 
 Time is deterministic: `__resnip_test_reset` sets the gamespeed of the engine to 15 with `game_set_speed` before each test, so a sprite of 15 frames per second moves one frame per step. A test calls `resnip_step` with a number of steps and reads the playback. `properties` is the architectural check: it runs 200 seeded cases per property against the invariants below. `__resnip_test_known_failure` registers a fault that is known and not fixed.
 
@@ -75,7 +75,7 @@ The core is the clock and the playback with the single step. The adapters, `resn
 
 ### Library and game
 
-The game hands values in through functions, and the library never reaches into the game. The sprite functions of GameMaker are the only calls into the game, and they read the sprite given to `resnip_snip_create`.
+The game hands values in through functions, and the library never reaches into the game. The sprite functions of GameMaker are the only calls into the game, and they read the sprite given to `resnip_snip_create`. `sprite_get_info` is called only for a snip that asks for `sprite_durations`.
 
 ### Library and tests
 
@@ -89,7 +89,7 @@ Tests may call `__resnip_system`, and one of them reads the internal `__key` of 
 
 ### Time and speed
 
-The step algorithm lives in `resnip_step` ([0003](./decisions/0003-advance-time-with-an-integer-frame-and-an-accumulator.md)). The sprite scale is read from the sprite when the snip is created, and the gamespeed is read from the engine at each step ([0013](./decisions/0013-read-the-gamespeed-from-the-engine.md)).
+The step algorithm lives in `resnip_step` ([0003](./decisions/0003-advance-time-with-an-integer-frame-and-an-accumulator.md)). The sprite scale is read from the sprite when the snip is created, and so are the durations of its frames when the snip asks for them with `sprite_durations` ([0018](./decisions/0018-let-a-snip-ask-for-the-durations-of-its-sprite.md)). The gamespeed is read from the engine at each step ([0013](./decisions/0013-read-the-gamespeed-from-the-engine.md)).
 
 ### Changing speed while the game runs
 

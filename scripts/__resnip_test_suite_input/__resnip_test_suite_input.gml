@@ -206,4 +206,10 @@ function __resnip_test_suite_input() {
 		}, "resnip_play_from received frame 1.5");
 	});
 
+	// Sprite durations
+	__resnip_test_case(_suite, "sprite_durations that is not a bool is refused", function(_t) {
+		__resnip_test_raises(_t, function() {
+			resnip_snip_create(__resnip_test_timed_sprite, { sprite_durations: 1 });
+		}, "resnip_snip_create received sprite_durations 1");
+	});
 }

@@ -156,6 +156,7 @@ The tests print one line, `[RESULT] N tests, P passed, F failed, K known`, and t
 | A loop count or a frame speed set at run time, or a field of a playback or a snip | [0002](./decisions/0002-keep-the-state-in-the-playback-and-fix-the-snip.md), [0017](./decisions/0017-enter-the-next-frame-in-the-step-and-allocate-only-what-is-used.md) |
 | `direction`, `backward` or pause | [0006](./decisions/0006-keep-direction-in-the-playback.md), [0007](./decisions/0007-share-pause-and-scale-through-a-clock.md) |
 | `resnip_instance_sync` | [0008](./decisions/0008-sync-an-instance-from-a-playback.md) |
+| `sprite_durations`, `frame_speeds` or how a snip reads its sprite | [0018](./decisions/0018-let-a-snip-ask-for-the-durations-of-its-sprite.md), [0003](./decisions/0003-advance-time-with-an-integer-frame-and-an-accumulator.md) |
 | `resnip_play_from`, or where a snip starts | [0019](./decisions/0019-start-a-snip-on-a-chosen-frame.md), [0005](./decisions/0005-decide-what-plays-next-with-one-rule.md) |
 | A speed of 0, or a loop with a count below 0 | [0009](./decisions/0009-let-a-speed-of-zero-hold-a-frame.md), [0010](./decisions/0010-hold-a-snip-whose-every-frame-is-skipped.md) |
 | A callback, frame script or completion script | [0011](./decisions/0011-run-a-callback-for-every-frame-entered.md) |

@@ -19,7 +19,7 @@ In AESnips a snip is shared by every user, and it can also be changed by anyone 
 
 ## Decision outcome
 
-A snip holds sprite, frame range, speeds, loops, scripts and end behaviour. A playback holds the current snip, frame, direction, speed, progress and queue.
+A snip holds sprite, frame range, speeds, loops, scripts and end behaviour, and the durations of its sprite when it asks for them ([0018](./0018-let-a-snip-ask-for-the-durations-of-its-sprite.md)). A playback holds the current snip, frame, direction, speed, progress and queue.
 
 Run-time changes are overrides of one playback:
 

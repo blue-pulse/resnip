@@ -16,7 +16,7 @@ function __resnip_playback_start(_playback, _snip, _transition, _asked_backward,
 
 	// Reset the state
 	if (_use != _playback.snip) {
-		_playback.__frame_speeds = _use.frame_speeds;
+		_playback.__frame_speeds = _use.__frame_speeds;
 	}
 	_playback.snip = _use;
 	_playback.direction = _backward ? RESNIP_BACKWARD : RESNIP_FORWARD;

@@ -211,4 +211,48 @@ function __resnip_test_suite_speed() {
 		resnip_set_frame_speed(_playback, 3, 0.5);
 		__resnip_test_equal(_t, __resnip_test_trace(_playback, 6), [3, 3, 2, 1, 0, 0]);
 	});
+
+	// Sprite durations, on a copy of red_cowboy_full where sub-image 3 lasts 2 and sub-image 4 lasts 0.5
+	__resnip_test_case(_suite, "a snip ignores the sprite durations unless it asks for them", function(_t) {
+		var _playback = __resnip_test_playback(resnip_snip_create(__resnip_test_timed_sprite, { first_image: 2, last_image: 6 }));
+		__resnip_test_equal(_t, __resnip_test_trace(_playback, 6), [1, 2, 3, 4, 0, 1]);
+	});
+
+	__resnip_test_case(_suite, "a frame lasts the duration the sprite editor gives it", function(_t) {
+		var _playback = __resnip_test_playback(resnip_snip_create(__resnip_test_timed_sprite, { first_image: 2, last_image: 6, sprite_durations: true }));
+		__resnip_test_equal(_t, __resnip_test_trace(_playback, 6), [1, 1, 2, 3, 4, 0]);
+	});
+
+	__resnip_test_case(_suite, "a frame speed multiplies the duration the sprite gives the frame", function(_t) {
+		var _playback = __resnip_test_playback(resnip_snip_create(__resnip_test_timed_sprite, { first_image: 2, last_image: 6, sprite_durations: true, frame_speeds: [{ frame: 1, speed: 2 }] }));
+		__resnip_test_equal(_t, __resnip_test_trace(_playback, 5), [1, 2, 3, 4, 0]);
+	});
+
+	__resnip_test_case(_suite, "a frame speed set on a playback multiplies the duration the sprite gives the frame", function(_t) {
+		var _playback = __resnip_test_playback(resnip_snip_create(__resnip_test_timed_sprite, { first_image: 2, last_image: 6, sprite_durations: true }));
+		resnip_set_frame_speed(_playback, 1, 2);
+		__resnip_test_equal(_t, __resnip_test_trace(_playback, 5), [1, 2, 3, 4, 0]);
+	});
+
+	__resnip_test_case(_suite, "clearing a frame speed of a playback brings back the duration the sprite gives the frame", function(_t) {
+		var _playback = __resnip_test_playback(resnip_snip_create(__resnip_test_timed_sprite, { first_image: 2, last_image: 6, sprite_durations: true }));
+		resnip_set_frame_speed(_playback, 1, 2);
+		resnip_set_frame_speed(_playback, 1, undefined);
+		__resnip_test_equal(_t, __resnip_test_trace(_playback, 6), [1, 1, 2, 3, 4, 0]);
+	});
+
+	__resnip_test_case(_suite, "a snip of part of a sprite reads the durations of its own sub-images", function(_t) {
+		var _playback = __resnip_test_playback(resnip_snip_create(__resnip_test_timed_sprite, { first_image: 3, last_image: 6, sprite_durations: true }));
+		__resnip_test_equal(_t, __resnip_test_trace(_playback, 4), [0, 1, 2, 3]);
+	});
+
+	__resnip_test_case(_suite, "a clone keeps asking for the sprite durations and reads its new sprite", function(_t) {
+		var _clone = resnip_snip_clone(__resnip_test_snip({ sprite_durations: true }), { sprite: __resnip_test_timed_sprite });
+		__resnip_test_equal(_t, __resnip_test_trace(__resnip_test_playback(_clone), 6), [1, 1, 2, 3, 4, 0]);
+	});
+
+	__resnip_test_case(_suite, "the frame speeds of a snip keep the values it was given", function(_t) {
+		var _snip = resnip_snip_create(__resnip_test_timed_sprite, { first_image: 2, last_image: 6, sprite_durations: true });
+		__resnip_test_equal(_t, _snip.frame_speeds, [1, 1, 1, 1, 1]);
+	});
 }
