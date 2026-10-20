@@ -26,7 +26,7 @@ Resnip plays sprite animations in GameMaker. You describe an animation once, and
 
 ## Use it
 
-Download `Resnip.yymps` from the [latest release](https://github.com/blue-pulse/resnip/releases/latest) and import it into your project as a local package. It needs GameMaker LTS 2026 or later.
+Download [`resnip.yymps`](https://github.com/blue-pulse/resnip/releases/latest/download/resnip.yymps) from the [latest release](https://github.com/blue-pulse/resnip/releases/latest) and import it into your project as a local package. It needs GameMaker LTS 2026 or later.
 
 Two words to know:
 
