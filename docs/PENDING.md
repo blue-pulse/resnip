@@ -83,4 +83,4 @@ These shape code but are product calls that only the maintainer makes.
 
 ## Operational, not code
 
-- The README and `LICENSE` credit AESnips and keep the MIT notice of William Jones. Do not remove either without the maintainer's ruling. Re-read both after any change of licence.
+- `LICENSE` carries the copyright of Blue Pulse only, by the maintainer's ruling, because record 0001 says no code of AESnips was copied. No search of the repository for copied code has been made. `NOTICE.md` credits AESnips and the sprites of the demo to William Jones, and the README credits AESnips as the project Resnip is based on. Both credits stay unless the maintainer rules otherwise. Re-read them after any change of licence.

@@ -121,4 +121,4 @@ You do not need the command line to use Resnip, but you do to work on it. The te
 
 ## Credits and licence
 
-Resnip is based on [AESnips](https://github.com/angelwire/AESnips) by William Jones, whose [documentation](https://docs.google.com/document/d/1JSGG1mfid8lOiSictlqFUEiaxrTep1TUyvLne1Z2Yr0) explains the concepts it carries over. It is released under the MIT licence. See [LICENSE](./LICENSE).
+Resnip is based on [AESnips](https://github.com/angelwire/AESnips) by William Jones, whose [documentation](https://docs.google.com/document/d/1JSGG1mfid8lOiSictlqFUEiaxrTep1TUyvLne1Z2Yr0) explains the concepts it carries over. It is released under the MIT licence. See [LICENSE](./LICENSE) and [NOTICE](./NOTICE.md).
