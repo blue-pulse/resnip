@@ -2,9 +2,9 @@
 
 # Resnip
 
-![Status: WIP](https://img.shields.io/badge/status-WIP-yellow)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
-[![GameMaker LTS 2026](https://img.shields.io/badge/GameMaker-LTS%202026-black)](https://gamemaker.io)
+![Status: WIP](https://img.shields.io/badge/status-active-green)
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow)](./LICENSE)
+[![GameMaker LTS 2026](https://img.shields.io/badge/GameMaker-LTS%202026-blue)](https://gamemaker.io)
 [![Based on AESnips](https://img.shields.io/badge/based%20on-AESnips-orange)](https://github.com/angelwire/AESnips)
 
 </div>
