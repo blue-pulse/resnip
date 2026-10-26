@@ -35,7 +35,7 @@ The three reasons of 0014 do not hold:
 
 ## Consequences
 
-- The public name `resnip_player_create` becomes `resnip_playback_create`. The library is at 0.1.0, so no release carried the old name.
+- The public name `resnip_player_create` becomes `resnip_playback_create`. The library was at 0.1.0 when the type was renamed, so no release carried the old name.
 - The word is also the everyday name for the idea, so a sentence can say "a playback plays a snip" and "the direction of playback". The documents say "the state of an animation" where the type and the idea would collide.
 - The line of the benchmark reads `[BENCH] playbacks=N` and `playback_ns=`, so figures taken before 2026-10-18 carry the old labels.
 - The files of records 0002, 0006 and 0008 changed name. Record 0014 keeps its name and its text, apart from the line that says what supersedes it.

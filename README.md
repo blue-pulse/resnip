@@ -2,7 +2,7 @@
 
 # Resnip
 
-![Status: WIP](https://img.shields.io/badge/status-active-green)
+![Status: active](https://img.shields.io/badge/status-active-green)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow)](./LICENSE)
 [![GameMaker LTS 2026](https://img.shields.io/badge/gamemaker-LTS%202026-blue)](https://gamemaker.io)
 [![Based on AESnips](https://img.shields.io/badge/based%20on-AESnips-orange)](https://github.com/angelwire/AESnips)
@@ -105,7 +105,16 @@ AESnips was written before structs and arrays became the usual way to write GML.
 - Every public function starts with `resnip_` and has help text in the editor.
 - A mistake in your input raises an error that says what was wrong and what to pass instead.
 
-A few things behave differently from AESnips, such as when a frame script runs. [Record 0001](./docs/decisions/0001-rewrite-aesnips-with-structs-and-one-playback-core.md) lists them.
+A few things behave differently from AESnips, such as when a frame script runs. See [Record 0001](./docs/decisions/0001-rewrite-aesnips-with-structs-and-one-playback-core.md) for more information.
+
+## Performance
+
+Resnip was timed against AESnips 0.1.4 on one Windows machine, with 5,000 animations playing at once, on both the VM and YYC.
+
+- **Playing is faster.** About 15% faster on average, and 20% to 25% faster for a sprite that stays a few steps on each frame, as most do. With a new frame every step, the two are about even.
+- **A paused animation costs about a quarter** of what it costs in AESnips.
+- **Each animation takes less memory.** About a quarter less with no loops, and about the same with loops.
+- **Starting an animation is slower**, about 1.4 times. Most games create their animations once, so this is rarely felt.
 
 ## Contribute
 

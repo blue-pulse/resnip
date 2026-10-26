@@ -18,16 +18,6 @@ Shape. Change `__resnip_bench_step` to keep the time of each step, sort them and
 
 Done when two runs of unchanged code agree within 5 percent on the minimum for every case.
 
-## 2. Resnip has not been measured against AESnips
-
-Problem. Every figure in [0003](./decisions/0003-advance-time-with-an-integer-frame-and-an-accumulator.md) compares Resnip with an earlier Resnip. No run puts the two libraries side by side, so "as fast as AESnips" is a hypothesis. The reason to expect it is that Resnip uses structs and arrays and AESnips uses variables on the instance and lists, which was not checked.
-
-Shape. Run the same cases (1 000, 5 000 and 10 000 playbacks, one sprite at one frame per step) through the `SnipPlayer` of AESnips in the private project under `.sandbox/` and record the method and the numbers in record 0003. The AESnips code stays out of the repository, so the result cannot be repeated by others, and the record must say so.
-
-Done when record 0003 holds both columns with their method.
-
-Low priority.
-
 ## 3. The skip and the end of a snip call each other
 
 Problem. `__resnip_playback_enter` follows a loop skip and `__resnip_playback_finish` follows the end of a snip, and each can call the other. [0010](./decisions/0010-hold-a-snip-whose-every-frame-is-skipped.md) bounds this with a counter per playback. The counter is reset by `resnip_play`, so two snips that are both fully skipped and name each other as `next` may still recurse without end. That is a hypothesis and not a finding, because it was not reproduced.
